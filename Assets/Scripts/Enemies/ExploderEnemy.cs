@@ -8,7 +8,7 @@ public class ExploderEnemy : Enemy
     [SerializeField] private float explosionRange = 5f;
     [SerializeField] private float attackRange = 1;
     [SerializeField] private float attackTime = 3f;
-    [SerializeField] private GameObject detonator1, detonator2, detonator3;
+    [SerializeField] private GameObject antenna1, antenna2, antenna3, eyes, hitEffect;
     private bool exploding = false;
 
     private float timer;
@@ -48,18 +48,30 @@ public class ExploderEnemy : Enemy
 
     IEnumerator Explode(){
         while (timer <= 4 ){
-            if (timer < attackTime){
-                if (timer == 1){
-                    detonator1.SetActive(false);
+            if (timer < attackTime)
+            {
+                if (timer == 1)
+                {
+                    antenna1.SetActive(true);
                 }
-                if (timer == 2){
-                    detonator2.SetActive(false);
+                if (timer == 2)
+                {
+                    antenna2.SetActive(true);
                 }
-            }else{
+                if (timer == 3)
+                {
+                    antenna3.SetActive(true);
+                    eyes.SetActive(true);
+                }
+                    
+            }
+            else
+            {
                 timer = 0f;
                 speed = 0f;
-                detonator3.SetActive(false);
-                if (Vector2.Distance(transform.position, target.position) < explosionRange){
+                Instantiate(hitEffect, transform.position, Quaternion.identity);
+                if (Vector2.Distance(transform.position, target.position) < explosionRange)
+                {
                     target.gameObject.GetComponent<IDamageable>().GetDamage(weapon.GetDamage());
                 }
                 Destroy(gameObject);

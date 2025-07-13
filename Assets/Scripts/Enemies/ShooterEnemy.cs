@@ -39,7 +39,7 @@ public class ShooterEnemy : Enemy
     public override void Shoot()
     {
         if (canShoot)
-            weapon.Shoot(bulletPrefab, point, new string[] {"Player"}, 1);
+            weapon.Shoot(bulletPrefab, point, new string[] {"Player"}, 0);
     }
 
     public void SetShooterEnemy(float _attackRange, float _attackTime){

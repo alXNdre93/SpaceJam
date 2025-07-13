@@ -8,8 +8,7 @@ public class MeleeEnemy : Enemy
 {
     [SerializeField] private float attackRange = 0;
     [SerializeField] private float attackTime = 1f;
-    [SerializeField] private Transform saw;
-    [SerializeField] private Transform center;
+    [SerializeField] private GameObject eyes;
 
     private float timer;
     private float setSpeed = 1f;
@@ -38,18 +37,25 @@ public class MeleeEnemy : Enemy
             speed = setSpeed;
         }
 
-        if  (Vector2.Distance(transform.position, target.position) < speedUpRange){
-            if (!isSpinning){
+        if (Vector2.Distance(transform.position, target.position) < speedUpRange)
+        {
+            if (!isSpinning)
+            {
                 isSpinning = true;
+                GetComponent<Animator>().SetBool("Attack", true);
+                eyes.SetActive(true);
                 speed += speedBoost;
             }
-
-            SpinSaw();
-        }else{
-            if (isSpinning){
+        }
+        else
+        {
+            if (isSpinning)
+            {
                 speed = setSpeed;
             }
             isSpinning = false;
+            GetComponent<Animator>().SetBool("Attack", false);
+            eyes.SetActive(false);
         }
 
     }
@@ -72,10 +78,6 @@ public class MeleeEnemy : Enemy
     public void SetMeleeEnemy(float _attackRange, float _attackTime){
         attackRange = _attackRange;
         attackTime = _attackTime;
-    }
-
-    public void SpinSaw(){
-        saw.RotateAround(center.position, Vector3.forward, 360 * Time.deltaTime);
     }
 
     public override int GetPointsValue()

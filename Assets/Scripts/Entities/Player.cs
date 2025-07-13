@@ -94,20 +94,24 @@ public class Player : PlayableObject
         float angle = Mathf.Atan2(target.y, target.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, (angle)-90);
     }
+
     public override void Die()
     {
         OnDeath?.Invoke();
         Destroy(gameObject);
     }
+    
     public override void Shoot()
     {
         if (canShoot)
-            weapon.Shoot(bulletPrefab, firePoint, new string[] {"Enemy", "Pickup"}, multiplyShot);
+            weapon.Shoot(bulletPrefab, firePoint, new string[] { "Enemy", "Pickup" }, multiplyShot);
     }
+
     public override void Attack(float interval)
     {
         throw new System.NotImplementedException();
     }
+
     public override void GetDamage(float damage)
     {
         health.DeductHealth(damage);
@@ -156,6 +160,7 @@ public class Player : PlayableObject
     {
         return health.GetMaxHealth();
     }
+    
     public void ActivateNuke()
     {
         if (nukeAvailable > 0)

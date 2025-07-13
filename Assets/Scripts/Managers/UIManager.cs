@@ -44,7 +44,7 @@ public class UIManager : MonoBehaviour
 
     private void OnGUI()
     {
-        if (machineGunTimerUI.activeSelf)
+        if (machineGunTimerUI.activeSelf && player != null)
         {
             machineGunTimerPlayer.transform.position = cam.WorldToScreenPoint(player.transform.position);
             machineGunTimerPlayer.transform.rotation = player.transform.rotation;
@@ -82,7 +82,7 @@ public class UIManager : MonoBehaviour
 
     public void UpdateAugments(){
         txtFireRate.SetText("Fire Rate: " + (Mathf.Floor(1 / player.fireRate*100f)/100f).ToString() + "/s");
-        txtMultiply.SetText("Bullet Size: " + (1 + player.multiplyShot).ToString() + "x");
+        txtMultiply.SetText("Damage: " + (1 + player.multiplyShot).ToString() + "x");
     }
 
     public void MachineGunTimer(){
