@@ -41,7 +41,8 @@ public class GameManager : MonoBehaviour
 
     void SetSingleton()
     {
-        if (instance != null && instance != this){
+        if (instance != null && instance != this)
+        {
             Destroy(this.gameObject);
         }
         instance = this;
@@ -54,11 +55,13 @@ public class GameManager : MonoBehaviour
 
     //Singleton End
 
-    public void NotifyDeath(Enemy enemy){
+    public void NotifyDeath(Enemy enemy)
+    {
         pickupManager.SpawnPickup(enemy.transform.position);
     }
 
-    public Player Getplayer(){
+    public Player Getplayer()
+    {
         return player;
     }
 
@@ -83,6 +86,18 @@ public class GameManager : MonoBehaviour
         player.HealPlayer(player.GetMaxHealth());
         isEnemySpawning = true;
         StartCoroutine(EnemySpawner());
+    }
+
+    IEnumerator SpawnEnemy()
+    {
+        yield return new WaitForSeconds(0.5f);
+        isEnemySpawning = true;
+        StartCoroutine(EnemySpawner());
+    }
+
+    void SpawnBoss()
+    {
+        
     }
 
     public void StopGame()
@@ -112,31 +127,39 @@ public class GameManager : MonoBehaviour
         }
         OnGameOver?.Invoke();
     }
+
     void CreateEnemy()
     {
-        tempEnemy = Instantiate(enemyPrefabs[UnityEngine.Random.Range(0,enemyPrefabs.Length)]);
+        tempEnemy = Instantiate(enemyPrefabs[UnityEngine.Random.Range(0, enemyPrefabs.Length)]);
         tempEnemy.transform.position = spawnPoints[UnityEngine.Random.Range(0, spawnPoints.Length)].position;
-        if(tempEnemy.GetComponent<MeleeEnemy>() != null){
+        if (tempEnemy.GetComponent<MeleeEnemy>() != null)
+        {
             tempEnemy.GetComponent<MeleeEnemy>().weapon = meleeWeapon;
             tempEnemy.GetComponent<MeleeEnemy>().SetMeleeEnemy(1, 0.25f);
-        } else if (tempEnemy.GetComponent<ExploderEnemy>() != null){
+        }
+        else if (tempEnemy.GetComponent<ExploderEnemy>() != null)
+        {
             tempEnemy.GetComponent<ExploderEnemy>().weapon = explosionWeapon;
             tempEnemy.GetComponent<ExploderEnemy>().SetExploderEnemy(3, 4f);
-        }else if (tempEnemy.GetComponent<MachineGunEnemy>() != null){
+        }
+        else if (tempEnemy.GetComponent<MachineGunEnemy>() != null)
+        {
             tempEnemy.GetComponent<MachineGunEnemy>().weapon = machineGunWeapon;
             tempEnemy.GetComponent<MachineGunEnemy>().SetMachineGunEnemy(5, 0.3f);
-        }else if (tempEnemy.GetComponent<ShooterEnemy>() != null){
+        }
+        else if (tempEnemy.GetComponent<ShooterEnemy>() != null)
+        {
             tempEnemy.GetComponent<ShooterEnemy>().weapon = sniperWeapon;
             tempEnemy.GetComponent<ShooterEnemy>().SetShooterEnemy(8, 2f);
-        }else{return;}
+        }
+        else { return; }
     }
-
-
 
     IEnumerator EnemySpawner()
     {
-        while(isEnemySpawning){
-            yield return new WaitForSeconds(2.5f/enemySpawnRate);
+        while (isEnemySpawning)
+        {
+            yield return new WaitForSeconds(2.5f / enemySpawnRate);
             CreateEnemy();
         }
     }

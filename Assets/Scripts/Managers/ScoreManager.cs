@@ -3,6 +3,7 @@ using UnityEngine.Events;
 using System.Collections.Generic;
 using System.Collections;
 using UnityEngine.InputSystem.Interactions;
+using System;
 
 public class ScoreManager : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class ScoreManager : MonoBehaviour
     private int highScore = 0;
     public UnityEvent OnScoreUpdate;
     public UnityEvent OnHighScoreUpdated;
+
+    public Action<float> onScoreChange;
 
     private void Start()
     {
@@ -55,6 +58,7 @@ public class ScoreManager : MonoBehaviour
     {
         score += value;
         OnScoreUpdate?.Invoke();
+        onScoreChange(score);
         if (score > highScore)
         {
             highScore = score;
