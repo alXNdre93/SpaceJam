@@ -6,6 +6,7 @@ public class Enemy : PlayableObject
     private string enemyName;
     [SerializeField] protected float speed;
     [SerializeField] protected Transform target;
+    [SerializeField] protected bool isBoss;
     private EnemyType enemyType;
 
     protected virtual void Start()

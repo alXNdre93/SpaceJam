@@ -30,6 +30,8 @@ public class GameManager : MonoBehaviour
     private Weapon machineGunWeapon = new Weapon("Machine Gun", 2, 10);
     private Weapon sniperWeapon = new Weapon("Sniper", 5, 15);
     private Weapon explosionWeapon = new Weapon("Explosion", 20, 0);
+    private Weapon spikeThrow = new Weapon("Spike", 10, 15);
+
     //Singleton Start
     private static GameManager instance;
     public bool isMoving;
@@ -96,6 +98,11 @@ public class GameManager : MonoBehaviour
     }
 
     void SpawnBoss()
+    {
+        
+    }
+
+    void CheckPointsForEvents()
     {
         
     }

@@ -140,8 +140,6 @@ public class Player : PlayableObject
 
     public void MultiplyShot(float _multiplyShot){
         multiplyShot+=_multiplyShot;
-        if (multiplyShot > 2)
-            multiplyShot = 2;
         GameManager.GetInstance().uIManager.UpdateAugments();
     }
     public override int GetPointsValue()
