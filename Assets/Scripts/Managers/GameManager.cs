@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
     private Weapon machineGunWeapon = new Weapon("Machine Gun", 2, 10);
     private Weapon sniperWeapon = new Weapon("Sniper", 5, 15);
     private Weapon explosionWeapon = new Weapon("Explosion", 20, 0);
+    private Weapon electricWeapon = new Weapon("Electric", 2, 0);
     private Weapon spikeThrow = new Weapon("Spike", 10, 15);
 
     //Singleton Start
@@ -77,6 +78,7 @@ public class GameManager : MonoBehaviour
         player = Instantiate(playerPrefab, Vector2.zero, Quaternion.identity).GetComponent<Player>();
         uIManager.UpdateHealth(player.health.GetHealth());
         player.OnDeath += StopGame;
+        scoreManager.onScoreChange += CheckPointsForEvents;
         isPlaying = true;
         OnGameStart?.Invoke();
         StartCoroutine(GameStarter());
@@ -102,7 +104,7 @@ public class GameManager : MonoBehaviour
         
     }
 
-    void CheckPointsForEvents()
+    void CheckPointsForEvents(float score)
     {
         
     }
@@ -158,6 +160,16 @@ public class GameManager : MonoBehaviour
         {
             tempEnemy.GetComponent<ShooterEnemy>().weapon = sniperWeapon;
             tempEnemy.GetComponent<ShooterEnemy>().SetShooterEnemy(8, 2f);
+        }
+        else if (tempEnemy.GetComponent<ElectricEnemy>() != null)
+        {
+            tempEnemy.GetComponent<ElectricEnemy>().weapon = electricWeapon;
+            tempEnemy.GetComponent<ElectricEnemy>().SetElectricEnemy(2, 2f);
+        }
+        else if (tempEnemy.GetComponent<SpikeEnemy>() != null)
+        {
+            tempEnemy.GetComponent<SpikeEnemy>().weapon = spikeThrow;
+            tempEnemy.GetComponent<SpikeEnemy>().SetSpikeEnemy(20, 2f);
         }
         else { return; }
     }

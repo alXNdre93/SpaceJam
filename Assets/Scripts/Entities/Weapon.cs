@@ -25,7 +25,8 @@ public class Weapon
         Bullet tempBullet = GameObject.Instantiate(_bullet, _firePoint.position, _firePoint.rotation);
         tempBullet.gameObject.transform.localScale += new Vector3(_multiplyShot > 2 ? 2 : multiplyShot,_multiplyShot > 2 ? 2 : multiplyShot,0);
         tempBullet.SetBullet(damage * (_multiplyShot > 0 ? 1 + (_multiplyShot * 3) : 1), _targetTag, bulletSpeed);
-        tempBullet.GetComponent<Projectile>().firing_ship = _firePoint.parent.gameObject;
+        if (tempBullet.GetComponent<Projectile>() != null)
+            tempBullet.GetComponent<Projectile>().firing_ship = _firePoint.parent.gameObject;
         GameObject.Destroy(tempBullet.gameObject, _timeToLive);
     }
 

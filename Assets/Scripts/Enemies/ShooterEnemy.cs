@@ -6,7 +6,6 @@ public class ShooterEnemy : Enemy
     [SerializeField] protected float attackTime = 1f;
     [SerializeField] protected Bullet bulletPrefab;
     [SerializeField] private Transform point;
-    [SerializeField] private Transform canon;
 
     protected override void Start()
     {

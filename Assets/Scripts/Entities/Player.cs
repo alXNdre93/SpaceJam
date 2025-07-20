@@ -17,6 +17,7 @@ public class Player : PlayableObject
     [SerializeField] private float nukeRange = 100;
     [SerializeField] private int nukeAvailable = 0;
     [SerializeField] private float machineGunRate = 0.01f;
+    [SerializeField] private float slowness = 0.5f;
     [SerializeField] private GameObject booster1Ps, booster2Ps;
 
     public Action<float> OnHealthUpdate;
@@ -26,6 +27,7 @@ public class Player : PlayableObject
     public float multiplyShot = 0;
     private bool machineGunMode = false;
     public bool triggerNuke = false;
+    public bool electrocuted = false;
 
 
 
@@ -52,15 +54,20 @@ public class Player : PlayableObject
         health.RegenHealth();
         OnHealthUpdate?.Invoke(health.GetHealth());
         BoosterControl();
+
+        if (electrocuted)
+            StartCoroutine(ResetElectrocuted());
     }
 
     private void BoosterControl()
-    { 
-        if (GameManager.GetInstance().isMoving){
+    {
+        if (GameManager.GetInstance().isMoving)
+        {
             booster1Ps.SetActive(true);
             booster2Ps.SetActive(true);
         }
-        else{
+        else
+        {
             booster1Ps.SetActive(false);
             booster2Ps.SetActive(false);
         }
@@ -68,7 +75,8 @@ public class Player : PlayableObject
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("Border")){
+        if (collision.CompareTag("Border"))
+        {
             Vector3 newPos = transform.position;
             newPos = collision.ClosestPoint(newPos);
 
@@ -85,14 +93,14 @@ public class Player : PlayableObject
 
     public override void Move(Vector2 direction, Vector2 target)
     {
-        playerRB.linearVelocity = direction * speed;
+        playerRB.linearVelocity = direction * speed * (electrocuted ? slowness : 1);
 
         Vector3 playerScreenPos = cam.WorldToScreenPoint(transform.position);
         target.x -= playerScreenPos.x;
         target.y -= playerScreenPos.y;
 
         float angle = Mathf.Atan2(target.y, target.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0, 0, (angle)-90);
+        transform.rotation = Quaternion.Euler(0, 0, (angle) - 90);
     }
 
     public override void Die()
@@ -100,7 +108,7 @@ public class Player : PlayableObject
         OnDeath?.Invoke();
         Destroy(gameObject);
     }
-    
+
     public override void Shoot()
     {
         if (canShoot)
@@ -122,15 +130,17 @@ public class Player : PlayableObject
             Die();
     }
 
-    public void HealPlayer(float healthToAdd){
+    public void HealPlayer(float healthToAdd)
+    {
         health.AddHealth(healthToAdd);
         OnHealthUpdate?.Invoke(health.GetHealth());
     }
 
-    public void IncrementFireRate(float fireRateIncrement){
+    public void IncrementFireRate(float fireRateIncrement)
+    {
         if (!machineGunMode)
             CancelInvoke(nameof(Shoot));
-        fireRate-=fireRateIncrement;
+        fireRate -= fireRateIncrement;
         if (fireRate < 0.05f)
             fireRate = 0.05f;
         if (!machineGunMode)
@@ -138,8 +148,9 @@ public class Player : PlayableObject
         GameManager.GetInstance().uIManager.UpdateAugments();
     }
 
-    public void MultiplyShot(float _multiplyShot){
-        multiplyShot+=_multiplyShot;
+    public void MultiplyShot(float _multiplyShot)
+    {
+        multiplyShot += _multiplyShot;
         GameManager.GetInstance().uIManager.UpdateAugments();
     }
     public override int GetPointsValue()
@@ -147,8 +158,10 @@ public class Player : PlayableObject
         return base.GetPointsValue();
     }
 
-    public void PickupNuke(){
-        if (nukeAvailable < 3){
+    public void PickupNuke()
+    {
+        if (nukeAvailable < 3)
+        {
             nukeAvailable++;
             GameManager.GetInstance().uIManager.UpdateNukes(nukeAvailable);
         }
@@ -158,7 +171,7 @@ public class Player : PlayableObject
     {
         return health.GetMaxHealth();
     }
-    
+
     public void ActivateNuke()
     {
         if (nukeAvailable > 0)
@@ -184,8 +197,10 @@ public class Player : PlayableObject
         }
     }
 
-    public void MachineGunShoot(){
-        if (!machineGunMode){
+    public void MachineGunShoot()
+    {
+        if (!machineGunMode)
+        {
             machineGunMode = true;
             CancelInvoke(nameof(Shoot));
             InvokeRepeating(nameof(Shoot), 0, machineGunRate);
@@ -195,14 +210,22 @@ public class Player : PlayableObject
 
     }
 
-    IEnumerator StopMachineGun(){
-        if (machineGunMode){
+    IEnumerator StopMachineGun()
+    {
+        if (machineGunMode)
+        {
             yield return new WaitForSeconds(5f);
             GameManager.GetInstance().uIManager.MachineGunTimer();
             CancelInvoke(nameof(Shoot));
             InvokeRepeating(nameof(Shoot), 0, fireRate);
             machineGunMode = false;
         }
+    }
+
+    IEnumerator ResetElectrocuted()
+    {
+        yield return new WaitForSeconds(2);
+        electrocuted = false;
     }
 
 }

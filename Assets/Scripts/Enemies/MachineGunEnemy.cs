@@ -8,7 +8,6 @@ public class MachineGunEnemy : ShooterEnemy
 {
     [SerializeField] private float shootingTime = 2f;
     [SerializeField] private Transform point1, point2;
-    [SerializeField] private Transform canon1, canon2;
     private float timer;
     private bool isShooting = false;
 

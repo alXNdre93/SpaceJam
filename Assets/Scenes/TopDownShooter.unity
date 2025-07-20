@@ -9069,6 +9069,8 @@ MonoBehaviour:
   - {fileID: 5007588765386828199, guid: a6a81924528db8a4db053f78ee3e3f01, type: 3}
   - {fileID: 5007588765386828199, guid: c8bc8c355b6ee8143909282096edfc9b, type: 3}
   - {fileID: 5007588765386828199, guid: 38db9c9c9c00cf94ca79c35cc102ebb0, type: 3}
+  - {fileID: 5007588765386828199, guid: 4956cad15c890174b9a9b6307269897f, type: 3}
+  - {fileID: 5007588765386828199, guid: d7e29fc5b69201c41bd192db17fa78a6, type: 3}
   spawnPoints:
   - {fileID: 1415272178}
   - {fileID: 1260577128}
