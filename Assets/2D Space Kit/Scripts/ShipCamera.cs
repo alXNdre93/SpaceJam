@@ -13,16 +13,23 @@ public class ShipCamera : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-	
-	
+
+		
 	}
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-		
-		wanted_position = target_object.position;
-		wanted_position.z = transform.position.z;
-		transform.position = Vector3.Lerp(transform.position, wanted_position, Time.deltaTime * follow_tightness);
+		if (target_object != null)
+		{
+			wanted_position = target_object.position;
+			wanted_position.z = transform.position.z;
+			transform.position = Vector3.Lerp(transform.position, wanted_position, Time.deltaTime * follow_tightness);
+
+		}
+		else
+		{
+			target_object = FindAnyObjectByType<Player>()?.transform;
+		}
 		
 	}
 	
