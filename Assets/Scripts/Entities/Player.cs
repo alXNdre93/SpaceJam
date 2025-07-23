@@ -18,17 +18,15 @@ public class Player : PlayableObject
     [SerializeField] private int nukeAvailable = 0;
     [SerializeField] private float machineGunRate = 0.01f;
     [SerializeField] private float slowness = 0.5f;
-    [SerializeField] private GameObject booster1Ps, booster2Ps;
+    [SerializeField] private GameObject booster1Ps, booster2Ps, shockWave, inkSpots;
 
     public Action<float> OnHealthUpdate;
     public Action OnDeath;
     private Rigidbody2D playerRB;
     public float fireRate = 0.5f;
     public float multiplyShot = 0;
-    private bool machineGunMode = false;
-    public bool triggerNuke = false;
-    public bool electrocuted = false;
-
+    private bool machineGunMode, inkSpotActivated = false;
+    public bool triggerNuke, electrocuted = false;
 
 
     private void Awake()
@@ -47,6 +45,16 @@ public class Player : PlayableObject
         GameManager.GetInstance().uIManager.UpdateAugments();
         booster1Ps.SetActive(false);
         booster2Ps.SetActive(false);
+        RectTransform[] allRect = FindObjectsByType<RectTransform>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+
+        foreach (RectTransform rect in allRect)
+        {
+            if (rect.gameObject.CompareTag("InkSpots"))
+            {
+                inkSpots = rect.gameObject;
+                return;
+            }
+        }
     }
 
     private void Update()
@@ -172,10 +180,17 @@ public class Player : PlayableObject
         return health.GetMaxHealth();
     }
 
+    public void Blind()
+    {
+        if (!inkSpotActivated)
+            StartCoroutine(InkSpotController());
+    }
+
     public void ActivateNuke()
     {
         if (nukeAvailable > 0)
         {
+            Instantiate(shockWave, transform.position, Quaternion.identity);
             var allenemies = FindObjectsByType<Enemy>(FindObjectsSortMode.None);
             var allpickups = FindObjectsByType<Pickup>(FindObjectsSortMode.None);
             foreach (Enemy enemy in allenemies)
@@ -228,4 +243,12 @@ public class Player : PlayableObject
         electrocuted = false;
     }
 
+    IEnumerator InkSpotController()
+    {
+        inkSpots.SetActive(true);
+        inkSpotActivated = true;
+        yield return new WaitForSeconds(5);
+        inkSpots.SetActive(false);
+        inkSpotActivated = false;
+    }
 }

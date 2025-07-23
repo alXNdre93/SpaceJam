@@ -32,6 +32,8 @@ public class GameManager : MonoBehaviour
     private Weapon explosionWeapon = new Weapon("Explosion", 20, 0);
     private Weapon electricWeapon = new Weapon("Electric", 2, 0);
     private Weapon spikeThrow = new Weapon("Spike", 10, 15);
+    private Weapon laserWeapon = new Weapon("Laser", 3, 0);
+    private Weapon blinderWeapon = new Weapon("Blinder", 0, 0);
 
     //Singleton Start
     private static GameManager instance;
@@ -149,7 +151,7 @@ public class GameManager : MonoBehaviour
         else if (tempEnemy.GetComponent<ExploderEnemy>() != null)
         {
             tempEnemy.GetComponent<ExploderEnemy>().weapon = explosionWeapon;
-            tempEnemy.GetComponent<ExploderEnemy>().SetExploderEnemy(3, 4f);
+            tempEnemy.GetComponent<ExploderEnemy>().SetExploderEnemy(1, 4f);
         }
         else if (tempEnemy.GetComponent<MachineGunEnemy>() != null)
         {
@@ -170,6 +172,16 @@ public class GameManager : MonoBehaviour
         {
             tempEnemy.GetComponent<SpikeEnemy>().weapon = spikeThrow;
             tempEnemy.GetComponent<SpikeEnemy>().SetSpikeEnemy(20, 2f);
+        }
+        else if (tempEnemy.GetComponent<LaserEnemy>() != null)
+        {
+            tempEnemy.GetComponent<LaserEnemy>().weapon = laserWeapon;
+            tempEnemy.GetComponent<LaserEnemy>().SetLaserEnemy(3, 2f);
+        }
+        else if (tempEnemy.GetComponent<BlinderEnemy>() != null)
+        {
+            tempEnemy.GetComponent<BlinderEnemy>().weapon = blinderWeapon;
+            tempEnemy.GetComponent<BlinderEnemy>().SetBlinderEnemy(1,2f);
         }
         else { return; }
     }

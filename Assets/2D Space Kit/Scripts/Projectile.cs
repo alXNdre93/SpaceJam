@@ -22,7 +22,7 @@ public class Projectile : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D col) {
 
 		//Don't want to collide with the ship that's shooting this thing, nor another projectile.
-		if (col.gameObject != firing_ship && col.gameObject.tag != "Projectile") {
+		if (col.gameObject != firing_ship && !col.gameObject.CompareTag("Projectile") && !col.gameObject.CompareTag("Bullet")) {
 			Instantiate(hit_effect, transform.position, Quaternion.identity);
 			Destroy(gameObject);
 		}

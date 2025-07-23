@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5308837006837109759}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 971460241265041704}
   - component: {fileID: 8847072301769072331}
   - component: {fileID: -271489030189302230}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player(Triangle)
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -188,11 +188,14 @@ MonoBehaviour:
   nukeRange: 100
   nukeAvailable: 0
   machineGunRate: 0.01
+  slowness: 0.5
   booster1Ps: {fileID: 8175447181567612754}
   booster2Ps: {fileID: 3470280576290952947}
+  shockWave: {fileID: 1500865277237720240, guid: a5bb49c9d2095e047a9963babcbfa0ee, type: 3}
   fireRate: 0.5
   multiplyShot: 0
   triggerNuke: 0
+  electrocuted: 0
 --- !u!60 &-271489030189302230
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -263,6 +266,10 @@ PrefabInstance:
     - target: {fileID: 1153214153856677491, guid: 40b1ac64e693137448a1c68436bf6a5d, type: 3}
       propertyPath: m_Name
       value: Booster_VFX (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1153214153856677491, guid: 40b1ac64e693137448a1c68436bf6a5d, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2138979364994660886, guid: 40b1ac64e693137448a1c68436bf6a5d, type: 3}
       propertyPath: m_LocalScale.x
@@ -370,6 +377,10 @@ PrefabInstance:
     - target: {fileID: 1153214153856677491, guid: 40b1ac64e693137448a1c68436bf6a5d, type: 3}
       propertyPath: m_Name
       value: Booster_VFX
+      objectReference: {fileID: 0}
+    - target: {fileID: 1153214153856677491, guid: 40b1ac64e693137448a1c68436bf6a5d, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2138979364994660886, guid: 40b1ac64e693137448a1c68436bf6a5d, type: 3}
       propertyPath: m_LocalScale.x
