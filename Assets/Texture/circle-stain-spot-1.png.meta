@@ -1,0 +1,2055 @@
+fileFormatVersion: 2
+guid: b8893e92d853bb14b844fc1ef0f4cc7f
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8237233520941387666
+    second: circle-stain-spot-1_0
+  - first:
+      213: 8891555636135352304
+    second: circle-stain-spot-1_1
+  - first:
+      213: 86494792101661935
+    second: circle-stain-spot-1_2
+  - first:
+      213: -7376710937627919046
+    second: circle-stain-spot-1_3
+  - first:
+      213: -3316709001015599622
+    second: circle-stain-spot-1_4
+  - first:
+      213: -1990625702756393138
+    second: circle-stain-spot-1_5
+  - first:
+      213: 7687371796541885494
+    second: circle-stain-spot-1_6
+  - first:
+      213: -2426952248610576484
+    second: circle-stain-spot-1_7
+  - first:
+      213: 4587549884748323569
+    second: circle-stain-spot-1_8
+  - first:
+      213: -4613213177994812931
+    second: circle-stain-spot-1_9
+  - first:
+      213: 6918165900138627563
+    second: circle-stain-spot-1_10
+  - first:
+      213: -771452241689697374
+    second: circle-stain-spot-1_11
+  - first:
+      213: -2284116663389584881
+    second: circle-stain-spot-1_12
+  - first:
+      213: 6896732069002401445
+    second: circle-stain-spot-1_13
+  - first:
+      213: -6893358915789585742
+    second: circle-stain-spot-1_14
+  - first:
+      213: 890124124230529020
+    second: circle-stain-spot-1_15
+  - first:
+      213: 8628405601596090832
+    second: circle-stain-spot-1_16
+  - first:
+      213: -1582558551388648226
+    second: circle-stain-spot-1_17
+  - first:
+      213: -1805542178720298432
+    second: circle-stain-spot-1_18
+  - first:
+      213: 7391641509901037962
+    second: circle-stain-spot-1_19
+  - first:
+      213: 1701197081159554497
+    second: circle-stain-spot-1_20
+  - first:
+      213: -8636024376716488631
+    second: circle-stain-spot-1_21
+  - first:
+      213: -8030962689970887488
+    second: circle-stain-spot-1_22
+  - first:
+      213: -4331737642364570929
+    second: circle-stain-spot-1_23
+  - first:
+      213: -4400673186472721421
+    second: circle-stain-spot-1_24
+  - first:
+      213: 8408262159333528681
+    second: circle-stain-spot-1_25
+  - first:
+      213: -2650488651460906285
+    second: circle-stain-spot-1_26
+  - first:
+      213: 2737633344857790978
+    second: circle-stain-spot-1_27
+  - first:
+      213: -1693502923525959482
+    second: circle-stain-spot-1_28
+  - first:
+      213: -6869985414751477121
+    second: circle-stain-spot-1_29
+  - first:
+      213: -1721819414903372075
+    second: circle-stain-spot-1_30
+  - first:
+      213: -6661791855828445483
+    second: circle-stain-spot-1_31
+  - first:
+      213: -5078940627093928632
+    second: circle-stain-spot-1_32
+  - first:
+      213: -5981607238225128180
+    second: circle-stain-spot-1_33
+  - first:
+      213: 148429666841594911
+    second: circle-stain-spot-1_34
+  - first:
+      213: -6200677050608668238
+    second: circle-stain-spot-1_35
+  - first:
+      213: 3634500087342208640
+    second: circle-stain-spot-1_36
+  - first:
+      213: 5816475196691989378
+    second: circle-stain-spot-1_37
+  - first:
+      213: -4144093206295292214
+    second: circle-stain-spot-1_38
+  - first:
+      213: -8485618500718187003
+    second: circle-stain-spot-1_39
+  - first:
+      213: 907923294534776418
+    second: circle-stain-spot-1_40
+  - first:
+      213: -2311052009365528767
+    second: circle-stain-spot-1_41
+  - first:
+      213: 4742711009248596534
+    second: circle-stain-spot-1_42
+  - first:
+      213: -7334326736294084992
+    second: circle-stain-spot-1_43
+  - first:
+      213: 4027317626270992050
+    second: circle-stain-spot-1_44
+  - first:
+      213: 7525490169685286788
+    second: circle-stain-spot-1_45
+  - first:
+      213: 5321986627765817935
+    second: circle-stain-spot-1_46
+  - first:
+      213: 2534589583219935185
+    second: circle-stain-spot-1_47
+  - first:
+      213: -3811546513893461046
+    second: circle-stain-spot-1_48
+  - first:
+      213: -9144184632569634017
+    second: circle-stain-spot-1_49
+  - first:
+      213: 5332297541211260860
+    second: circle-stain-spot-1_50
+  - first:
+      213: 7565029614696536199
+    second: circle-stain-spot-1_51
+  - first:
+      213: -7773151063718486542
+    second: circle-stain-spot-1_52
+  - first:
+      213: -7498996051106094218
+    second: circle-stain-spot-1_53
+  - first:
+      213: -2803607216994841330
+    second: circle-stain-spot-1_54
+  - first:
+      213: 1941325943255352064
+    second: circle-stain-spot-1_55
+  - first:
+      213: 8181597825100633944
+    second: circle-stain-spot-1_56
+  - first:
+      213: -6525785903376429035
+    second: circle-stain-spot-1_57
+  - first:
+      213: -3489390104732399646
+    second: circle-stain-spot-1_58
+  - first:
+      213: -5111981308083890203
+    second: circle-stain-spot-1_59
+  - first:
+      213: 4730018231537244
+    second: circle-stain-spot-1_60
+  - first:
+      213: -7941515508421986103
+    second: circle-stain-spot-1_61
+  - first:
+      213: -978042902535188654
+    second: circle-stain-spot-1_62
+  - first:
+      213: -3870891803701300542
+    second: circle-stain-spot-1_63
+  - first:
+      213: 7147768053699507555
+    second: circle-stain-spot-1_64
+  - first:
+      213: -1669884209774946524
+    second: circle-stain-spot-1_65
+  - first:
+      213: 2607932167134846513
+    second: circle-stain-spot-1_66
+  - first:
+      213: -4497155364462180282
+    second: circle-stain-spot-1_67
+  - first:
+      213: 1154737908383564259
+    second: circle-stain-spot-1_68
+  - first:
+      213: -3348073448306337260
+    second: circle-stain-spot-1_69
+  - first:
+      213: 5254504771462701179
+    second: circle-stain-spot-1_70
+  - first:
+      213: 3640732780436520758
+    second: circle-stain-spot-1_71
+  - first:
+      213: 8294628039457308526
+    second: circle-stain-spot-1_72
+  - first:
+      213: -466462905947314133
+    second: circle-stain-spot-1_73
+  - first:
+      213: -227641102294100658
+    second: circle-stain-spot-1_74
+  - first:
+      213: 1906206899260374507
+    second: circle-stain-spot-1_75
+  - first:
+      213: 9126022781910141029
+    second: circle-stain-spot-1_76
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: circle-stain-spot-1_0
+      rect:
+        serializedVersion: 2
+        x: 951
+        y: 1381
+        width: 9
+        height: 119
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29fc6ab9e38805270800000000000000
+      internalID: 8237233520941387666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: circle-stain-spot-1_1
+      rect:
+        serializedVersion: 2
+        x: 641
+        y: 1218
+        width: 215
+        height: 153
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f75878ddb6256b70800000000000000
+      internalID: 8891555636135352304
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: circle-stain-spot-1_2
+      rect:
+        serializedVersion: 2
+        x: 844
+        y: 1214
+        width: 24
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fec042e1e8a433100800000000000000
+      internalID: 86494792101661935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: circle-stain-spot-1_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 892
+        width: 77
+        height: 228
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3df2f75c78a0a990800000000000000
+      internalID: -7376710937627919046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: circle-stain-spot-1_4
+      rect:
+        serializedVersion: 2
+        x: 852
+        y: 1110
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: afddf1b7cbea8f1d0800000000000000
+      internalID: -3316709001015599622
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: circle-stain-spot-1_5
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 1097
+        width: 105
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e4f517a5870ef54e0800000000000000
+      internalID: -1990625702756393138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: circle-stain-spot-1_6
+      rect:
+        serializedVersion: 2
+        x: 925
+        y: 1052
+        width: 14
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63c4c356be70faa60800000000000000
+      internalID: 7687371796541885494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: circle-stain-spot-1_7
+      rect:
+        serializedVersion: 2
+        x: 680
+        y: 941
+        width: 27
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c972bb6d9cbb15ed0800000000000000
+      internalID: -2426952248610576484
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: circle-stain-spot-1_8
+      rect:
+        serializedVersion: 2
+        x: 812
+        y: 1012
+        width: 15
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1fadec570504aaf30800000000000000
+      internalID: 4587549884748323569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: circle-stain-spot-1_9
+      rect:
+        serializedVersion: 2
+        x: 906
+        y: 958
+        width: 14
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df1e7747e039affb0800000000000000
+      internalID: -4613213177994812931
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: circle-stain-spot-1_10
+      rect:
+        serializedVersion: 2
+        x: 1177
+        y: 960
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be1cbfe6b33420060800000000000000
+      internalID: 6918165900138627563
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: circle-stain-spot-1_11
+      rect:
+        serializedVersion: 2
+        x: 328
+        y: 856
+        width: 52
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a328e406404b45f0800000000000000
+      internalID: -771452241689697374
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: circle-stain-spot-1_12
+      rect:
+        serializedVersion: 2
+        x: 837
+        y: 942
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f020d151fff2d40e0800000000000000
+      internalID: -2284116663389584881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: circle-stain-spot-1_13
+      rect:
+        serializedVersion: 2
+        x: 845
+        y: 922
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5a6deebb64d16bf50800000000000000
+      internalID: 6896732069002401445
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: circle-stain-spot-1_14
+      rect:
+        serializedVersion: 2
+        x: 1274
+        y: 931
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b20713b69ed550a0800000000000000
+      internalID: -6893358915789585742
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: circle-stain-spot-1_15
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 905
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cff24c6cc2b5a5c00800000000000000
+      internalID: 890124124230529020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: circle-stain-spot-1_16
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 898
+        width: 27
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d9202ded214eb770800000000000000
+      internalID: 8628405601596090832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: circle-stain-spot-1_17
+      rect:
+        serializedVersion: 2
+        x: 575
+        y: 344
+        width: 523
+        height: 568
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: edc093cd16f990ae0800000000000000
+      internalID: -1582558551388648226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: circle-stain-spot-1_18
+      rect:
+        serializedVersion: 2
+        x: 754
+        y: 906
+        width: 8
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 04a446264fc61f6e0800000000000000
+      internalID: -1805542178720298432
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: circle-stain-spot-1_19
+      rect:
+        serializedVersion: 2
+        x: 1163
+        y: 871
+        width: 14
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a81fea86ac2649660800000000000000
+      internalID: 7391641509901037962
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: circle-stain-spot-1_20
+      rect:
+        serializedVersion: 2
+        x: 453
+        y: 811
+        width: 62
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c552736bbddb9710800000000000000
+      internalID: 1701197081159554497
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: circle-stain-spot-1_21
+      rect:
+        serializedVersion: 2
+        x: 514
+        y: 828
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9401332c59da62880800000000000000
+      internalID: -8636024376716488631
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: circle-stain-spot-1_22
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 760
+        width: 15
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c4aedbbbf94c8090800000000000000
+      internalID: -8030962689970887488
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: circle-stain-spot-1_23
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 763
+        width: 16
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc2fba6909392e3c0800000000000000
+      internalID: -4331737642364570929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: circle-stain-spot-1_24
+      rect:
+        serializedVersion: 2
+        x: 1176
+        y: 768
+        width: 10
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f305bb7d0bade2c0800000000000000
+      internalID: -4400673186472721421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: circle-stain-spot-1_25
+      rect:
+        serializedVersion: 2
+        x: 452
+        y: 732
+        width: 34
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9641f6192e520b470800000000000000
+      internalID: 8408262159333528681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: circle-stain-spot-1_26
+      rect:
+        serializedVersion: 2
+        x: 509
+        y: 723
+        width: 20
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d2f7784d92973bd0800000000000000
+      internalID: -2650488651460906285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: circle-stain-spot-1_27
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 662
+        width: 25
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20a5385c5070ef520800000000000000
+      internalID: 2737633344857790978
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: circle-stain-spot-1_28
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 617
+        width: 101
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c0562940187f78e0800000000000000
+      internalID: -1693502923525959482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: circle-stain-spot-1_29
+      rect:
+        serializedVersion: 2
+        x: 504
+        y: 604
+        width: 7
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f72af9df9a8e8a0a0800000000000000
+      internalID: -6869985414751477121
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: circle-stain-spot-1_30
+      rect:
+        serializedVersion: 2
+        x: 531
+        y: 622
+        width: 24
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d6405f5d5eda18e0800000000000000
+      internalID: -1721819414903372075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: circle-stain-spot-1_31
+      rect:
+        serializedVersion: 2
+        x: 1071
+        y: 647
+        width: 12
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d651c15a9f8c83a0800000000000000
+      internalID: -6661791855828445483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: circle-stain-spot-1_32
+      rect:
+        serializedVersion: 2
+        x: 1300
+        y: 579
+        width: 152
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 84544c6b86af389b0800000000000000
+      internalID: -5078940627093928632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: circle-stain-spot-1_33
+      rect:
+        serializedVersion: 2
+        x: 109
+        y: 538
+        width: 141
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c059fa3a8ef0dfca0800000000000000
+      internalID: -5981607238225128180
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: circle-stain-spot-1_34
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 564
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f1c093edef35f0200800000000000000
+      internalID: 148429666841594911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: circle-stain-spot-1_35
+      rect:
+        serializedVersion: 2
+        x: 499
+        y: 555
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b1bd873315c2f9a0800000000000000
+      internalID: -6200677050608668238
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: circle-stain-spot-1_36
+      rect:
+        serializedVersion: 2
+        x: 472
+        y: 546
+        width: 10
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0869822b296507230800000000000000
+      internalID: 3634500087342208640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: circle-stain-spot-1_37
+      rect:
+        serializedVersion: 2
+        x: 472
+        y: 509
+        width: 25
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 28342b7df5548b050800000000000000
+      internalID: 5816475196691989378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: circle-stain-spot-1_38
+      rect:
+        serializedVersion: 2
+        x: 1109
+        y: 516
+        width: 13
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac6d8aa6f293d76c0800000000000000
+      internalID: -4144093206295292214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: circle-stain-spot-1_39
+      rect:
+        serializedVersion: 2
+        x: 1091
+        y: 497
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 50ea53daee60d3a80800000000000000
+      internalID: -8485618500718187003
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: circle-stain-spot-1_40
+      rect:
+        serializedVersion: 2
+        x: 1219
+        y: 494
+        width: 16
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2663c0e0d67999c00800000000000000
+      internalID: 907923294534776418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: circle-stain-spot-1_41
+      rect:
+        serializedVersion: 2
+        x: 1162
+        y: 486
+        width: 22
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14f9054217e7defd0800000000000000
+      internalID: -2311052009365528767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: circle-stain-spot-1_42
+      rect:
+        serializedVersion: 2
+        x: 507
+        y: 441
+        width: 25
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 632d892f88e71d140800000000000000
+      internalID: 4742711009248596534
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: circle-stain-spot-1_43
+      rect:
+        serializedVersion: 2
+        x: 1189
+        y: 446
+        width: 48
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 08e7a8831bc373a90800000000000000
+      internalID: -7334326736294084992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: circle-stain-spot-1_44
+      rect:
+        serializedVersion: 2
+        x: 868
+        y: 311
+        width: 15
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b64d8f1b08e3e730800000000000000
+      internalID: 4027317626270992050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: circle-stain-spot-1_45
+      rect:
+        serializedVersion: 2
+        x: 988
+        y: 310
+        width: 25
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 48f19c40079ef6860800000000000000
+      internalID: 7525490169685286788
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: circle-stain-spot-1_46
+      rect:
+        serializedVersion: 2
+        x: 1011
+        y: 332
+        width: 16
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f425c5f04ae7bd940800000000000000
+      internalID: 5321986627765817935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: circle-stain-spot-1_47
+      rect:
+        serializedVersion: 2
+        x: 1327
+        y: 341
+        width: 27
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d7ca3f0ccbac2320800000000000000
+      internalID: 2534589583219935185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: circle-stain-spot-1_48
+      rect:
+        serializedVersion: 2
+        x: 1353
+        y: 328
+        width: 38
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac3708ad3aaaa1bc0800000000000000
+      internalID: -3811546513893461046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: circle-stain-spot-1_49
+      rect:
+        serializedVersion: 2
+        x: 654
+        y: 315
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f13e91f4684591180800000000000000
+      internalID: -9144184632569634017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: circle-stain-spot-1_50
+      rect:
+        serializedVersion: 2
+        x: 735
+        y: 304
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb7069cac50200a40800000000000000
+      internalID: 5332297541211260860
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: circle-stain-spot-1_51
+      rect:
+        serializedVersion: 2
+        x: 677
+        y: 285
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7881c437a526cf860800000000000000
+      internalID: 7565029614696536199
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: circle-stain-spot-1_52
+      rect:
+        serializedVersion: 2
+        x: 806
+        y: 188
+        width: 60
+        height: 113
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2fd1c9d9a48302490800000000000000
+      internalID: -7773151063718486542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: circle-stain-spot-1_53
+      rect:
+        serializedVersion: 2
+        x: 865
+        y: 288
+        width: 11
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 673a3c9a2d63ee790800000000000000
+      internalID: -7498996051106094218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: circle-stain-spot-1_54
+      rect:
+        serializedVersion: 2
+        x: 1021
+        y: 275
+        width: 17
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e0d0d4d17169719d0800000000000000
+      internalID: -2803607216994841330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: circle-stain-spot-1_55
+      rect:
+        serializedVersion: 2
+        x: 424
+        y: 129
+        width: 100
+        height: 142
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0034cf8e8a9f0fa10800000000000000
+      internalID: 1941325943255352064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: circle-stain-spot-1_56
+      rect:
+        serializedVersion: 2
+        x: 1041
+        y: 260
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8575b3cbfdfda8170800000000000000
+      internalID: 8181597825100633944
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: circle-stain-spot-1_57
+      rect:
+        serializedVersion: 2
+        x: 746
+        y: 239
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5101ff4cb40cf65a0800000000000000
+      internalID: -6525785903376429035
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: circle-stain-spot-1_58
+      rect:
+        serializedVersion: 2
+        x: 938
+        y: 190
+        width: 52
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2e789a4ff22339fc0800000000000000
+      internalID: -3489390104732399646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: circle-stain-spot-1_59
+      rect:
+        serializedVersion: 2
+        x: 1058
+        y: 230
+        width: 19
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e71931b5189e09b0800000000000000
+      internalID: -5111981308083890203
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: circle-stain-spot-1_60
+      rect:
+        serializedVersion: 2
+        x: 769
+        y: 210
+        width: 11
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5ec8703dedc01000800000000000000
+      internalID: 4730018231537244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: circle-stain-spot-1_61
+      rect:
+        serializedVersion: 2
+        x: 1058
+        y: 175
+        width: 17
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c8704698b11ac190800000000000000
+      internalID: -7941515508421986103
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: circle-stain-spot-1_62
+      rect:
+        serializedVersion: 2
+        x: 1182
+        y: 194
+        width: 39
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 25f4c4b792b4d62f0800000000000000
+      internalID: -978042902535188654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: circle-stain-spot-1_63
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 178
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c2b964d964d74ac0800000000000000
+      internalID: -3870891803701300542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: circle-stain-spot-1_64
+      rect:
+        serializedVersion: 2
+        x: 898
+        y: 180
+        width: 8
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 365f4a1ac29f13360800000000000000
+      internalID: 7147768053699507555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: circle-stain-spot-1_65
+      rect:
+        serializedVersion: 2
+        x: 958
+        y: 163
+        width: 27
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 427945c982163d8e0800000000000000
+      internalID: -1669884209774946524
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: circle-stain-spot-1_66
+      rect:
+        serializedVersion: 2
+        x: 1220
+        y: 171
+        width: 27
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 13e13641d7c313420800000000000000
+      internalID: 2607932167134846513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: circle-stain-spot-1_67
+      rect:
+        serializedVersion: 2
+        x: 770
+        y: 161
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6484d71e505e691c0800000000000000
+      internalID: -4497155364462180282
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: circle-stain-spot-1_68
+      rect:
+        serializedVersion: 2
+        x: 693
+        y: 40
+        width: 55
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e141e57204760010800000000000000
+      internalID: 1154737908383564259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: circle-stain-spot-1_69
+      rect:
+        serializedVersion: 2
+        x: 1021
+        y: 120
+        width: 15
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 41a98c700f04981d0800000000000000
+      internalID: -3348073448306337260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: circle-stain-spot-1_70
+      rect:
+        serializedVersion: 2
+        x: 1101
+        y: 98
+        width: 20
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b7021a50040cbe840800000000000000
+      internalID: 5254504771462701179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: circle-stain-spot-1_71
+      rect:
+        serializedVersion: 2
+        x: 478
+        y: 50
+        width: 144
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63ff904ac2b768230800000000000000
+      internalID: 3640732780436520758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: circle-stain-spot-1_72
+      rect:
+        serializedVersion: 2
+        x: 885
+        y: 77
+        width: 8
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e6ff8db41407c1370800000000000000
+      internalID: 8294628039457308526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: circle-stain-spot-1_73
+      rect:
+        serializedVersion: 2
+        x: 976
+        y: 49
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b282d1e557ac689f0800000000000000
+      internalID: -466462905947314133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: circle-stain-spot-1_74
+      rect:
+        serializedVersion: 2
+        x: 1029
+        y: 42
+        width: 14
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e455b71af9147dcf0800000000000000
+      internalID: -227641102294100658
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: circle-stain-spot-1_75
+      rect:
+        serializedVersion: 2
+        x: 1053
+        y: 0
+        width: 67
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bed30da4315347a10800000000000000
+      internalID: 1906206899260374507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: circle-stain-spot-1_76
+      rect:
+        serializedVersion: 2
+        x: 1185
+        y: 40
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 56840ef4e5526ae70800000000000000
+      internalID: 9126022781910141029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable: {}
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

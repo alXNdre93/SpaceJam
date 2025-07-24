@@ -8,6 +8,8 @@ TagManager:
   - Enemy
   - Pickup
   - Border
+  - Projectile
+  - InkSpots
   layers:
   - Default
   - TransparentFX
@@ -15,8 +17,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - Laser
+  - Player
   - 
   - 
   - 
