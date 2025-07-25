@@ -26,7 +26,7 @@ public class Player : PlayableObject
     public float fireRate = 0.5f;
     public float multiplyShot = 0;
     private bool machineGunMode, inkSpotActivated = false;
-    public bool triggerNuke, electrocuted = false;
+    public bool triggerNuke, electrocuted, attracted = false;
 
 
     private void Awake()
@@ -101,7 +101,7 @@ public class Player : PlayableObject
 
     public override void Move(Vector2 direction, Vector2 target)
     {
-        playerRB.linearVelocity = direction * speed * (electrocuted ? slowness : 1);
+        playerRB.linearVelocity = direction * speed * (electrocuted ? slowness : 1) * (attracted ? -1 : 1);
 
         Vector3 playerScreenPos = cam.WorldToScreenPoint(transform.position);
         target.x -= playerScreenPos.x;

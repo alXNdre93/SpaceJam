@@ -457,6 +457,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -3047,7 +3060,124 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      ink-stain-1_0: 3607152894485188677
+      ink-stain-1_1: -6136056741095965443
+      ink-stain-1_10: -1022939782705060997
+      ink-stain-1_100: -3501302638885753994
+      ink-stain-1_101: -8577709437462295666
+      ink-stain-1_102: -6654057808085387640
+      ink-stain-1_103: 1526562271948376252
+      ink-stain-1_104: -2655815634286870811
+      ink-stain-1_105: -2081376827976158447
+      ink-stain-1_106: 8988101951618608401
+      ink-stain-1_107: -769510865078747953
+      ink-stain-1_108: -6653524530218182701
+      ink-stain-1_109: -8683624343850777157
+      ink-stain-1_11: 163840236319413087
+      ink-stain-1_110: 5833588453813601473
+      ink-stain-1_111: 747338483220860585
+      ink-stain-1_112: -4432415887446396606
+      ink-stain-1_113: -6529934161676313358
+      ink-stain-1_114: 1001480205147542868
+      ink-stain-1_115: -6295799041706294788
+      ink-stain-1_116: 7099074350772163403
+      ink-stain-1_12: -3369592645382252204
+      ink-stain-1_13: 2136917151839278555
+      ink-stain-1_14: -6143264558765664480
+      ink-stain-1_15: -2182688841743381991
+      ink-stain-1_16: -816936053798836860
+      ink-stain-1_17: -1028650434735996690
+      ink-stain-1_18: 6491843165551472613
+      ink-stain-1_19: 6163124252259464776
+      ink-stain-1_2: 440545401965108511
+      ink-stain-1_20: 1623595485099972867
+      ink-stain-1_21: -4711241662305105836
+      ink-stain-1_22: 5204870561555348751
+      ink-stain-1_23: -1129519348631197309
+      ink-stain-1_24: -7884777154350042665
+      ink-stain-1_25: 3766896223855790846
+      ink-stain-1_26: 7781346241036852297
+      ink-stain-1_27: 3477044224123633769
+      ink-stain-1_28: 7985711548209845270
+      ink-stain-1_29: -4116905075181678827
+      ink-stain-1_3: 30048088959729138
+      ink-stain-1_30: 6498185013480960833
+      ink-stain-1_31: -6436903447194690811
+      ink-stain-1_32: -5363107842295878452
+      ink-stain-1_33: -2097289483237772973
+      ink-stain-1_34: -5637260971624083756
+      ink-stain-1_35: -2876166481716598487
+      ink-stain-1_36: 8843457056411532473
+      ink-stain-1_37: 2419595756406089888
+      ink-stain-1_38: -4908069585689658681
+      ink-stain-1_39: -6290444411924433839
+      ink-stain-1_4: 3082346754391911725
+      ink-stain-1_40: -3952233689340498590
+      ink-stain-1_41: 1539664950499122800
+      ink-stain-1_42: 2427821743008487302
+      ink-stain-1_43: 418860399004941878
+      ink-stain-1_44: 2635495910814767030
+      ink-stain-1_45: 1884101209014760401
+      ink-stain-1_46: 689526606420952756
+      ink-stain-1_47: 2195511718608994870
+      ink-stain-1_48: -2300554039051097766
+      ink-stain-1_49: 5614544395966172545
+      ink-stain-1_5: -1081444102621912018
+      ink-stain-1_50: -8568127778513639987
+      ink-stain-1_51: 5563693185697936081
+      ink-stain-1_52: 7618427084258322951
+      ink-stain-1_53: -5987894552260118701
+      ink-stain-1_54: -3809513787192632935
+      ink-stain-1_55: -3587924179478044760
+      ink-stain-1_56: 8443606271677951570
+      ink-stain-1_57: 2571505184737883630
+      ink-stain-1_58: -2650102027350353258
+      ink-stain-1_59: 7185050642598765908
+      ink-stain-1_6: 5012669695991126763
+      ink-stain-1_60: 6833867629632409662
+      ink-stain-1_61: -9000295552366028227
+      ink-stain-1_62: -7761977327557707262
+      ink-stain-1_63: 2796367787224798475
+      ink-stain-1_64: 303015258462780335
+      ink-stain-1_65: 3859997111397319473
+      ink-stain-1_66: 9069521274115494663
+      ink-stain-1_67: -4761207023835342643
+      ink-stain-1_68: 2442620837078983835
+      ink-stain-1_69: -5848886573509032296
+      ink-stain-1_7: -2095328556058695652
+      ink-stain-1_70: 2377880158599496238
+      ink-stain-1_71: -2347685841980188281
+      ink-stain-1_72: -8575362053587215308
+      ink-stain-1_73: 265139902838196170
+      ink-stain-1_74: -4908083384945564407
+      ink-stain-1_75: -6491477310191034820
+      ink-stain-1_76: -3741243726536106156
+      ink-stain-1_77: -500272418236622893
+      ink-stain-1_78: 1734817444233350493
+      ink-stain-1_79: 9051018043454610976
+      ink-stain-1_8: 3469281238101792097
+      ink-stain-1_80: -9177313424968520481
+      ink-stain-1_81: -3151038962315305285
+      ink-stain-1_82: -8380796218441850709
+      ink-stain-1_83: -3823024019373679156
+      ink-stain-1_84: -8846240590752517947
+      ink-stain-1_85: -6147810796896405505
+      ink-stain-1_86: -8418144356005531784
+      ink-stain-1_87: 221777372569644058
+      ink-stain-1_88: 8750459857165635329
+      ink-stain-1_89: -9047116595304144761
+      ink-stain-1_9: -2964518880265256368
+      ink-stain-1_90: 1343542335605835998
+      ink-stain-1_91: 2230698750097734398
+      ink-stain-1_92: -2068531295637473121
+      ink-stain-1_93: 3660032346739354754
+      ink-stain-1_94: 5708495353408236064
+      ink-stain-1_95: -3394894585846752176
+      ink-stain-1_96: -831031375575592214
+      ink-stain-1_97: 500262176782829003
+      ink-stain-1_98: 3050639342378474570
+      ink-stain-1_99: -667894984950680973
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

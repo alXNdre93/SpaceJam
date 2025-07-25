@@ -15093,16 +15093,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1538306326}
-  m_LocalRotation: {x: -0, y: -0, z: 0.6226496, w: -0.7825008}
+  m_LocalRotation: {x: -0, y: -0, z: 0.56601727, w: -0.82439345}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.65528, y: 0.65528, z: 0.65528}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2076631800}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 282.98}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 291.05402}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -217.7, y: 70.2}
+  m_AnchoredPosition: {x: -225.1, y: 75}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1538306328
@@ -15168,16 +15168,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1556391397}
-  m_LocalRotation: {x: -0.9994602, y: 0.032776013, z: -0.00007350815, w: -0.0022415277}
+  m_LocalRotation: {x: -0.9950069, y: 0.09978133, z: -0.00022378353, w: -0.0022315397}
   m_LocalPosition: {x: 0, y: 0, z: 0.1}
   m_LocalScale: {x: 0.65528, y: 0.65528, z: 0.65528}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2076631800}
-  m_LocalEulerAnglesHint: {x: 0.257, y: -180, z: 183.757}
+  m_LocalEulerAnglesHint: {x: 0.257, y: -180, z: 191.453}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -235.4, y: 46.9}
+  m_AnchoredPosition: {x: -241.2, y: 52.9}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1556391399
@@ -17455,6 +17455,8 @@ MonoBehaviour:
   - {fileID: 5007588765386828199, guid: d7e29fc5b69201c41bd192db17fa78a6, type: 3}
   - {fileID: 5007588765386828199, guid: b5f538460982de846a6dc7e51e53f4ed, type: 3}
   - {fileID: 5007588765386828199, guid: d81b62810878a9148a163bf36f687286, type: 3}
+  - {fileID: 5007588765386828199, guid: 06c4b4bcd4784ce4598a9f364e82a4c8, type: 3}
+  - {fileID: 5007588765386828199, guid: 76c156c636815a24f8067d1f8f131d5c, type: 3}
   spawnPoints:
   - {fileID: 1415272178}
   - {fileID: 1260577128}

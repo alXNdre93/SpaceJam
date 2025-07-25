@@ -223,6 +223,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -1097,7 +1110,46 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      ink-splatter-png-7tfcq3i52m0cb9t3_0: 3963221317631990333
+      ink-splatter-png-7tfcq3i52m0cb9t3_1: -7801241246737551723
+      ink-splatter-png-7tfcq3i52m0cb9t3_10: 8965956196493529346
+      ink-splatter-png-7tfcq3i52m0cb9t3_11: -2009661018335808548
+      ink-splatter-png-7tfcq3i52m0cb9t3_12: -1129251487923638952
+      ink-splatter-png-7tfcq3i52m0cb9t3_13: -6163355324746092141
+      ink-splatter-png-7tfcq3i52m0cb9t3_14: 8323277581300350337
+      ink-splatter-png-7tfcq3i52m0cb9t3_15: -5366587634935878365
+      ink-splatter-png-7tfcq3i52m0cb9t3_16: 4036874018703405586
+      ink-splatter-png-7tfcq3i52m0cb9t3_17: 3775130742823175581
+      ink-splatter-png-7tfcq3i52m0cb9t3_18: -237349323640163009
+      ink-splatter-png-7tfcq3i52m0cb9t3_19: -3650674935303847379
+      ink-splatter-png-7tfcq3i52m0cb9t3_2: -4069622511491824956
+      ink-splatter-png-7tfcq3i52m0cb9t3_20: -2018144037925765172
+      ink-splatter-png-7tfcq3i52m0cb9t3_21: 153858612219540609
+      ink-splatter-png-7tfcq3i52m0cb9t3_22: 5009011191745856875
+      ink-splatter-png-7tfcq3i52m0cb9t3_23: -8357301045404469566
+      ink-splatter-png-7tfcq3i52m0cb9t3_24: -8416280086826171450
+      ink-splatter-png-7tfcq3i52m0cb9t3_25: 2394939983530587739
+      ink-splatter-png-7tfcq3i52m0cb9t3_26: -9192578426712524575
+      ink-splatter-png-7tfcq3i52m0cb9t3_27: -1754251227121899179
+      ink-splatter-png-7tfcq3i52m0cb9t3_28: -3952453627029375186
+      ink-splatter-png-7tfcq3i52m0cb9t3_29: 1992132717881912584
+      ink-splatter-png-7tfcq3i52m0cb9t3_3: 4585965049809468000
+      ink-splatter-png-7tfcq3i52m0cb9t3_30: -7795046225652889129
+      ink-splatter-png-7tfcq3i52m0cb9t3_31: 3930030744147639404
+      ink-splatter-png-7tfcq3i52m0cb9t3_32: -7959647103226928085
+      ink-splatter-png-7tfcq3i52m0cb9t3_33: 6981703324519139252
+      ink-splatter-png-7tfcq3i52m0cb9t3_34: 6067004270919980478
+      ink-splatter-png-7tfcq3i52m0cb9t3_35: -7559643812681421779
+      ink-splatter-png-7tfcq3i52m0cb9t3_36: 3471380334525235479
+      ink-splatter-png-7tfcq3i52m0cb9t3_37: -2482002435269254794
+      ink-splatter-png-7tfcq3i52m0cb9t3_38: 8719316833837492033
+      ink-splatter-png-7tfcq3i52m0cb9t3_4: -2794481631248078339
+      ink-splatter-png-7tfcq3i52m0cb9t3_5: 11622726404402510
+      ink-splatter-png-7tfcq3i52m0cb9t3_6: 1868476862042711083
+      ink-splatter-png-7tfcq3i52m0cb9t3_7: -3370009953593023203
+      ink-splatter-png-7tfcq3i52m0cb9t3_8: -4512537438886301099
+      ink-splatter-png-7tfcq3i52m0cb9t3_9: -6519040015207308688
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

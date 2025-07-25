@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
     private Weapon spikeThrow = new Weapon("Spike", 10, 15);
     private Weapon laserWeapon = new Weapon("Laser", 3, 0);
     private Weapon blinderWeapon = new Weapon("Blinder", 0, 0);
+    private Weapon absorbsWeapon = new Weapon("Absorbs", 4, 0);
 
     //Singleton Start
     private static GameManager instance;
@@ -181,7 +182,16 @@ public class GameManager : MonoBehaviour
         else if (tempEnemy.GetComponent<BlinderEnemy>() != null)
         {
             tempEnemy.GetComponent<BlinderEnemy>().weapon = blinderWeapon;
-            tempEnemy.GetComponent<BlinderEnemy>().SetBlinderEnemy(1,2f);
+            tempEnemy.GetComponent<BlinderEnemy>().SetBlinderEnemy(1, 2f);
+        }
+        else if (tempEnemy.GetComponent<AttractEnemy>() != null)
+        {
+            tempEnemy.GetComponent<AttractEnemy>().weapon = absorbsWeapon;
+            tempEnemy.GetComponent<AttractEnemy>().SetAbsorbsEnemy(2, 3f);
+        }
+        else if (tempEnemy.GetComponent<SpawnEnemy>() != null)
+        {
+            tempEnemy.GetComponent<SpawnEnemy>().SetSpawnerEnemy(10, 3);
         }
         else { return; }
     }

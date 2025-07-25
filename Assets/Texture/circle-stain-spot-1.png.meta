@@ -337,6 +337,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -2047,7 +2060,84 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      circle-stain-spot-1_0: 8237233520941387666
+      circle-stain-spot-1_1: 8891555636135352304
+      circle-stain-spot-1_10: 6918165900138627563
+      circle-stain-spot-1_11: -771452241689697374
+      circle-stain-spot-1_12: -2284116663389584881
+      circle-stain-spot-1_13: 6896732069002401445
+      circle-stain-spot-1_14: -6893358915789585742
+      circle-stain-spot-1_15: 890124124230529020
+      circle-stain-spot-1_16: 8628405601596090832
+      circle-stain-spot-1_17: -1582558551388648226
+      circle-stain-spot-1_18: -1805542178720298432
+      circle-stain-spot-1_19: 7391641509901037962
+      circle-stain-spot-1_2: 86494792101661935
+      circle-stain-spot-1_20: 1701197081159554497
+      circle-stain-spot-1_21: -8636024376716488631
+      circle-stain-spot-1_22: -8030962689970887488
+      circle-stain-spot-1_23: -4331737642364570929
+      circle-stain-spot-1_24: -4400673186472721421
+      circle-stain-spot-1_25: 8408262159333528681
+      circle-stain-spot-1_26: -2650488651460906285
+      circle-stain-spot-1_27: 2737633344857790978
+      circle-stain-spot-1_28: -1693502923525959482
+      circle-stain-spot-1_29: -6869985414751477121
+      circle-stain-spot-1_3: -7376710937627919046
+      circle-stain-spot-1_30: -1721819414903372075
+      circle-stain-spot-1_31: -6661791855828445483
+      circle-stain-spot-1_32: -5078940627093928632
+      circle-stain-spot-1_33: -5981607238225128180
+      circle-stain-spot-1_34: 148429666841594911
+      circle-stain-spot-1_35: -6200677050608668238
+      circle-stain-spot-1_36: 3634500087342208640
+      circle-stain-spot-1_37: 5816475196691989378
+      circle-stain-spot-1_38: -4144093206295292214
+      circle-stain-spot-1_39: -8485618500718187003
+      circle-stain-spot-1_4: -3316709001015599622
+      circle-stain-spot-1_40: 907923294534776418
+      circle-stain-spot-1_41: -2311052009365528767
+      circle-stain-spot-1_42: 4742711009248596534
+      circle-stain-spot-1_43: -7334326736294084992
+      circle-stain-spot-1_44: 4027317626270992050
+      circle-stain-spot-1_45: 7525490169685286788
+      circle-stain-spot-1_46: 5321986627765817935
+      circle-stain-spot-1_47: 2534589583219935185
+      circle-stain-spot-1_48: -3811546513893461046
+      circle-stain-spot-1_49: -9144184632569634017
+      circle-stain-spot-1_5: -1990625702756393138
+      circle-stain-spot-1_50: 5332297541211260860
+      circle-stain-spot-1_51: 7565029614696536199
+      circle-stain-spot-1_52: -7773151063718486542
+      circle-stain-spot-1_53: -7498996051106094218
+      circle-stain-spot-1_54: -2803607216994841330
+      circle-stain-spot-1_55: 1941325943255352064
+      circle-stain-spot-1_56: 8181597825100633944
+      circle-stain-spot-1_57: -6525785903376429035
+      circle-stain-spot-1_58: -3489390104732399646
+      circle-stain-spot-1_59: -5111981308083890203
+      circle-stain-spot-1_6: 7687371796541885494
+      circle-stain-spot-1_60: 4730018231537244
+      circle-stain-spot-1_61: -7941515508421986103
+      circle-stain-spot-1_62: -978042902535188654
+      circle-stain-spot-1_63: -3870891803701300542
+      circle-stain-spot-1_64: 7147768053699507555
+      circle-stain-spot-1_65: -1669884209774946524
+      circle-stain-spot-1_66: 2607932167134846513
+      circle-stain-spot-1_67: -4497155364462180282
+      circle-stain-spot-1_68: 1154737908383564259
+      circle-stain-spot-1_69: -3348073448306337260
+      circle-stain-spot-1_7: -2426952248610576484
+      circle-stain-spot-1_70: 5254504771462701179
+      circle-stain-spot-1_71: 3640732780436520758
+      circle-stain-spot-1_72: 8294628039457308526
+      circle-stain-spot-1_73: -466462905947314133
+      circle-stain-spot-1_74: -227641102294100658
+      circle-stain-spot-1_75: 1906206899260374507
+      circle-stain-spot-1_76: 9126022781910141029
+      circle-stain-spot-1_8: 4587549884748323569
+      circle-stain-spot-1_9: -4613213177994812931
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

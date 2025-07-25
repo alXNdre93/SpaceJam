@@ -1,16 +1,13 @@
+using System;
 using UnityEngine;
 
-public class MiniEnemy : MonoBehaviour
+public class MiniEnemy : ShooterEnemy
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public Action OnDeath;
+
+    void OnDestroy()
     {
-        
+        OnDeath?.Invoke();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
