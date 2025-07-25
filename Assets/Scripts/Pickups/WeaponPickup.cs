@@ -6,4 +6,5 @@ public class WeaponPickup : Pickup
     {
         base.OnPicked();
     }
+    public float GetHealth(){return 0;}
 }

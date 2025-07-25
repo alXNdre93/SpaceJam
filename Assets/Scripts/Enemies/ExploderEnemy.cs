@@ -17,7 +17,7 @@ public class ExploderEnemy : Enemy
     {
         base.Start();
         health = new Health(4, 0, 4);
-        pointsValue = 1;
+        pointsValue = 4;
     }
 
     protected override void Update()

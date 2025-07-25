@@ -11,8 +11,8 @@ public class BlinderEnemy : Enemy
     protected override void Start()
     {
         base.Start();
-        health = new Health(1, 0, 1);
-        pointsValue = 2;
+        health = new Health(2, 0, 2);
+        pointsValue = 1;
     }
 
     protected override void Update()

@@ -16,6 +16,7 @@ public class HealthPickup : Pickup, IDamageable
     {
         OnPicked();
     }
+    public float GetHealth(){return 0;}
 
     public void OnTriggerEnter2D(Collider2D collision)
     {

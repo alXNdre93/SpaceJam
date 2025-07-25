@@ -12,7 +12,7 @@ public class AttractEnemy : Enemy
     {
         base.Start();
         health = new Health(1, 0, 1);
-        pointsValue = 2;
+        pointsValue = 3;
     }
 
     protected override void Update()

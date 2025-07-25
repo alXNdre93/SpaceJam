@@ -13,7 +13,7 @@ public class SpikeEnemy : ShooterEnemy
     {
         base.Start();
         health = new Health(3, 0, 3);
-        pointsValue = 1;
+        pointsValue = 3;
         InvokeRepeating(nameof(Shoot), 0, attackTime);
     }
 

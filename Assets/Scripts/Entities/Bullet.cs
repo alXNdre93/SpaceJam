@@ -44,7 +44,8 @@ public class Bullet : MonoBehaviour
         if (damageable != null){
             damageable.GetDamage(damage);
 
-            GameManager.GetInstance().scoreManager.IncrementScore(damageable.GetPointsValue());
+            if(damageable.GetHealth() == 0)
+                GameManager.GetInstance().scoreManager.IncrementScore(damageable.GetPointsValue());
 
             Destroy(gameObject);
         }

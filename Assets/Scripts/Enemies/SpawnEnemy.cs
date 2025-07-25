@@ -16,8 +16,8 @@ public class SpawnEnemy : Enemy
     protected override void Start()
     {
         base.Start();
-        health = new Health(2, 0, 2);
-        pointsValue = 1;
+        health = new Health(8, 0, 8);
+        pointsValue = 10;
     }
 
     protected override void Update()

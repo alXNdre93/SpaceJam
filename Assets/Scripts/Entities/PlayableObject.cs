@@ -13,6 +13,11 @@ public abstract class PlayableObject : MonoBehaviour, IDamageable
     public abstract void Shoot();
     public abstract void Die();
     public abstract void Attack(float interval);
+    
+    public virtual float GetHealth(){
+        return health.GetHealth();
+    }
+
     public virtual void GetDamage(float damage)
     {
         health.DeductHealth(damage);

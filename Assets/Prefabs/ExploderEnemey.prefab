@@ -4432,9 +4432,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canShoot: 0
-  pointsValue: 1
+  pointsValue: 4
   speed: 1.5
   target: {fileID: 0}
+  isBoss: 0
   explosionRange: 5
   attackRange: 1
   attackTime: 3

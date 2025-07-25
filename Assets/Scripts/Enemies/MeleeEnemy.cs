@@ -20,7 +20,7 @@ public class MeleeEnemy : Enemy
     {
         base.Start();
         health = new Health(2, 0, 2);
-        pointsValue = 1;
+        pointsValue = 3;
     }
 
     protected override void Update()

@@ -57,7 +57,7 @@ public class Enemy : PlayableObject
         transform.Translate(Vector2.right * speed * Time.deltaTime);
     }
 
-     public override void Move(Vector2 direction, Vector2 target){}
+    public override void Move(Vector2 direction, Vector2 target){}
 
     public override void Die()
     {

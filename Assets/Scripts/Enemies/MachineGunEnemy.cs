@@ -15,7 +15,7 @@ public class MachineGunEnemy : ShooterEnemy
     {
         base.Start();
         health = new Health(1, 0, 1);
-        pointsValue = 2;
+        pointsValue = 4;
         canShoot = false;
         InvokeRepeating(nameof(Shoot), 0, attackTime);
         isShooting = true;

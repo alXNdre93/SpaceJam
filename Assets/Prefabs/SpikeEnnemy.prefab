@@ -700,7 +700,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canShoot: 0
-  pointsValue: 0
+  pointsValue: 5
   speed: 1
   target: {fileID: 0}
   isBoss: 0
