@@ -6,8 +6,6 @@ using System.Collections.Generic;
 
 public class MeleeEnemy : Enemy
 {
-    [SerializeField] private float attackRange = 0;
-    [SerializeField] private float attackTime = 1f;
     [SerializeField] private GameObject eyes;
 
     private float timer;
@@ -19,8 +17,9 @@ public class MeleeEnemy : Enemy
     protected override void Start()
     {
         base.Start();
-        health = new Health(2, 0, 2);
-        pointsValue = 3;
+        health = new Health(2*(isBoss?30:1), 0, 2*(isBoss?30:1));
+        pointsValue = 3*(isBoss?30:1);
+        gameObject.transform.localScale = gameObject.transform.localScale * (isBoss?5:1);
     }
 
     protected override void Update()
@@ -75,13 +74,9 @@ public class MeleeEnemy : Enemy
         base.GetDamage(damage);
     }
 
-    public void SetMeleeEnemy(float _attackRange, float _attackTime){
-        attackRange = _attackRange;
-        attackTime = _attackTime;
-    }
-
     public override int GetPointsValue()
     {
         return pointsValue;
     }
+
 }

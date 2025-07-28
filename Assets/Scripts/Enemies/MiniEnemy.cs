@@ -3,18 +3,20 @@ using UnityEngine;
 
 public class MiniEnemy : ShooterEnemy
 {
-    public Action OnDeath;
+    
 
     protected override void Start()
     {
         base.Start();
-        health = new Health(1, 0, 1);
-        pointsValue = 1;
+        health = new Health(1*(isBoss?30:1), 0, 1*(isBoss?30:1));
+        pointsValue = 1*(isBoss?30:1);
         InvokeRepeating(nameof(Shoot), 0, attackTime);
+        gameObject.transform.localScale = gameObject.transform.localScale * (isBoss?5:1);
     }
 
-    void OnDestroy()
+    protected void OnDestroy()
     {
+        base.OnDestroy();
         OnDeath?.Invoke();
     }
 

@@ -2,17 +2,16 @@ using UnityEngine;
 
 public class ShooterEnemy : Enemy
 {
-    [SerializeField] protected float attackRange = 0;
-    [SerializeField] protected float attackTime = 1f;
     [SerializeField] protected Bullet bulletPrefab;
     [SerializeField] private Transform point;
 
     protected override void Start()
     {
         base.Start();
-        health = new Health(1, 0, 1);
-        pointsValue = 5;
+        health = new Health(1*(isBoss?30:1), 0, 1*(isBoss?30:1));
+        pointsValue = 5*(isBoss?30:1);
         InvokeRepeating(nameof(Shoot), 0, attackTime);
+        gameObject.transform.localScale = gameObject.transform.localScale * (isBoss?5:1);
     }
 
     protected override void Update()
@@ -38,16 +37,12 @@ public class ShooterEnemy : Enemy
     public override void Shoot()
     {
         if (canShoot)
-            weapon.Shoot(bulletPrefab, point, new string[] {"Player"}, 0);
-    }
-
-    public void SetShooterEnemy(float _attackRange, float _attackTime){
-        attackRange = _attackRange;
-        attackTime = _attackTime;
+            weapon.Shoot(bulletPrefab, point, new string[] {"Player"}, (isBoss?5:0));
     }
 
     public override int GetPointsValue()
     {
         return pointsValue;
     }
+    
 }

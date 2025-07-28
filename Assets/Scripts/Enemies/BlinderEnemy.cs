@@ -3,16 +3,15 @@ using UnityEngine;
 
 public class BlinderEnemy : Enemy
 {
-    [SerializeField] private float attackRange = 0;
-    [SerializeField] private float attackTime = 1f;
     [SerializeField] private GameObject InkSpots;
     private bool lasering, cooldown = false;
 
     protected override void Start()
     {
         base.Start();
-        health = new Health(2, 0, 2);
-        pointsValue = 1;
+        health = new Health(2*(isBoss?30:1), 0, 2*(isBoss?30:1));
+        pointsValue = 1*(isBoss?30:1);
+        gameObject.transform.localScale = gameObject.transform.localScale * (isBoss?5:1);
     }
 
     protected override void Update()
@@ -43,12 +42,6 @@ public class BlinderEnemy : Enemy
 
     public override void Shoot()
     { }
-
-    public void SetBlinderEnemy(float _attackRange, float _attackTime)
-    {
-        attackRange = _attackRange;
-        attackTime = _attackTime;
-    }
 
     public override int GetPointsValue()
     {

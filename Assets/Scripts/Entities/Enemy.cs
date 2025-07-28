@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using UnityEngine;
+using System;
 
 public class Enemy : PlayableObject
 {
@@ -7,7 +8,10 @@ public class Enemy : PlayableObject
     [SerializeField] protected float speed;
     [SerializeField] protected Transform target;
     [SerializeField] protected bool isBoss;
+    [SerializeField] protected float attackRange = 0;
+    [SerializeField] protected float attackTime = 1f;
     private EnemyType enemyType;
+    public Action OnDeath, OnBossDeath;
 
     protected virtual void Start()
     {
@@ -73,6 +77,18 @@ public class Enemy : PlayableObject
     public override int GetPointsValue()
     {
         return base.GetPointsValue();
+    }
+
+    public void SetEnemy(float _attackRange, float _attackTime, bool _isBoss = false){
+        attackRange = _attackRange;
+        attackTime = _attackTime;
+        isBoss = _isBoss;
+    }
+    
+    protected void OnDestroy()
+    {
+        if(isBoss)
+            OnBossDeath?.Invoke();
     }
 
 }

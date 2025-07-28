@@ -3,16 +3,15 @@ using UnityEngine;
 
 public class LaserEnemy : Enemy
 {
-    [SerializeField] private float attackRange = 0;
-    [SerializeField] private float attackTime = 1f;
     [SerializeField] private GameObject lasers;
     private bool lasering, cooldown = false;
 
     protected override void Start()
     {
         base.Start();
-        health = new Health(1, 0, 1);
-        pointsValue = 3;
+        health = new Health(1*(isBoss?30:1), 0, 1*(isBoss?30:1));
+        pointsValue = 3*(isBoss?30:1);
+        gameObject.transform.localScale = gameObject.transform.localScale * (isBoss?5:1);
     }
 
     protected override void Update()
@@ -27,7 +26,10 @@ public class LaserEnemy : Enemy
         {
             lasering = true;
             StartCoroutine(Laser());
+        }else if (Vector2.Distance(transform.position, target.position) < attackRange ){
+            target.gameObject.GetComponent<IDamageable>().GetDamage(weapon.GetDamage() * Time.deltaTime);
         }
+        
 
         if (cooldown)
             StartCoroutine(Cooldown());
@@ -43,12 +45,6 @@ public class LaserEnemy : Enemy
 
     public override void Shoot()
     { }
-
-    public void SetLaserEnemy(float _attackRange, float _attackTime)
-    {
-        attackRange = _attackRange;
-        attackTime = _attackTime;
-    }
 
     public override int GetPointsValue()
     {
@@ -71,4 +67,5 @@ public class LaserEnemy : Enemy
         cooldown = false;
         
     }
+
 }

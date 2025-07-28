@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class SpawnEnemy : Enemy
 {
-    [SerializeField] private float attackRange = 1;
-    [SerializeField] private float attackTime = 3f;
     [SerializeField] private Transform point;
     [SerializeField] private MiniEnemy miniEnnemyPrefab;
     [SerializeField] private int nbToSpawn = 10;
@@ -16,8 +14,9 @@ public class SpawnEnemy : Enemy
     protected override void Start()
     {
         base.Start();
-        health = new Health(8, 0, 8);
-        pointsValue = 10;
+        health = new Health(8*(isBoss?30:1), 0, 8*(isBoss?30:1));
+        pointsValue = 10*(isBoss?30:1);
+        gameObject.transform.localScale = gameObject.transform.localScale * (isBoss?5:1);
     }
 
     protected override void Update()
@@ -59,19 +58,13 @@ public class SpawnEnemy : Enemy
             spawned = false;
     }
 
-    public void SetSpawnerEnemy(float _attackRange, float _attackTime)
-    {
-        attackRange = _attackRange;
-        attackTime = _attackTime;
-    }
-
     IEnumerator SpawnEnemies()
     {
         while (totalSpawn < nbToSpawn)
         {
             Debug.Log("Mini Enemy spawn: " + totalSpawn);
             MiniEnemy tempEnemy = Instantiate(miniEnnemyPrefab, point.position, point.rotation);
-            tempEnemy.SetShooterEnemy(5, 2);
+            tempEnemy.SetEnemy(5, 2, isBoss);
             tempEnemy.weapon = miniWeapon;
             tempEnemy.OnDeath += MiniDestroy;
             yield return new WaitForSeconds(attackTime);

@@ -6,8 +6,6 @@ using UnityEngine;
 public class ExploderEnemy : Enemy
 {
     [SerializeField] private float explosionRange = 5f;
-    [SerializeField] private float attackRange = 1;
-    [SerializeField] private float attackTime = 3f;
     [SerializeField] private GameObject antenna1, antenna2, antenna3, eyes, hitEffect;
     private bool exploding = false;
 
@@ -16,8 +14,9 @@ public class ExploderEnemy : Enemy
     protected override void Start()
     {
         base.Start();
-        health = new Health(4, 0, 4);
-        pointsValue = 4;
+        health = new Health(4*(isBoss?30:1), 0, 4*(isBoss?30:1));
+        pointsValue = 4*(isBoss?30:1);
+        gameObject.transform.localScale = gameObject.transform.localScale * (isBoss?5:1);
     }
 
     protected override void Update()
@@ -39,11 +38,6 @@ public class ExploderEnemy : Enemy
     public override void GetDamage(float damage)
     {
         base.GetDamage(damage);
-    }
-
-    public void SetExploderEnemy(float _attackRange, float _attackTime){
-        attackRange = _attackRange;
-        attackTime = _attackTime;
     }
 
     IEnumerator Explode(){
@@ -80,4 +74,5 @@ public class ExploderEnemy : Enemy
             yield return new WaitForSeconds(1);
         }
     }
+
 }

@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class ElectricEnemy : Enemy
 {
-    [SerializeField] private float attackRange = 1;
-    [SerializeField] private float attackTime = 3f;
     [SerializeField] private GameObject lighting;
     private bool electrocuting = false;
 
@@ -14,8 +12,9 @@ public class ElectricEnemy : Enemy
     protected override void Start()
     {
         base.Start();
-        health = new Health(2, 0, 2);
-        pointsValue = 2;
+        health = new Health(2*(isBoss?30:1), 0, 2*(isBoss?30:1));
+        pointsValue = 2*(isBoss?30:1);
+        gameObject.transform.localScale = gameObject.transform.localScale * (isBoss?5:1);
     }
 
     protected override void Update()
@@ -61,11 +60,6 @@ public class ElectricEnemy : Enemy
     public override void GetDamage(float damage)
     {
         base.GetDamage(damage);
-    }
-
-    public void SetElectricEnemy(float _attackRange, float _attackTime){
-        attackRange = _attackRange;
-        attackTime = _attackTime;
     }
 
     IEnumerator Electrify()

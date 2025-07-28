@@ -12,9 +12,10 @@ public class SpikeEnemy : ShooterEnemy
     protected override void Start()
     {
         base.Start();
-        health = new Health(3, 0, 3);
-        pointsValue = 3;
+        health = new Health(3*(isBoss?30:1), 0, 3*(isBoss?30:1));
+        pointsValue = 3*(isBoss?30:1);
         InvokeRepeating(nameof(Shoot), 0, attackTime);
+        gameObject.transform.localScale = gameObject.transform.localScale * (isBoss?5:1);
     }
 
     protected override void Update()
@@ -40,13 +41,9 @@ public class SpikeEnemy : ShooterEnemy
         }
     }
 
-    public void SetSpikeEnemy(float _attackRange, float _attackTime){
-        attackRange = _attackRange;
-        attackTime = _attackTime;
-    }
-
     public override int GetPointsValue()
     {
         return pointsValue;
     }
+
 }

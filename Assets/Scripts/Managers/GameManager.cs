@@ -25,6 +25,8 @@ public class GameManager : MonoBehaviour
     private GameObject tempEnemy;
     private bool isEnemySpawning;
     private bool isPlaying;
+    private bool isEndlessMode = false;
+    private int currentLimit = 4;
 
     private Weapon meleeWeapon = new Weapon("Melee", 1, 0);
     private Weapon machineGunWeapon = new Weapon("Machine Gun", 2, 10);
@@ -35,6 +37,8 @@ public class GameManager : MonoBehaviour
     private Weapon laserWeapon = new Weapon("Laser", 3, 0);
     private Weapon blinderWeapon = new Weapon("Blinder", 0, 0);
     private Weapon absorbsWeapon = new Weapon("Absorbs", 4, 0);
+
+    private int bossEvent = 250; 
 
     //Singleton Start
     private static GameManager instance;
@@ -76,13 +80,16 @@ public class GameManager : MonoBehaviour
         return isPlaying;
     }
 
-    public void StartGame()
+    public void StartGame(bool endlessMode)
     {
         player = Instantiate(playerPrefab, Vector2.zero, Quaternion.identity).GetComponent<Player>();
         uIManager.UpdateHealth(player.health.GetHealth());
         player.OnDeath += StopGame;
         scoreManager.onScoreChange += CheckPointsForEvents;
         isPlaying = true;
+        isEndlessMode = endlessMode;
+        if (isEndlessMode)
+            currentLimit = enemyPrefabs.Length;
         OnGameStart?.Invoke();
         StartCoroutine(GameStarter());
     }
@@ -104,12 +111,33 @@ public class GameManager : MonoBehaviour
 
     void SpawnBoss()
     {
-        
+        if (!isEndlessMode){
+            tempEnemy = Instantiate(enemyPrefabs[currentLimit]);
+            tempEnemy.transform.position = spawnPoints[UnityEngine.Random.Range(0, spawnPoints.Length)].position;
+            if (!isEndlessMode)
+                tempEnemy.GetComponent<Enemy>().OnBossDeath += UpCurrentLimit;
+            SetEnemy(true);
+        }else{
+            CreateEnemy(true);
+        }
+    }
+
+    void UpCurrentLimit(){
+        if (currentLimit < enemyPrefabs.Length)
+            currentLimit++;
+        //else message that normal mode is done
     }
 
     void CheckPointsForEvents(float score)
     {
-        
+        if (score >= bossEvent){
+            SpawnBoss();
+            bossEvent = bossEvent*2;
+        }else{
+            if (UnityEngine.Random.Range(0,100) > 90){
+                Debug.Log("Make Event");
+            }
+        }
     }
 
     public void StopGame()
@@ -140,58 +168,65 @@ public class GameManager : MonoBehaviour
         OnGameOver?.Invoke();
     }
 
-    void CreateEnemy()
+    void CreateEnemy(bool isBoss = false)
     {
-        tempEnemy = Instantiate(enemyPrefabs[UnityEngine.Random.Range(0, enemyPrefabs.Length)]);
+        tempEnemy = Instantiate(enemyPrefabs[UnityEngine.Random.Range(0, currentLimit)]);
         tempEnemy.transform.position = spawnPoints[UnityEngine.Random.Range(0, spawnPoints.Length)].position;
+        if (isBoss && !isEndlessMode)
+            tempEnemy.GetComponent<Enemy>().OnBossDeath += UpCurrentLimit;
+        SetEnemy(isBoss);
+        
+    }
+
+    void SetEnemy(bool isBoss = false){
         if (tempEnemy.GetComponent<MeleeEnemy>() != null)
         {
             tempEnemy.GetComponent<MeleeEnemy>().weapon = meleeWeapon;
-            tempEnemy.GetComponent<MeleeEnemy>().SetMeleeEnemy(1, 0.25f);
+            tempEnemy.GetComponent<MeleeEnemy>().SetEnemy(1, 0.25f, isBoss);
         }
         else if (tempEnemy.GetComponent<ExploderEnemy>() != null)
         {
             tempEnemy.GetComponent<ExploderEnemy>().weapon = explosionWeapon;
-            tempEnemy.GetComponent<ExploderEnemy>().SetExploderEnemy(1, 4f);
+            tempEnemy.GetComponent<ExploderEnemy>().SetEnemy(1, 4f, isBoss);
         }
         else if (tempEnemy.GetComponent<MachineGunEnemy>() != null)
         {
             tempEnemy.GetComponent<MachineGunEnemy>().weapon = machineGunWeapon;
-            tempEnemy.GetComponent<MachineGunEnemy>().SetMachineGunEnemy(5, 0.3f);
+            tempEnemy.GetComponent<MachineGunEnemy>().SetEnemy(5, 0.3f, isBoss);
         }
         else if (tempEnemy.GetComponent<ShooterEnemy>() != null)
         {
             tempEnemy.GetComponent<ShooterEnemy>().weapon = sniperWeapon;
-            tempEnemy.GetComponent<ShooterEnemy>().SetShooterEnemy(8, 2f);
+            tempEnemy.GetComponent<ShooterEnemy>().SetEnemy(8, 2f, isBoss);
         }
         else if (tempEnemy.GetComponent<ElectricEnemy>() != null)
         {
             tempEnemy.GetComponent<ElectricEnemy>().weapon = electricWeapon;
-            tempEnemy.GetComponent<ElectricEnemy>().SetElectricEnemy(2, 2f);
+            tempEnemy.GetComponent<ElectricEnemy>().SetEnemy(2, 2f, isBoss);
         }
         else if (tempEnemy.GetComponent<SpikeEnemy>() != null)
         {
             tempEnemy.GetComponent<SpikeEnemy>().weapon = spikeThrow;
-            tempEnemy.GetComponent<SpikeEnemy>().SetSpikeEnemy(20, 2f);
+            tempEnemy.GetComponent<SpikeEnemy>().SetEnemy(20, 2f, isBoss);
         }
         else if (tempEnemy.GetComponent<LaserEnemy>() != null)
         {
             tempEnemy.GetComponent<LaserEnemy>().weapon = laserWeapon;
-            tempEnemy.GetComponent<LaserEnemy>().SetLaserEnemy(3, 2f);
+            tempEnemy.GetComponent<LaserEnemy>().SetEnemy(3, 2f, isBoss);
         }
         else if (tempEnemy.GetComponent<BlinderEnemy>() != null)
         {
             tempEnemy.GetComponent<BlinderEnemy>().weapon = blinderWeapon;
-            tempEnemy.GetComponent<BlinderEnemy>().SetBlinderEnemy(1, 2f);
+            tempEnemy.GetComponent<BlinderEnemy>().SetEnemy(1, 2f, isBoss);
         }
         else if (tempEnemy.GetComponent<AttractEnemy>() != null)
         {
             tempEnemy.GetComponent<AttractEnemy>().weapon = absorbsWeapon;
-            tempEnemy.GetComponent<AttractEnemy>().SetAbsorbsEnemy(2, 3f);
+            tempEnemy.GetComponent<AttractEnemy>().SetEnemy(2, 3f, isBoss);
         }
         else if (tempEnemy.GetComponent<SpawnEnemy>() != null)
         {
-            tempEnemy.GetComponent<SpawnEnemy>().SetSpawnerEnemy(10, 3);
+            tempEnemy.GetComponent<SpawnEnemy>().SetEnemy(10, 3f, isBoss);
         }
         else { return; }
     }

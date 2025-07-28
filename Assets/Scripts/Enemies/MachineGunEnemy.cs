@@ -14,11 +14,12 @@ public class MachineGunEnemy : ShooterEnemy
     protected override void Start()
     {
         base.Start();
-        health = new Health(1, 0, 1);
-        pointsValue = 4;
+        health = new Health(1*(isBoss?30:1), 0, 1*(isBoss?30:1));
+        pointsValue = 4*(isBoss?30:1);
         canShoot = false;
         InvokeRepeating(nameof(Shoot), 0, attackTime);
         isShooting = true;
+        gameObject.transform.localScale = gameObject.transform.localScale * (isBoss?5:1);
     }
 
     protected override void Update()
@@ -60,14 +61,9 @@ public class MachineGunEnemy : ShooterEnemy
     public override void Shoot()
     {
         if (canShoot){
-            weapon.Shoot(bulletPrefab, point1, new string[] {"Player"}, 0);
-            weapon.Shoot(bulletPrefab, point2, new string[] {"Player"}, 0);
+            weapon.Shoot(bulletPrefab, point1, new string[] {"Player"}, (isBoss?5:0));
+            weapon.Shoot(bulletPrefab, point2, new string[] {"Player"}, (isBoss?5:0));
         }
-    }
-
-    public void SetMachineGunEnemy(float _attackRange, float _attackTime){
-        attackRange = _attackRange;
-        attackTime = _attackTime;
     }
 
     public override int GetPointsValue()
@@ -79,4 +75,5 @@ public class MachineGunEnemy : ShooterEnemy
         yield return new WaitForSeconds(shootingTime);
         
     }
+
 }

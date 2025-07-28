@@ -3,16 +3,14 @@ using UnityEngine;
 
 public class AttractEnemy : Enemy
 {
-    [SerializeField] private float attackRange = 0;
-    [SerializeField] private float attackTime = 1f;
     [SerializeField] private GameObject absorption;
     private bool absorbs, cooldown = false;
 
     protected override void Start()
     {
         base.Start();
-        health = new Health(1, 0, 1);
-        pointsValue = 3;
+        health = new Health(1*(isBoss?30:1), 0, 1*(isBoss?30:1));
+        pointsValue = 3*(isBoss?30:1);
     }
 
     protected override void Update()
@@ -66,12 +64,6 @@ public class AttractEnemy : Enemy
     public override void Shoot()
     { }
 
-    public void SetAbsorbsEnemy(float _attackRange, float _attackTime)
-    {
-        attackRange = _attackRange;
-        attackTime = _attackTime;
-    }
-
     public override int GetPointsValue()
     {
         return pointsValue;
@@ -93,4 +85,5 @@ public class AttractEnemy : Enemy
         cooldown = false;
 
     }
+
 }
