@@ -169,7 +169,7 @@ public class GameManager : MonoBehaviour
     }
 
     void UpgradeEnemy() {
-        mulitplierSpawnRate -= 0.05f;
+        mulitplierSpawnRate += 0.05f;
         multiplierEnemyDamage += 0.1f;
         multiplierEnemyHealth += 0.1f;
         multiplierEnemySpeed += 0.1f;
@@ -224,7 +224,6 @@ public class GameManager : MonoBehaviour
         if (isBoss && !isEndlessMode)
             tempEnemy.GetComponent<Enemy>().OnBossDeath += UpCurrentLimit;
         SetEnemy(isBoss);
-        
     }
 
     void SetEnemy(bool isBoss = false){
@@ -284,7 +283,7 @@ public class GameManager : MonoBehaviour
     {
         while (isEnemySpawning)
         {
-            yield return new WaitForSeconds(2.5f / enemySpawnRate);
+            yield return new WaitForSeconds(2.5f / ((enemySpawnRate * mulitplierSpawnRate > 0.25f)?enemySpawnRate * mulitplierSpawnRate:0.25f));
             CreateEnemy();
         }
     }
