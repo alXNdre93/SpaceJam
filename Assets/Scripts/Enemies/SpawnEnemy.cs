@@ -14,8 +14,9 @@ public class SpawnEnemy : Enemy
     protected override void Start()
     {
         base.Start();
-        health = new Health(8*(isBoss?30:1), 0, 8*(isBoss?30:1));
-        pointsValue = 10*(isBoss?30:1);
+        health = new Health(8*gameManager.multiplierEnemyHealth*(isBoss?30:1), 0, 8*(isBoss?30:1));
+        pointsValue = 10*(int)gameManager.multiplierPoint*(isBoss?30:1);
+        speed *= gameManager.multiplierEnemySpeed;
         gameObject.transform.localScale = gameObject.transform.localScale * (isBoss?5:1);
     }
 

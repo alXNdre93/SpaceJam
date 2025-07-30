@@ -11,13 +11,16 @@ public class Enemy : PlayableObject
     [SerializeField] protected float attackRange = 0;
     [SerializeField] protected float attackTime = 1f;
     private EnemyType enemyType;
+    protected GameManager gameManager;
     public Action OnDeath, OnBossDeath;
+    public Action<float> OnBossHealthUpdate;
 
     protected virtual void Start()
     {
         if (GameObject.FindWithTag("Player") != null)
             target = GameObject.FindWithTag("Player").transform;
-        health = new Health(1,0.1f,1);
+        health = new Health(1, 0.1f, 1);
+        gameManager = GameManager.GetInstance();
     }
     protected virtual void Update()
     {
@@ -42,9 +45,16 @@ public class Enemy : PlayableObject
     public override void GetDamage(float damage)
     {
         health.DeductHealth(damage);
-        if(health.GetHealth() <= 0){
+        if(isBoss)
+            OnBossHealthUpdate(health.GetHealth());
+        if (health.GetHealth() <= 0)
+        {
             Die();
         }
+    }
+    
+    public bool IsBoss(){
+        return isBoss;
     }
 
     public override void Move(Vector2 direction)

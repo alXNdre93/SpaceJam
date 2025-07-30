@@ -18,11 +18,13 @@ public class Player : PlayableObject
     [SerializeField] private int nukeAvailable = 0;
     [SerializeField] private float machineGunRate = 0.01f;
     [SerializeField] private float slowness = 0.5f;
+    [SerializeField] private float nukeDamage = 10f;
     [SerializeField] private GameObject booster1Ps, booster2Ps, shockWave, inkSpots;
 
     public Action<float> OnHealthUpdate;
     public Action OnDeath;
     private Rigidbody2D playerRB;
+    private GameManager gameManager;
     public float fireRate = 0.5f;
     public float multiplyShot = 0;
     private bool machineGunMode, inkSpotActivated = false;
@@ -41,6 +43,7 @@ public class Player : PlayableObject
 
     private void Start()
     {
+        gameManager = GameManager.GetInstance();
         InvokeRepeating(nameof(Shoot), 0, fireRate);
         GameManager.GetInstance().uIManager.UpdateAugments();
         booster1Ps.SetActive(false);
@@ -101,7 +104,7 @@ public class Player : PlayableObject
 
     public override void Move(Vector2 direction, Vector2 target)
     {
-        playerRB.linearVelocity = direction * speed * (electrocuted ? slowness : 1) * (attracted ? -1 : 1);
+        playerRB.linearVelocity = direction * speed * gameManager.multiplierPlayerSpeed * (electrocuted ? slowness : 1) * (attracted ? -1 : 1);
 
         Vector3 playerScreenPos = cam.WorldToScreenPoint(transform.position);
         target.x -= playerScreenPos.x;
@@ -197,7 +200,10 @@ public class Player : PlayableObject
             {
                 if (Vector2.Distance(transform.position, enemy.transform.position) < nukeRange)
                 {
-                    Destroy(enemy.gameObject);
+                    if (!enemy.IsBoss())
+                        Destroy(enemy.gameObject);
+                    else
+                        enemy.GetDamage(nukeDamage);
                 }
             }
             foreach (Pickup pickup in allpickups)
@@ -223,6 +229,16 @@ public class Player : PlayableObject
             GameManager.GetInstance().uIManager.MachineGunTimer();
         }
 
+    }
+
+    public void Upgrade()
+    {
+        float newMaxHealth = health.GetMaxHealth() * gameManager.multiplierPlayerHealth;
+        float newHealthRegen = health.GetRegenHealth() * gameManager.multiplierPlayerHealthRegen;
+        float newHealth = health.GetMaxHealth() * gameManager.multiplierPlayerHealth - (health.GetMaxHealth() - health.GetHealth());
+        health = new Health(newMaxHealth, newHealthRegen, newHealth);
+        
+        weapon = new Weapon("Player Weapon", weaponDamage*gameManager.multiplierPlayerDamage, bulletSpeed);
     }
 
     IEnumerator StopMachineGun()

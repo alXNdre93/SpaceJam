@@ -5,9 +5,10 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] private UnityEngine.UI.Slider sliderHealth;
+    [SerializeField] private UnityEngine.UI.Slider playerSliderHealth;
+    [SerializeField] private UnityEngine.UI.Slider enemysliderHealth;
     [SerializeField] private TMP_Text txtScore, txtMultiply, txtFireRate, txtHighScore;
-    [SerializeField] GameObject nuke1, nuke2, nuke3, machineGunTimerUI, machineGunTimerPlayer, menuCanvas;
+    [SerializeField] GameObject nuke1, nuke2, nuke3, machineGunTimerUI, machineGunTimerPlayer, menuCanvas, normalModeOverText;
     [SerializeField] Camera cam;
     private Player player;
     private ScoreManager scoreManager;
@@ -32,6 +33,11 @@ public class UIManager : MonoBehaviour
         menuCanvas.SetActive(true);
     }
 
+    public void BossSpawned(Enemy boss)
+    {
+        boss.OnBossHealthUpdate += UpdateEnemyHealth;
+    }
+
     private void OnDisable()
     {
         player.OnHealthUpdate -= UpdateHealth;
@@ -51,24 +57,35 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void UpdateHealth(float CurrentHealth)
+    public void UpdateHealth(float currentHealth)
     {
-        sliderHealth.value = CurrentHealth;
+        playerSliderHealth.value = currentHealth;
     }
 
-    public void UpdateNukes(int nukeAvalaibale){
+    public void UpdateEnemyHealth(float currentHealth)
+    {
+        enemysliderHealth.value = currentHealth;
+    }
+
+    public void UpdateNukes(int nukeAvalaibale)
+    {
         nuke1.SetActive(false);
         nuke2.SetActive(false);
         nuke3.SetActive(false);
-        if (nukeAvalaibale == 1){
+        if (nukeAvalaibale == 1)
+        {
             nuke1.SetActive(true);
             nuke2.SetActive(false);
             nuke3.SetActive(false);
-        }else if (nukeAvalaibale == 2){
+        }
+        else if (nukeAvalaibale == 2)
+        {
             nuke1.SetActive(true);
             nuke2.SetActive(true);
-            nuke3.SetActive(false);           
-        }else if (nukeAvalaibale == 3){
+            nuke3.SetActive(false);
+        }
+        else if (nukeAvalaibale == 3)
+        {
             nuke1.SetActive(true);
             nuke2.SetActive(true);
             nuke3.SetActive(true);
@@ -80,12 +97,46 @@ public class UIManager : MonoBehaviour
         txtScore.SetText(GameManager.GetInstance().scoreManager.GetScore().ToString());
     }
 
-    public void UpdateAugments(){
-        txtFireRate.SetText("Fire Rate: " + (Mathf.Floor(1 / player.fireRate*100f)/100f).ToString() + "/s");
+    public void UpdateAugments()
+    {
+        txtFireRate.SetText("Fire Rate: " + (Mathf.Floor(1 / player.fireRate * 100f) / 100f).ToString() + "/s");
         txtMultiply.SetText("Damage: " + (1 + player.multiplyShot).ToString() + "x");
     }
 
-    public void MachineGunTimer(){
+    public void MachineGunTimer()
+    {
         machineGunTimerUI.SetActive(!machineGunTimerUI.activeSelf);
+    }
+
+    public void UpdateBossSprite(Sprite bossSprite)
+    {
+        enemysliderHealth.gameObject.transform.GetChild(enemysliderHealth.gameObject.transform.childCount - 1).GetComponent<UnityEngine.UI.Image>().sprite = bossSprite;
+        enemysliderHealth.gameObject.transform.GetChild(enemysliderHealth.gameObject.transform.childCount - 2).GetComponent<UnityEngine.UI.Image>().sprite = bossSprite;
+    }
+
+    public void ToggleBossHealth()
+    {
+        enemysliderHealth.gameObject.SetActive(!enemysliderHealth.gameObject.activeSelf);
+    }
+
+    public void SetBossMaxHealth(float maxHealth)
+    {
+        enemysliderHealth.maxValue = maxHealth;
+    }
+
+    public void SetPlayerMaxHealth(float maxHealth)
+    {
+        playerSliderHealth.maxValue = maxHealth;
+    }
+
+    public void ShowNormalModeOver()
+    {
+        normalModeOverText.SetActive(true);
+        float currentTimeScale = Time.timeScale;
+        Time.timeScale = 0;
+        while (!Input.anyKey) { Debug.Log("Waiting For input"); }
+
+        Time.timeScale = currentTimeScale;
+        normalModeOverText.SetActive(false);
     }
 }

@@ -9,8 +9,9 @@ public class BlinderEnemy : Enemy
     protected override void Start()
     {
         base.Start();
-        health = new Health(2*(isBoss?30:1), 0, 2*(isBoss?30:1));
-        pointsValue = 1*(isBoss?30:1);
+        health = new Health(2*gameManager.multiplierEnemyHealth*(isBoss?30:1), 0, 2*(isBoss?30:1));
+        pointsValue = 1*(int)gameManager.multiplierPoint*(isBoss?30:1);
+        speed *= gameManager.multiplierEnemySpeed;
         gameObject.transform.localScale = gameObject.transform.localScale * (isBoss?5:1);
     }
 

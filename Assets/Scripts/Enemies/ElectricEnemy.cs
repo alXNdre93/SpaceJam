@@ -12,8 +12,9 @@ public class ElectricEnemy : Enemy
     protected override void Start()
     {
         base.Start();
-        health = new Health(2*(isBoss?30:1), 0, 2*(isBoss?30:1));
-        pointsValue = 2*(isBoss?30:1);
+        health = new Health(2*gameManager.multiplierEnemyHealth*(isBoss?30:1), 0, 2*(isBoss?30:1));
+        pointsValue = 2*(int)gameManager.multiplierPoint*(isBoss?30:1);
+        speed *= gameManager.multiplierEnemySpeed;
         gameObject.transform.localScale = gameObject.transform.localScale * (isBoss?5:1);
     }
 
@@ -26,7 +27,7 @@ public class ElectricEnemy : Enemy
             return;
         }
 
-        if (Vector2.Distance(transform.position, target.position) < attackRange && !electrocuting)
+        if (Vector2.Distance(transform.position, target.position) < attackRange * (isBoss?5:1) && !electrocuting)
         {
             electrocuting = true;
             StartCoroutine(Electrify());
@@ -49,7 +50,7 @@ public class ElectricEnemy : Enemy
         else
         {
             timerAttack = 0;
-            if (Vector2.Distance(transform.position, target.position) < attackRange && electrocuting)
+            if (Vector2.Distance(transform.position, target.position) < attackRange * (isBoss?5:1) && electrocuting)
             {
                 target.gameObject.GetComponent<IDamageable>().GetDamage(weapon.GetDamage());
                 target.gameObject.GetComponent<Player>().electrocuted = true;
