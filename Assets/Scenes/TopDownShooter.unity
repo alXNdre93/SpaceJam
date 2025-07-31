@@ -20746,29 +20746,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8ba15f8388da2642b919f66e1e7289f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerUpgradeCards: []
-  ennemyUpgradeCards: []
+  legendaryBack: {fileID: 21300000, guid: 5915cdc174101e540b3349e21ee2cd74, type: 3}
+  normalBack: {fileID: 21300000, guid: c7bf45f0ef95bed4491c5809fc6bf484, type: 3}
+  speedFront: {fileID: -5553982268400213465, guid: 7dba67402cc518c419972268dfb2e9bd, type: 3}
+  damageFront: {fileID: -4952205743378670992, guid: be6e17441995e024d8fe93288f41d12a, type: 3}
+  pointFront: {fileID: 4481664800557987452, guid: 1ebcdd0f695a6bd4593af841e97122e9, type: 3}
+  spawnFront: {fileID: 8161631271329278948, guid: dc1978c9ae2505040b080f040a34a61b, type: 3}
+  healthFront: {fileID: 4407319408514701861, guid: 2f5203e6c14c9e6479594bf318cf5dc9, type: 3}
+  speedIcon: {fileID: -8846623055817055503, guid: b685201bc53bad04ea0a84d6fe83c273, type: 3}
+  damageIcon: {fileID: -8855121405896411283, guid: 68ae982c44291f24ea7378c2918428ee, type: 3}
+  pointIcon: {fileID: -520841134288233213, guid: de38645cfbccf6e489c08f58e0e1daf2, type: 3}
+  spawnIcon: {fileID: 661133807225380634, guid: 2a122725bb4c89a45840d21c31a2d86d, type: 3}
+  healthIcon: {fileID: 6394757179572774559, guid: 15664c182a1f1ce44bbfe2160522dde4, type: 3}
   Card1Back: {fileID: 1617790328}
   Card2Back: {fileID: 997599352}
   Card3Back: {fileID: 324249172}
   Card1Front: {fileID: 1955628083}
   Card2Front: {fileID: 1079080436}
   Card3Front: {fileID: 1502152011}
-  Card1FrontColor: {fileID: 1218750680}
-  Card2FrontColor: {fileID: 504047708}
-  Card3FrontColor: {fileID: 1177137912}
-  Card1TypeIcon: {fileID: 1248927832}
-  Card2TypeIcon: {fileID: 1310093657}
-  Card3TypeIcon: {fileID: 1924732595}
-  Card1TypeText: {fileID: 29629249}
-  Card2TypeText: {fileID: 1596228779}
-  Card3TypeText: {fileID: 1741294186}
-  Card1PercentText: {fileID: 1187676684}
-  Card2PercentText: {fileID: 1418805939}
-  Card3PercentText: {fileID: 1589129462}
-  Card1Description: {fileID: 992718985}
-  Card2Description: {fileID: 1848106314}
-  Card3Description: {fileID: 273980946}
+  Card1FrontColor: {fileID: 1218750682}
+  Card2FrontColor: {fileID: 504047710}
+  Card3FrontColor: {fileID: 1177137914}
+  Card1TypeIcon: {fileID: 1248927834}
+  Card2TypeIcon: {fileID: 1310093659}
+  Card3TypeIcon: {fileID: 1924732597}
+  Card1TypeText: {fileID: 29629251}
+  Card2TypeText: {fileID: 1596228781}
+  Card3TypeText: {fileID: 1741294188}
+  Card1PercentText: {fileID: 1187676686}
+  Card2PercentText: {fileID: 1418805941}
+  Card3PercentText: {fileID: 1589129464}
+  Card1Description: {fileID: 992718987}
+  Card2Description: {fileID: 1848106316}
+  Card3Description: {fileID: 273980948}
+  normalMinValue: 0.01
+  normalMaxValue: 0.2
+  legendaryMinValue: 0.25
+  legendaryMaxValue: 0.75
 --- !u!1 &2071318592
 GameObject:
   m_ObjectHideFlags: 0
