@@ -17,6 +17,10 @@ public abstract class PlayableObject : MonoBehaviour, IDamageable
     public virtual float GetHealth(){
         return health.GetHealth();
     }
+    public virtual float GetMaxHealth()
+    {
+        return health.GetMaxHealth();
+    }
 
     public virtual void GetDamage(float damage)
     {

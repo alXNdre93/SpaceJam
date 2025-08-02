@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      icon_tinker03_0: 820715990224436650
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

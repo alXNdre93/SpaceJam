@@ -50,6 +50,7 @@ public class UpgradeCardManager : MonoBehaviour
     }
 
     private void CreateCards(bool isPlayer) {
+        float percent = 0f;
         UpgradeCardType upgradeTypeCard1 = (UpgradeCardType)UnityEngine.Random.Range(0, Enum.GetValues(typeof(UpgradeCardType)).Length);
         switch (upgradeTypeCard1)
         {
@@ -57,8 +58,35 @@ public class UpgradeCardManager : MonoBehaviour
                 Card1FrontColor.sprite = speedFront;
                 Card1TypeIcon.sprite = speedIcon;
                 Card1TypeText.SetText("Speed Multiplier");
+                if (UnityEngine.Random.Range(0, 100) > 95)
+                {//Legendary
+                    percent = UnityEngine.Random.Range(legendaryMinValue, legendaryMaxValue);
+                    Card1Back.GetComponent<Image>().sprite = legendaryBack;
+                }
+                else
+                {
+                    percent = UnityEngine.Random.Range(normalMinValue, normalMaxValue);
+                    Card1Back.GetComponent<Image>().sprite = normalBack;
+                }
+                Card1PercentText.SetText(Mathf.Ceil(percent * 100).ToString() + "%");
+                Card1Description.SetText("Upgrade the speed of " + (isPlayer ? "Player" : "Enemies") + " by");
                 break;
             case UpgradeCardType.Damage:
+                Card1FrontColor.sprite = damageFront;
+                Card1TypeIcon.sprite = damageIcon;
+                Card1TypeText.SetText("Damage Multiplier");
+                if (UnityEngine.Random.Range(0, 100) > 95)
+                {//Legendary
+                    percent = UnityEngine.Random.Range(legendaryMinValue, legendaryMaxValue);
+                    Card1Back.GetComponent<Image>().sprite = legendaryBack;
+                }
+                else
+                {
+                    percent = UnityEngine.Random.Range(normalMinValue, normalMaxValue);
+                    Card1Back.GetComponent<Image>().sprite = normalBack;
+                }
+                Card1PercentText.SetText(Mathf.Ceil(percent * 100).ToString() + "%");
+                Card1Description.SetText("Upgrade the damage of " + (isPlayer ? "Player" : "Enemies") + " by");
                 break;
             case UpgradeCardType.Point:
                 break;

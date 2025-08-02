@@ -39,8 +39,16 @@ public class GameManager : MonoBehaviour
     private Weapon blinderWeapon = new Weapon("Blinder", 0, 0);
     private Weapon absorbsWeapon = new Weapon("Absorbs", 4, 0);
 
-    private int bossEvent = 10; 
-    public float multiplierEnemyHealth, multiplierPlayerHealth, mulitplierSpawnRate, multiplierPoint, multiplierEnemyDamage, multiplierPlayerDamage, multiplierEnemySpeed, multiplierPlayerSpeed, multiplierPlayerHealthRegen = 1;
+    private int bossEvent = 250; 
+    public float multiplierEnemyHealth = 1;
+    public float multiplierPlayerHealth = 1;
+    public float mulitplierSpawnRate = 1;
+    public float multiplierPoint = 1;
+    public float multiplierEnemyDamage = 1;
+    public float multiplierPlayerDamage = 1;
+    public float multiplierEnemySpeed = 1;
+    public float multiplierPlayerSpeed = 1;
+    public float multiplierPlayerHealthRegen = 1;
 
 
     //Singleton Start
@@ -94,7 +102,22 @@ public class GameManager : MonoBehaviour
         if (isEndlessMode)
             currentLimit = enemyPrefabs.Length;
         OnGameStart?.Invoke();
+        ResetValues();
         StartCoroutine(GameStarter());
+    }
+
+    void ResetValues()
+    {
+        bossEvent = 250; 
+        multiplierEnemyHealth = 1;
+        multiplierPlayerHealth = 1;
+        mulitplierSpawnRate = 1;
+        multiplierPoint = 1;
+        multiplierEnemyDamage = 1;
+        multiplierPlayerDamage = 1;
+        multiplierEnemySpeed = 1;
+        multiplierPlayerSpeed = 1;
+        multiplierPlayerHealthRegen = 1;
     }
 
     IEnumerator GameStarter()
@@ -114,14 +137,17 @@ public class GameManager : MonoBehaviour
 
     void SpawnBoss()
     {
-        if (!isEndlessMode){
+        if (!isEndlessMode)
+        {
             tempEnemy = Instantiate(enemyPrefabs[currentLimit]);
             tempEnemy.transform.position = spawnPoints[UnityEngine.Random.Range(0, spawnPoints.Length)].position;
-            BossSpawnPrep();
             if (!isEndlessMode)
                 tempEnemy.GetComponent<Enemy>().OnBossDeath += UpCurrentLimit;
             SetEnemy(true);
-        }else{
+            BossSpawnPrep();
+        }
+        else
+        {
             CreateEnemy(true);
         }
     }
@@ -139,10 +165,11 @@ public class GameManager : MonoBehaviour
 
     void UpCurrentLimit(){
         uIManager.ToggleBossHealth();
-        if (currentLimit < enemyPrefabs.Length-1)
-            currentLimit++;
-        else
-            NormalModeOver();
+        if (!isEndlessMode)
+            if (currentLimit < enemyPrefabs.Length - 1)
+                currentLimit++;
+            else
+                NormalModeOver();
         CardSelection();
         UpgradePlayer();
         UpgradeEnemy();
@@ -152,7 +179,7 @@ public class GameManager : MonoBehaviour
     void BossSpawnPrep() {
         uIManager.ToggleBossHealth();
         uIManager.UpdateBossSprite(tempEnemy.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite);
-        uIManager.SetBossMaxHealth(tempEnemy.GetComponent<Enemy>().GetHealth());
+        uIManager.SetBossMaxHealth(tempEnemy.GetComponent<Enemy>().GetMaxHealth());
         uIManager.BossSpawned(tempEnemy.GetComponent<Enemy>());
     }
 
@@ -221,7 +248,7 @@ public class GameManager : MonoBehaviour
         tempEnemy.transform.position = spawnPoints[UnityEngine.Random.Range(0, spawnPoints.Length)].position;
         if (isBoss)
             BossSpawnPrep();
-        if (isBoss && !isEndlessMode)
+        if (isBoss)
             tempEnemy.GetComponent<Enemy>().OnBossDeath += UpCurrentLimit;
         SetEnemy(isBoss);
     }

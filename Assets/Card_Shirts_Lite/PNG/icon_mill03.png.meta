@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      icon_mill03_0: -3574400681921522712
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

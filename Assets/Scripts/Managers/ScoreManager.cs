@@ -8,7 +8,7 @@ using System;
 public class ScoreManager : MonoBehaviour
 {
     private int seconds;
-    private int score;
+    [SerializeField] private int score;
     private int highScore = 0;
     public UnityEvent OnScoreUpdate;
     public UnityEvent OnHighScoreUpdated;

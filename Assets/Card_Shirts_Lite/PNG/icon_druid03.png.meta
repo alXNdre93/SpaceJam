@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      icon_druid03_0: 2618954432941157752
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

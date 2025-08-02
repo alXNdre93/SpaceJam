@@ -12,10 +12,15 @@ public class ElectricEnemy : Enemy
     protected override void Start()
     {
         base.Start();
-        health = new Health(2*gameManager.multiplierEnemyHealth*(isBoss?30:1), 0, 2*(isBoss?30:1));
-        pointsValue = 2*(int)gameManager.multiplierPoint*(isBoss?30:1);
+        health = new Health(2 * gameManager.multiplierEnemyHealth * (isBoss ? 30 : 1), 0, 2 * gameManager.multiplierEnemyHealth * (isBoss ? 30 : 1));
+        pointsValue = 2 * (int)gameManager.multiplierPoint * (isBoss ? 30 : 1);
         speed *= gameManager.multiplierEnemySpeed;
-        gameObject.transform.localScale = gameObject.transform.localScale * (isBoss?5:1);
+        gameObject.transform.localScale = gameObject.transform.localScale * (isBoss ? 5 : 1);
+        if (isBoss)
+        {
+            FindAnyObjectByType<UIManager>().SetBossMaxHealth(health.GetMaxHealth());
+            FindAnyObjectByType<UIManager>().UpdateEnemyHealth(health.GetMaxHealth());
+        }
     }
 
     protected override void Update()

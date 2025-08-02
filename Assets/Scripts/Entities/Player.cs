@@ -178,11 +178,6 @@ public class Player : PlayableObject
         }
     }
 
-    public float GetMaxHealth()
-    {
-        return health.GetMaxHealth();
-    }
-
     public void Blind()
     {
         if (!inkSpotActivated)

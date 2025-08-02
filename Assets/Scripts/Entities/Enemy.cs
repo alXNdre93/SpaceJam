@@ -95,7 +95,7 @@ public class Enemy : PlayableObject
         isBoss = _isBoss;
     }
     
-    protected void OnDestroy()
+    protected virtual void OnDestroy()
     {
         if(isBoss)
             OnBossDeath?.Invoke();

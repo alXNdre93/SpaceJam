@@ -2,8 +2,6 @@ using UnityEngine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.UIElements;
-using Unity.VisualScripting;
 
 public class SpikeEnemy : ShooterEnemy
 {
@@ -12,10 +10,16 @@ public class SpikeEnemy : ShooterEnemy
     protected override void Start()
     {
         base.Start();
-        health = new Health(3*(isBoss?30:1), 0, 3*(isBoss?30:1));
-        pointsValue = 3*(isBoss?30:1);
+        health = new Health(3 * gameManager.multiplierEnemyHealth * (isBoss ? 30 : 1), 0, 3 * gameManager.multiplierEnemyHealth * (isBoss ? 30 : 1));
+        pointsValue = 3 * (isBoss ? 30 : 1);
         InvokeRepeating(nameof(Shoot), 0, attackTime);
-        gameObject.transform.localScale = gameObject.transform.localScale * (isBoss?5:1);
+        gameObject.transform.localScale = gameObject.transform.localScale * (isBoss ? 5 : 1);
+        if (isBoss)
+        {
+            FindAnyObjectByType<UIManager>().SetBossMaxHealth(health.GetMaxHealth());
+            FindAnyObjectByType<UIManager>().UpdateEnemyHealth(health.GetMaxHealth());
+        }
+        
     }
 
     protected override void Update()

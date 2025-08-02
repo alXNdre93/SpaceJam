@@ -121,6 +121,7 @@ public class UIManager : MonoBehaviour
 
     public void SetBossMaxHealth(float maxHealth)
     {
+        Debug.Log("bOSS mAX hEALTH "+maxHealth.ToString());
         enemysliderHealth.maxValue = maxHealth;
     }
 

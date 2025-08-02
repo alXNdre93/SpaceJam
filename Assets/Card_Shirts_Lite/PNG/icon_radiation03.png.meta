@@ -197,7 +197,10 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      icon_radiation03_0: 1005274806355529007
+      icon_radiation03_1: 4922236310454221392
+      icon_radiation03_2: 5351367740793803020
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

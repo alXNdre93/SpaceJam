@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      icon_pentagon03_0: 6932798727057829820
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -20596,14 +20596,14 @@ MonoBehaviour:
   scoreManager: {fileID: 2054127185}
   pickupManager: {fileID: 2054127187}
   uIManager: {fileID: 2054127186}
-  multiplierEnemyHealth: 0
-  multiplierPlayerHealth: 0
-  mulitplierSpawnRate: 0
-  multiplierPoint: 0
-  multiplierEnemyDamage: 0
-  multiplierPlayerDamage: 0
-  multiplierEnemySpeed: 0
-  multiplierPlayerSpeed: 0
+  multiplierEnemyHealth: 1
+  multiplierPlayerHealth: 1
+  mulitplierSpawnRate: 1
+  multiplierPoint: 1
+  multiplierEnemyDamage: 1
+  multiplierPlayerDamage: 1
+  multiplierEnemySpeed: 1
+  multiplierPlayerSpeed: 1
   multiplierPlayerHealthRegen: 1
   isMoving: 0
 --- !u!4 &2054127184
@@ -20641,6 +20641,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11e481024fec0454f893ad04434125ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  score: 0
   OnScoreUpdate:
     m_PersistentCalls:
       m_Calls:
