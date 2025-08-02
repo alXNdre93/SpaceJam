@@ -35,11 +35,14 @@ public class MeleeEnemy : Enemy
             return;
         }
 
-        if (Vector2.Distance(transform.position, target.position) < attackRange){
+        if (Vector2.Distance(transform.position, target.position) < attackRange)
+        {
             speed = 0;
             Attack(attackTime);
-        }else{
-            speed = setSpeed;
+        }
+        else
+        {
+            speed = setSpeed*gameManager.multiplierEnemySpeed;
         }
 
         if (Vector2.Distance(transform.position, target.position) < speedUpRange)
@@ -50,13 +53,14 @@ public class MeleeEnemy : Enemy
                 GetComponent<Animator>().SetBool("Attack", true);
                 eyes.SetActive(true);
                 speed += speedBoost;
+
             }
         }
         else
         {
             if (isSpinning)
             {
-                speed = setSpeed;
+                speed = setSpeed*gameManager.multiplierEnemySpeed;
             }
             isSpinning = false;
             GetComponent<Animator>().SetBool("Attack", false);

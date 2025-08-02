@@ -12,7 +12,7 @@ public class MiniEnemy : ShooterEnemy
         pointsValue = 1*(int)gameManager.multiplierPoint*(isBoss?30:1);
         speed *= gameManager.multiplierEnemySpeed;
         InvokeRepeating(nameof(Shoot), 0, attackTime);
-        gameObject.transform.localScale = gameObject.transform.localScale * (isBoss?5:1);
+        gameObject.transform.localScale = gameObject.transform.localScale * (isBoss?2:1);
     }
 
     protected override void OnDestroy()
