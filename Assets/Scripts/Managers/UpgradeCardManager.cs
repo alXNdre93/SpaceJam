@@ -28,9 +28,9 @@ public class UpgradeCardManager : MonoBehaviour
     [SerializeField] private Image Card1FrontColor;
     [SerializeField] private Image Card2FrontColor;
     [SerializeField] private Image Card3FrontColor;
-    [SerializeField] private Image Card1TypeIcon;
-    [SerializeField] private Image Card2TypeIcon;
-    [SerializeField] private Image Card3TypeIcon;
+    [SerializeField] private Image Card1TypeIcon,Card1TypeIcon2;
+    [SerializeField] private Image Card2TypeIcon,Card2TypeIcon2;
+    [SerializeField] private Image Card3TypeIcon,Card3TypeIcon2;
     [SerializeField] private TMP_Text Card1TypeText;
     [SerializeField] private TMP_Text Card2TypeText;
     [SerializeField] private TMP_Text Card3TypeText;
@@ -48,8 +48,7 @@ public class UpgradeCardManager : MonoBehaviour
 
     private float previousTimeScale = 1f;
 
-    private UpgradeCardType card1Type, card2Type, card3Type;
-    private float card1Value, card2Value, card3Value;
+    private CardData card1Data, card2Data, card3Data;
     private bool currentIsPlayer;
     private Action onComplete;
     private float originalTimeScale = 1f; // Save the original timescale before any pause
@@ -94,23 +93,76 @@ public class UpgradeCardManager : MonoBehaviour
         
         Time.timeScale = 0f; // pause game
         CreateCards(isPlayer);
-        Debug.Log($"UpgradeCardManager.ShowCards(): isPlayer={isPlayer} card1={card1Type}:{card1Value} card2={card2Type}:{card2Value} card3={card3Type}:{card3Value}");
+        Debug.Log($"UpgradeCardManager.ShowCards(): isPlayer={isPlayer} card1={card1Data.upgrades.Count} upgrades, card2={card2Data.upgrades.Count} upgrades, card3={card3Data.upgrades.Count} upgrades");
         StartCoroutine(ShowBackCards());
     }
 
     private void CreateCards(bool isPlayer)
     {
-        card1Type = RandomType();
-        card1Value = GenerateValue(card1Type);
-        ApplyCardUI(card1Type, card1Value, Card1Back, Card1FrontColor, Card1TypeIcon, Card1TypeText, Card1PercentText, Card1Description, isPlayer);
+        card1Data = GenerateCard(isPlayer);
+        ApplyCardUI(card1Data, Card1Back, Card1FrontColor, Card1TypeIcon, Card1TypeIcon2, Card1TypeText, Card1PercentText, Card1Description, isPlayer);
 
-        card2Type = RandomType();
-        card2Value = GenerateValue(card2Type);
-        ApplyCardUI(card2Type, card2Value, Card2Back, Card2FrontColor, Card2TypeIcon, Card2TypeText, Card2PercentText, Card2Description, isPlayer);
+        card2Data = GenerateCard(isPlayer);
+        ApplyCardUI(card2Data, Card2Back, Card2FrontColor, Card2TypeIcon, Card2TypeIcon2, Card2TypeText, Card2PercentText, Card2Description, isPlayer);
 
-        card3Type = RandomType();
-        card3Value = GenerateValue(card3Type);
-        ApplyCardUI(card3Type, card3Value, Card3Back, Card3FrontColor, Card3TypeIcon, Card3TypeText, Card3PercentText, Card3Description, isPlayer);
+        card3Data = GenerateCard(isPlayer);
+        ApplyCardUI(card3Data, Card3Back, Card3FrontColor, Card3TypeIcon, Card3TypeIcon2, Card3TypeText, Card3PercentText, Card3Description, isPlayer);
+    }
+
+    private CardData GenerateCard(bool isPlayer)
+    {
+        CardData cardData = new CardData();
+        bool isLegendary = UnityEngine.Random.Range(0, 100) > 95;
+        
+        if (isLegendary)
+        {
+            // Legendary: always 2 buffs
+            cardData.upgrades.Add(GenerateUpgrade(true, 0.25f, 0.75f));
+            cardData.upgrades.Add(GenerateUpgradeDifferentType(cardData.upgrades[0].type, true, 0.25f, 0.75f));
+            cardData.isLegendary = true;
+        }
+        else
+        {
+            // Normal card: either 2 small buffs OR 1 medium buff + 1 debuff
+            if (UnityEngine.Random.Range(0, 100) > 50)
+            {
+                // 2 small buffs
+                cardData.upgrades.Add(GenerateUpgrade(true, 0.01f, 0.15f));
+                cardData.upgrades.Add(GenerateUpgradeDifferentType(cardData.upgrades[0].type, true, 0.01f, 0.15f));
+            }
+            else
+            {
+                // 1 medium buff + 1 debuff
+                cardData.upgrades.Add(GenerateUpgrade(true, 0.1f, 0.2f));
+                cardData.upgrades.Add(GenerateUpgradeDifferentType(cardData.upgrades[0].type, false, 0.1f, 0.2f));
+            }
+            cardData.isLegendary = false;
+        }
+        
+        return cardData;
+    }
+
+    private CardUpgrade GenerateUpgrade(bool isBuff, float minValue, float maxValue)
+    {
+        UpgradeCardType type = RandomType();
+        float baseValue = UnityEngine.Random.Range(minValue, maxValue);
+        float value = isBuff ? baseValue : -baseValue;
+        
+        return new CardUpgrade { type = type, value = value };
+    }
+
+    private CardUpgrade GenerateUpgradeDifferentType(UpgradeCardType excludeType, bool isBuff, float minValue, float maxValue)
+    {
+        UpgradeCardType type;
+        do
+        {
+            type = RandomType();
+        } while (type == excludeType);
+        
+        float baseValue = UnityEngine.Random.Range(minValue, maxValue);
+        float value = isBuff ? baseValue : -baseValue;
+        
+        return new CardUpgrade { type = type, value = value };
     }
 
     private UpgradeCardType RandomType()
@@ -119,99 +171,187 @@ public class UpgradeCardManager : MonoBehaviour
         return (UpgradeCardType)UnityEngine.Random.Range(0, count);
     }
 
-    private float GenerateValue(UpgradeCardType type)
+    private void ApplyCardUI(CardData cardData, GameObject backObj, Image frontColor, Image typeIcon, Image typeIcon2, TMP_Text typeText, TMP_Text percentText, TMP_Text description, bool isPlayer)
     {
-        bool isDebuff = false;
-        bool legendary = UnityEngine.Random.Range(0, 100) > 95;
-        if (type != UpgradeCardType.Point && type != UpgradeCardType.Spawn)
-        {
-            isDebuff = UnityEngine.Random.Range(0, 100) > 50; // 50% chance of debuff
-        }
-        
-        float value = legendary ? UnityEngine.Random.Range(legendaryMinValue, legendaryMaxValue)
-                                : UnityEngine.Random.Range(normalMinValue, normalMaxValue);
-        
-        return isDebuff ? -value : value;
-    }
+        if (cardData.upgrades.Count == 0)
+            return;
 
-    private void ApplyCardUI(UpgradeCardType type, float value, GameObject backObj, Image frontColor, Image typeIcon, TMP_Text typeText, TMP_Text percentText, TMP_Text description, bool isPlayer)
-    {
-        Sprite front = pointFront;
-        Sprite icon = pointIcon;
-        string title = string.Empty;
-        string desc = string.Empty;
+        // Build title and description
+        string titleText = "";
+        string descText = "";
+        Sprite firstIcon = GetIconForType(cardData.upgrades[0].type);
+        frontColor.sprite = GetFrontSpriteForType(cardData.upgrades[0].type);
 
-        switch (type)
+        if (cardData.upgrades.Count == 1)
         {
-            case UpgradeCardType.Speed:
-                front = speedFront; icon = speedIcon; title = "Speed"; desc = value >= 0 ? "Upgrade the speed of " : "Reduce the speed of "; break;
-            case UpgradeCardType.Damage:
-                front = damageFront; icon = damageIcon; title = "Damage"; desc = value >= 0 ? "Upgrade the damage of " : "Reduce the damage of "; break;
-            case UpgradeCardType.Point:
-                front = pointFront; icon = pointIcon; title = "Points"; desc = "Change points value by "; break;
-            case UpgradeCardType.Spawn:
-                front = spawnFront; icon = spawnIcon; title = "Spawn Rate"; desc = "Change spawn rate by "; break;
-            case UpgradeCardType.Health:
-                front = healthFront; icon = healthIcon; title = "Health"; desc = value >= 0 ? "Upgrade the health of " : "Reduce the health of "; break;
-        }
-
-        if (frontColor != null) frontColor.sprite = front;
-        if (typeIcon != null) typeIcon.sprite = icon;
-        if (typeText != null) typeText.SetText(title);
-        
-        if (percentText != null)
-        {
-            string sign = value >= 0 ? "+" : "-";
-            if(type == UpgradeCardType.Point )
+            // Single upgrade - original behavior
+            CardUpgrade upgrade = cardData.upgrades[0];
+            titleText = GetTypeString(upgrade.type);
+            descText = BuildDescription(upgrade.type, upgrade.value, isPlayer);
+            
+            if (typeIcon != null) typeIcon.sprite = GetIconForType(upgrade.type);
+            if (typeIcon2 != null) typeIcon2.sprite = GetIconForType(upgrade.type);
+            
+            if (percentText != null)
             {
-                if (!isPlayer)
+                string sign = GetSign(upgrade.type, upgrade.value, isPlayer);
+                percentText.SetText(sign + Mathf.Ceil(Mathf.Abs(upgrade.value) * 100).ToString() + "%");
+            }
+        }
+        else if (cardData.upgrades.Count == 2)
+        {
+            // Multiple upgrades
+            CardUpgrade upgrade1 = cardData.upgrades[0];
+            CardUpgrade upgrade2 = cardData.upgrades[1];
+            
+            // Title: type1 / type2
+            titleText = GetTypeString(upgrade1.type) + " / " + GetTypeString(upgrade2.type);
+            
+            // Description explains both upgrades
+            string desc1 = BuildDescriptionPart(upgrade1.type, upgrade1.value, isPlayer);
+            string desc2 = BuildDescriptionPart(upgrade2.type, upgrade2.value, isPlayer);
+            descText = desc1 + " and " + desc2;
+            
+            // Icons - set both icons with the appropriate types
+            if (typeIcon != null) typeIcon.sprite = GetIconForType(upgrade1.type);
+            if (typeIcon2 != null)
+            {
+                // If both upgrades are the same type, show the same icon in both slots
+                if (upgrade1.type == upgrade2.type)
                 {
-                    sign = "-";
+                    typeIcon2.sprite = GetIconForType(upgrade1.type);
                 }
+                else
+                {
+                    typeIcon2.sprite = GetIconForType(upgrade2.type);
+                }
+                typeIcon2.gameObject.SetActive(true);
             }
             
-            if(type == UpgradeCardType.Spawn)
+            // Percent text: show both percentages
+            if (percentText != null)
             {
-                if (isPlayer)
-                {
-                    sign = "-";
-                }
-            }
-            
-            percentText.SetText(sign + Mathf.Ceil(Mathf.Abs(value) * 100).ToString() + "%");
-        }
-        
-        if (description != null) 
-        {
-            // Determine the subject based on who is choosing and if it's a buff or debuff
-            string subject = "";
-            if (type == UpgradeCardType.Point || type == UpgradeCardType.Spawn)
-            {
-                // Point and Spawn don't change description based on buff/debuff
-                description.SetText(desc);
-            }
-            else
-            {
-                // For Speed, Damage, Health: determine subject
-                bool isDebuff = value < 0;
-                if (isPlayer && !isDebuff)
-                    subject = "Player by";
-                else if (isPlayer && isDebuff)
-                    subject = "Enemy by";
-                else if (!isPlayer && !isDebuff)
-                    subject = "Enemy by";
-                else // !isPlayer && isDebuff
-                    subject = "Player by";
+                string sign1 = GetSign(upgrade1.type, upgrade1.value, isPlayer);
+                string sign2 = GetSign(upgrade2.type, upgrade2.value, isPlayer);
+                string percent1 = sign1 + Mathf.Ceil(Mathf.Abs(upgrade1.value) * 100).ToString() + "%";
+                string percent2 = sign2 + Mathf.Ceil(Mathf.Abs(upgrade2.value) * 100).ToString() + "%";
                 
-                description.SetText(desc + subject);
+                // If same percentage, show once, otherwise show both
+                if (percent1 == percent2)
+                {
+                    percentText.SetText(percent1);
+                }
+                else
+                {
+                    percentText.SetText(percent1 + " / " + percent2);
+                }
             }
         }
 
+        if (typeText != null) typeText.SetText(titleText);
+        if (description != null) description.SetText(descText);
+
+        // Set card background based on if legendary
         if (backObj != null)
         {
             var img = backObj.GetComponent<Image>();
-            if (img != null) img.sprite = (Mathf.Abs(value) >= legendaryMinValue) ? legendaryBack : normalBack;
+            if (img != null) img.sprite = cardData.isLegendary ? legendaryBack : normalBack;
         }
+    }
+
+    private string GetTypeString(UpgradeCardType type)
+    {
+        return type switch
+        {
+            UpgradeCardType.Speed => "Speed",
+            UpgradeCardType.Damage => "Damage",
+            UpgradeCardType.Point => "Points",
+            UpgradeCardType.Spawn => "Spawn Rate",
+            UpgradeCardType.Health => "Health",
+            _ => "Unknown"
+        };
+    }
+
+    private Sprite GetIconForType(UpgradeCardType type)
+    {
+        return type switch
+        {
+            UpgradeCardType.Speed => speedIcon,
+            UpgradeCardType.Damage => damageIcon,
+            UpgradeCardType.Point => pointIcon,
+            UpgradeCardType.Spawn => spawnIcon,
+            UpgradeCardType.Health => healthIcon,
+            _ => pointIcon
+        };
+    }
+
+    private Sprite GetFrontSpriteForType(UpgradeCardType type)
+    {
+        return type switch
+        {
+            UpgradeCardType.Speed => speedFront,
+            UpgradeCardType.Damage => damageFront,
+            UpgradeCardType.Point => pointFront,
+            UpgradeCardType.Spawn => spawnFront,
+            UpgradeCardType.Health => healthFront,
+            _ => pointFront
+        };
+    }
+
+    private string BuildDescription(UpgradeCardType type, float value, bool isPlayer)
+    {
+        if (type == UpgradeCardType.Point || type == UpgradeCardType.Spawn)
+            return "Change " + GetTypeString(type).ToLower() + " value by";
+
+        bool isDebuff = value < 0;
+        string subject = "";
+        if (isPlayer && !isDebuff)
+            subject = "Player by";
+        else if (isPlayer && isDebuff)
+            subject = "Enemy by";
+        else if (!isPlayer && !isDebuff)
+            subject = "Enemy by";
+        else // !isPlayer && isDebuff
+            subject = "Player by";
+        
+        string action = isPlayer && !isDebuff || !isPlayer && !isDebuff ? "Upgrade" : "Reduce";
+        return action + " the " + GetTypeString(type).ToLower() + " of " + subject;
+    }
+
+    private string BuildDescriptionPart(UpgradeCardType type, float value, bool isPlayer)
+    {
+        if (type == UpgradeCardType.Point)
+            return "change points value";
+        if (type == UpgradeCardType.Spawn)
+            return "change spawn rate";
+
+        bool isBuff = value > 0;
+        string target = "";
+        if (isPlayer && isBuff)
+            target = "upgrade Player";
+        else if (isPlayer && !isBuff)
+            target = "reduce Enemy";
+        else if (!isPlayer && isBuff)
+            target = "upgrade Enemy";
+        else // !isPlayer && !isBuff
+            target = "reduce Player";
+        
+        return target + " " + GetTypeString(type).ToLower();
+    }
+
+    private string GetSign(UpgradeCardType type, float value, bool isPlayer)
+    {
+        // Determine the sign based on type, value, and who's choosing
+        if (type == UpgradeCardType.Point)
+        {
+            return isPlayer ? "+" : "-";
+        }
+        if (type == UpgradeCardType.Spawn)
+        {
+            return isPlayer ? "-" : "+";
+        }
+        
+        return value >= 0 ? "+" : "-";
     }
 
     private IEnumerator ShowBackCards()
@@ -319,32 +459,28 @@ public class UpgradeCardManager : MonoBehaviour
 
     private IEnumerator HandleSelection(int cardIndex)
     {
-        UpgradeCardType selectedType = UpgradeCardType.Speed;
-        float selectedValue = 0f;
+        CardData selectedCardData = null;
 
         switch (cardIndex)
         {
             case 1:
-                selectedType = card1Type;
-                selectedValue = card1Value;
+                selectedCardData = card1Data;
                 card1Selected = true;
-                Debug.Log($"UpgradeCardManager.HandleSelection(): selected card1 type={card1Type} value={card1Value} isPlayer={currentIsPlayer}");
+                Debug.Log($"UpgradeCardManager.HandleSelection(): selected card1 with {selectedCardData.upgrades.Count} upgrade(s), isPlayer={currentIsPlayer}");
                 break;
             case 2:
-                selectedType = card2Type;
-                selectedValue = card2Value;
+                selectedCardData = card2Data;
                 card2Selected = true;
-                Debug.Log($"UpgradeCardManager.HandleSelection(): selected card2 type={card2Type} value={card2Value} isPlayer={currentIsPlayer}");
+                Debug.Log($"UpgradeCardManager.HandleSelection(): selected card2 with {selectedCardData.upgrades.Count} upgrade(s), isPlayer={currentIsPlayer}");
                 break;
             case 3:
-                selectedType = card3Type;
-                selectedValue = card3Value;
+                selectedCardData = card3Data;
                 card3Selected = true;
-                Debug.Log($"UpgradeCardManager.HandleSelection(): selected card3 type={card3Type} value={card3Value} isPlayer={currentIsPlayer}");
+                Debug.Log($"UpgradeCardManager.HandleSelection(): selected card3 with {selectedCardData.upgrades.Count} upgrade(s), isPlayer={currentIsPlayer}");
                 break;
         }
 
-        ApplyCard(selectedType, selectedValue);
+        ApplyCard(selectedCardData);
         yield return new WaitForSecondsRealtime(0.1f);
 
         // Decrement selections remaining counter
@@ -478,12 +614,15 @@ public class UpgradeCardManager : MonoBehaviour
         }
     }
 
-    private void ApplyCard(UpgradeCardType type, float value)
+    private void ApplyCard(CardData cardData)
     {
-        if (currentIsPlayer)
-            GameManager.GetInstance().ApplyPlayerUpgrade(type, value);
-        else
-            GameManager.GetInstance().ApplyEnemyUpgrade(type, value);
+        foreach (CardUpgrade upgrade in cardData.upgrades)
+        {
+            if (currentIsPlayer)
+                GameManager.GetInstance().ApplyPlayerUpgrade(upgrade.type, upgrade.value);
+            else
+                GameManager.GetInstance().ApplyEnemyUpgrade(upgrade.type, upgrade.value);
+        }
     }
 }
 
@@ -494,4 +633,17 @@ public enum UpgradeCardType
     Point,
     Spawn,
     Health
+}
+[System.Serializable]
+public class CardUpgrade
+{
+    public UpgradeCardType type;
+    public float value; // positive = buff, negative = debuff
+}
+
+[System.Serializable]
+public class CardData
+{
+    public System.Collections.Generic.List<CardUpgrade> upgrades = new System.Collections.Generic.List<CardUpgrade>();
+    public bool isLegendary;
 }
