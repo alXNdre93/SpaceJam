@@ -75,6 +75,7 @@ public class Enemy : PlayableObject
 
     public override void Die()
     {
+        Debug.Log($"Enemy.Die(): {gameObject.name} isBoss={isBoss}");
         GameManager.GetInstance().NotifyDeath(this);
         Destroy(gameObject);
     }
@@ -97,8 +98,11 @@ public class Enemy : PlayableObject
     
     protected virtual void OnDestroy()
     {
-        if(isBoss)
+        if (isBoss)
+        {
+            Debug.Log($"Enemy.OnDestroy(): Boss {gameObject.name} destroyed - invoking OnBossDeath");
             OnBossDeath?.Invoke();
+        }
     }
 
 }

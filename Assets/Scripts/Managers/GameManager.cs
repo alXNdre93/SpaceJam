@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     public ScoreManager scoreManager;
     public PickupManager pickupManager;
     public UIManager uIManager;
+    [SerializeField] private UpgradeCardManager upgradeCardManager;
 
     private Player player;
     private GameObject tempEnemy;
@@ -34,7 +35,7 @@ public class GameManager : MonoBehaviour
     private Weapon sniperWeapon = new Weapon("Sniper", 5, 15);
     private Weapon explosionWeapon = new Weapon("Explosion", 20, 0);
     private Weapon electricWeapon = new Weapon("Electric", 2, 0);
-    private Weapon spikeThrow = new Weapon("Spike", 10, 15);
+    private Weapon spikeThrow = new Weapon("Spike", 2, 15);
     private Weapon laserWeapon = new Weapon("Laser", 3, 0);
     private Weapon blinderWeapon = new Weapon("Blinder", 0, 0);
     private Weapon absorbsWeapon = new Weapon("Absorbs", 4, 0);
@@ -137,6 +138,7 @@ public class GameManager : MonoBehaviour
 
     void SpawnBoss()
     {
+
         if (!isEndlessMode)
         {
             tempEnemy = Instantiate(enemyPrefabs[currentLimit]);
@@ -188,9 +190,95 @@ public class GameManager : MonoBehaviour
     }
 
     void CardSelection(){
-
+        if (upgradeCardManager != null)
+        {
+            // Ensure GameManager stays active so coroutines can run during card selection
+            gameObject.SetActive(true);
+            enabled = true;
+            
+            Debug.Log("GameManager.CardSelection(): triggering card selection - showing player cards");
+            // show player choices first, then enemy choices
+            upgradeCardManager.ShowCards(true, () => {
+                Debug.Log("GameManager.CardSelection(): player made selection - showing enemy cards");
+                // after player selection, show enemy upgrade choices
+                upgradeCardManager.ShowCards(false, null);
+            });
+        }
     }
 
+
+    public void ApplyPlayerUpgrade(UpgradeCardType type, float value)
+    {
+        switch (type)
+        {
+            case UpgradeCardType.Speed:
+                if (value > 0){
+                    multiplierPlayerSpeed += value;
+                }else{
+                    multiplierEnemySpeed += value;
+                }
+                break;
+            case UpgradeCardType.Damage:
+                if (value > 0){
+                    multiplierPlayerDamage += value;
+                }else{
+                    multiplierEnemyDamage += value;
+                }
+                
+                break;
+            case UpgradeCardType.Point:
+                multiplierPoint += value;
+                break;
+            case UpgradeCardType.Spawn:
+                mulitplierSpawnRate -= value;
+                break;
+            case UpgradeCardType.Health:
+            if (value > 0){
+                    multiplierPlayerHealth += value;
+                }else{
+                    multiplierEnemyHealth += value;
+                }
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void ApplyEnemyUpgrade(UpgradeCardType type, float value)
+    {
+        switch (type)
+        {
+            case UpgradeCardType.Speed:
+                if (value > 0){
+                    multiplierEnemySpeed += value;
+                }else{
+                    multiplierPlayerSpeed += value;
+                }
+                break;
+            case UpgradeCardType.Damage:
+                if (value > 0){
+                    multiplierEnemyDamage += value;
+                }else{
+                    multiplierPlayerDamage += value;
+                }
+                break;
+            case UpgradeCardType.Point:
+                multiplierPoint -= value;
+                break;
+            case UpgradeCardType.Spawn:
+                mulitplierSpawnRate += value;
+                break;
+            case UpgradeCardType.Health:
+            if (value > 0){
+                    multiplierEnemyHealth += value;
+                }else{
+                    multiplierPlayerHealth += value;
+                }
+                break;
+            default:
+                break;
+        }
+    }
     void UpgradePlayer(){
         player.Upgrade();
     }

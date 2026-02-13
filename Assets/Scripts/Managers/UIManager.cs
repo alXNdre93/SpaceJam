@@ -123,6 +123,7 @@ public class UIManager : MonoBehaviour
     {
         Debug.Log("bOSS mAX hEALTH "+maxHealth.ToString());
         enemysliderHealth.maxValue = maxHealth;
+        enemysliderHealth.value = maxHealth;
     }
 
     public void SetPlayerMaxHealth(float maxHealth)

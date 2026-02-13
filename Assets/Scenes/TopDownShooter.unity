@@ -20596,6 +20596,7 @@ MonoBehaviour:
   scoreManager: {fileID: 2054127185}
   pickupManager: {fileID: 2054127187}
   uIManager: {fileID: 2054127186}
+  upgradeCardManager: {fileID: 2054127189}
   multiplierEnemyHealth: 1
   multiplierPlayerHealth: 1
   mulitplierSpawnRate: 1
