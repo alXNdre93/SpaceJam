@@ -17,7 +17,6 @@ public class MachineGunEnemy : ShooterEnemy
         pointsValue = 4 * (int)gameManager.multiplierPoint * (isBoss ? 30 : 1);
         speed *= gameManager.multiplierEnemySpeed;
         canShoot = false;
-        InvokeRepeating(nameof(Shoot), 0, attackTime);
         isShooting = true;
         gameObject.transform.localScale = gameObject.transform.localScale * (isBoss ? 5 : 1);
         if (isBoss)
@@ -30,7 +29,7 @@ public class MachineGunEnemy : ShooterEnemy
     protected override void Update()
     {
         base.Update();
-        if (target == null){
+        if (target == null || target.gameObject == null){
             return;
         }
         if (Vector2.Distance(transform.position, target.position) < attackRange){

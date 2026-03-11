@@ -55,10 +55,21 @@ public class ElectricEnemy : Enemy
         else
         {
             timerAttack = 0;
-            if (Vector2.Distance(transform.position, target.position) < attackRange * (isBoss?5:1) && electrocuting)
+            if (target != null && target.gameObject != null && 
+                Vector2.Distance(transform.position, target.position) < attackRange * (isBoss?5:1) && electrocuting)
             {
-                target.gameObject.GetComponent<IDamageable>().GetDamage(weapon.GetDamage());
-                target.gameObject.GetComponent<Player>().electrocuted = true;
+                IDamageable damageable = target.gameObject.GetComponent<IDamageable>();
+                Player playerComponent = target.gameObject.GetComponent<Player>();
+                
+                if (damageable != null)
+                {
+                    damageable.GetDamage(weapon.GetDamage());
+                }
+                
+                if (playerComponent != null)
+                {
+                    playerComponent.electrocuted = true;
+                }
             }
         }
     }
@@ -73,5 +84,31 @@ public class ElectricEnemy : Enemy
         lighting.SetActive(true);
         yield return new WaitForSeconds(2);
         lighting.SetActive(false);
+    }
+
+    // Override OnPoolDespawnInternal to ensure player electrocuted state is cleaned up
+    protected override void OnPoolDespawnInternal()
+    {
+        if (target != null && target.gameObject != null)
+        {
+            Player playerComponent = target.gameObject.GetComponent<Player>();
+            if (playerComponent != null)
+            {
+                playerComponent.electrocuted = false;
+            }
+        }
+        
+        // Reset electrocution state
+        electrocuting = false;
+        timer = 0;
+        timerAttack = 0;
+        
+        // Ensure lighting effect is disabled
+        if (lighting != null)
+        {
+            lighting.SetActive(false);
+        }
+        
+        base.OnPoolDespawnInternal();
     }
 }

@@ -11,6 +11,7 @@ TagManager:
   - Projectile
   - InkSpots
   - Absorption
+  - Asteroid
   layers:
   - Default
   - TransparentFX

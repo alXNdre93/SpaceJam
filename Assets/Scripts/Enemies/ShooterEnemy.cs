@@ -23,13 +23,12 @@ public class ShooterEnemy : Enemy
     protected override void Update()
     {
         base.Update();
-        if (target == null){
+        if (target == null || target.gameObject == null){
+            canShoot = false;
             return;
         }
 
-        if (Vector2.Distance(transform.position, target.position) < attackRange){
-            canShoot=true;
-        }
+        canShoot = Vector2.Distance(transform.position, target.position) < attackRange;
 
     }
 

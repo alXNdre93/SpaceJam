@@ -22,29 +22,41 @@ public class AttractEnemy : Enemy
     protected override void Update()
     {
         base.Update();
-        if (target == null)
+        if (target == null || target.gameObject == null)
         {
             return;
         }
 
-        if (Vector2.Distance(transform.position, target.position) < attackRange && !absorbs)
+        Player playerComponent = target.gameObject.GetComponent<Player>();
+        if (playerComponent == null)
+        {
+            return;
+        }
+
+        float distanceToTarget = Vector2.Distance(transform.position, target.position);
+        
+        if (distanceToTarget < attackRange && !absorbs)
         {
             absorbs = true;
             StartCoroutine(Attract());
-            target.gameObject.GetComponent<Player>().attracted = false;
+            playerComponent.attracted = false;
         }
-        else if (Vector2.Distance(transform.position, target.position) < attackRange && absorbs)
+        else if (distanceToTarget < attackRange && absorbs)
         {
-            target.gameObject.GetComponent<Player>().attracted = true;
-            if (Vector2.Distance(transform.position, target.position) < (attackRange / 2))
+            playerComponent.attracted = true;
+            if (distanceToTarget < (attackRange / 2))
             {
                 Debug.Log("damage");
-                target.gameObject.GetComponent<IDamageable>().GetDamage(weapon.GetDamage() * Time.deltaTime);
+                IDamageable damageable = target.gameObject.GetComponent<IDamageable>();
+                if (damageable != null)
+                {
+                    damageable.GetDamage(weapon.GetDamage() * Time.deltaTime);
+                }
             }
         }
         else
         {
-            target.gameObject.GetComponent<Player>().attracted = false;
+            playerComponent.attracted = false;
         }
 
         if (cooldown)
@@ -52,11 +64,51 @@ public class AttractEnemy : Enemy
     }
     void OnDisable()
     {
-        target.gameObject.GetComponent<Player>().attracted = false;
+        if (target != null && target.gameObject != null)
+        {
+            Player playerComponent = target.gameObject.GetComponent<Player>();
+            if (playerComponent != null)
+            {
+                playerComponent.attracted = false;
+            }
+        }
     }
     protected override void OnDestroy()
     {
-        target.gameObject.GetComponent<Player>().attracted = false;
+        if (target != null && target.gameObject != null)
+        {
+            Player playerComponent = target.gameObject.GetComponent<Player>();
+            if (playerComponent != null)
+            {
+                playerComponent.attracted = false;
+            }
+        }
+        base.OnDestroy();
+    }
+
+    // Override OnPoolDespawnInternal to ensure player attraction state is cleaned up
+    protected override void OnPoolDespawnInternal()
+    {
+        if (target != null && target.gameObject != null)
+        {
+            Player playerComponent = target.gameObject.GetComponent<Player>();
+            if (playerComponent != null)
+            {
+                playerComponent.attracted = false;
+            }
+        }
+        
+        // Reset attraction state
+        absorbs = false;
+        cooldown = false;
+        
+        // Ensure absorption effect is disabled
+        if (absorption != null)
+        {
+            absorption.SetActive(false);
+        }
+        
+        base.OnPoolDespawnInternal();
     }
 
     public override void Attack(float interval)

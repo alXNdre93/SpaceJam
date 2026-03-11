@@ -28,7 +28,7 @@ public class SpawnEnemy : Enemy
     protected override void Update()
     {
         base.Update();
-        if (target == null)
+        if (target == null || target.gameObject == null)
         {
             return;
         }
@@ -41,6 +41,9 @@ public class SpawnEnemy : Enemy
     }
     public override void Move(Vector2 direction)
     {
+        if (target == null || target.gameObject == null)
+            return;
+            
         direction.x -= transform.position.x;
         direction.y -= transform.position.y;
 
@@ -69,7 +72,31 @@ public class SpawnEnemy : Enemy
         while (totalSpawn < nbToSpawn)
         {
             Debug.Log("Mini Enemy spawn: " + totalSpawn);
-            MiniEnemy tempEnemy = Instantiate(miniEnnemyPrefab, point.position, point.rotation);
+            
+            // Use pool manager if available, otherwise fallback to instantiate
+            MiniEnemy tempEnemy;
+            if (PoolManager.Instance != null)
+            {
+                // Try to get from pool (assuming MiniEnemy is also pooled)
+                Enemy enemyFromPool = PoolManager.Instance.GetEnemy(miniEnnemyPrefab.gameObject);
+                if (enemyFromPool != null && enemyFromPool is MiniEnemy)
+                {
+                    tempEnemy = (MiniEnemy)enemyFromPool;
+                    tempEnemy.transform.position = point.position;
+                    tempEnemy.transform.rotation = point.rotation;
+                }
+                else
+                {
+                    tempEnemy = Instantiate(miniEnnemyPrefab, point.position, point.rotation);
+                    Debug.LogWarning("MiniEnemy pool not found or returned null, falling back to Instantiate");
+                }
+            }
+            else
+            {
+                tempEnemy = Instantiate(miniEnnemyPrefab, point.position, point.rotation);
+                Debug.LogWarning("PoolManager not found, falling back to Instantiate for MiniEnemy");
+            }
+            
             tempEnemy.SetEnemy(5, 2, isBoss);
             tempEnemy.weapon = miniWeapon;
             tempEnemy.OnDeath += MiniDestroy;

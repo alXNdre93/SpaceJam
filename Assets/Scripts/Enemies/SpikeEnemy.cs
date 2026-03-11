@@ -12,7 +12,6 @@ public class SpikeEnemy : ShooterEnemy
         base.Start();
         health = new Health(3 * gameManager.multiplierEnemyHealth * (isBoss ? 30 : 1), 0, 3 * gameManager.multiplierEnemyHealth * (isBoss ? 30 : 1));
         pointsValue = 3 * (isBoss ? 30 : 1);
-        InvokeRepeating(nameof(Shoot), 0, attackTime);
         gameObject.transform.localScale = gameObject.transform.localScale * (isBoss ? 5 : 1);
         if (isBoss)
         {

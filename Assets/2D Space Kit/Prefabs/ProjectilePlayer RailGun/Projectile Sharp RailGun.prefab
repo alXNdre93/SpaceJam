@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 9600000}
   - component: {fileID: 7398751296313676766}
   m_Layer: 0
-  m_Name: Projectile Sharp
+  m_Name: Projectile Sharp RailGun
   m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,14 +31,15 @@ Transform:
   m_GameObject: {fileID: 100000}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.695, y: 4.299, z: 0}
-  m_LocalScale: {x: 0.83328, y: 0.83328, z: 0.41664}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.61219746, y: 0.45465532, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &21200000
 SpriteRenderer:
+  serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -57,6 +58,8 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -78,11 +81,13 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 31d8a46be10bcd3409183a6525fc1635, type: 3}
-  m_Color: {r: 1, g: 0.66176474, b: 0.66176474, a: 1}
+  m_MaskInteraction: 0
+  m_Sprite: {fileID: 21300000, guid: b909b07c03c5f6b4687729ca067620c6, type: 3}
+  m_Color: {r: 0.6627451, g: 0.970655, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -90,7 +95,6 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!61 &6100000
 BoxCollider2D:
@@ -130,7 +134,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.32, y: 0.32}
+    oldSize: {x: 0.23, y: 1.96}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -177,12 +181,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 304f3693f902a6540be5ae2c4a6f0957, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shoot_effect: {fileID: 100002, guid: 6741fa898e708c4429d2b6f741f8250e, type: 3}
-  hit_effect: {fileID: 100002, guid: 0961fe3727759de4fb15547e5d5324f2, type: 3}
+  shoot_effect: {fileID: 100002, guid: bc24712a28c2bba4286fe965106f58c9, type: 3}
+  hit_effect: {fileID: 100002, guid: 48eba6b4e815de34db0d0a495ead1ee2, type: 3}
   firing_ship: {fileID: 0}
 --- !u!96 &9600000
 TrailRenderer:
-  serializedVersion: 3
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -201,6 +205,8 @@ TrailRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -222,9 +228,11 @@ TrailRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_Time: 0.5
   m_PreviewTimeScale: 1
   m_Parameters:
@@ -256,20 +264,20 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.7411765, g: 0, b: 0, a: 1}
-      key1: {r: 0.5058824, g: 0, b: 0, a: 0.27058825}
-      key2: {r: 0.2, g: 0, b: 0, a: 0.043137256}
-      key3: {r: 1, g: 1, b: 1, a: 0}
+      key0: {r: 0, g: 0.88507795, b: 1, a: 1}
+      key1: {r: 0.44348523, g: 0.5939737, b: 0.6226415, a: 0.27058825}
+      key2: {r: 0.53039336, g: 0.68774575, b: 0.8207547, a: 0.043137256}
+      key3: {r: 0.1967782, g: 0.42581066, b: 0.6226415, a: 0}
       key4: {r: 1, g: 1, b: 1, a: 0}
-      key5: {r: 0, g: 0, b: 0, a: 0}
+      key5: {r: 1, g: 1, b: 1, a: 0}
       key6: {r: 0, g: 0, b: 0, a: 0}
       key7: {r: 0, g: 0, b: 0, a: 0}
       ctime0: 0
-      ctime1: 16384
-      ctime2: 32768
-      ctime3: 49151
-      ctime4: 65535
-      ctime5: 0
+      ctime1: 12914
+      ctime2: 16384
+      ctime3: 32768
+      ctime4: 49151
+      ctime5: 65535
       ctime6: 0
       ctime7: 0
       atime0: 0
@@ -281,8 +289,8 @@ TrailRenderer:
       atime6: 0
       atime7: 0
       m_Mode: 0
-      m_ColorSpace: -1
-      m_NumColorKeys: 5
+      m_ColorSpace: 0
+      m_NumColorKeys: 6
       m_NumAlphaKeys: 5
     numCornerVertices: 0
     numCapVertices: 0
@@ -292,7 +300,6 @@ TrailRenderer:
     shadowBias: 0.5
     generateLightingData: 0
   m_MinVertexDistance: 0.1
-  m_MaskInteraction: 0
   m_Autodestruct: 1
   m_Emitting: 1
   m_ApplyActiveColorSpace: 0
@@ -310,3 +317,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0
   damage: 0
+  lifeTime: 10

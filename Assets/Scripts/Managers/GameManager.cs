@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour
     public PickupManager pickupManager;
     public UIManager uIManager;
     [SerializeField] private UpgradeCardManager upgradeCardManager;
+    [SerializeField] private EventSystem eventSystem;
+    [SerializeField] private PerkSystem perkSystem;
 
     private Player player;
     private GameObject tempEnemy;
@@ -80,6 +82,30 @@ public class GameManager : MonoBehaviour
     public void NotifyDeath(Enemy enemy)
     {
         pickupManager.SpawnPickup(enemy.transform.position);
+        
+        // Spawn experience pickup instead of directly giving experience
+        if (player != null)
+        {
+            int experienceGain = CalculateExperienceGain(enemy);
+            pickupManager.SpawnExperiencePickup(enemy.transform.position, experienceGain);
+        }
+    }
+
+    private int CalculateExperienceGain(Enemy enemy)
+    {
+        // Base experience from enemy's point value
+        int baseExp = Mathf.Max(1, enemy.GetPointsValue() / 10);
+        
+        // Boss enemies give bonus experience
+        if (enemy.IsBoss())
+        {
+            baseExp *= 3;
+        }
+        
+        // Scale with multipliers (higher difficulty = more exp)
+        baseExp = Mathf.RoundToInt(baseExp * multiplierEnemyHealth);
+        
+        return baseExp;
     }
 
     public Player Getplayer()
@@ -95,6 +121,9 @@ public class GameManager : MonoBehaviour
     public void StartGame(bool endlessMode)
     {
         player = Instantiate(playerPrefab, Vector2.zero, Quaternion.identity).GetComponent<Player>();
+        player.ResetNukes();
+        player.ResetShields();
+        player.ResetExperience();
         uIManager.UpdateHealth(player.health.GetHealth());
         player.OnDeath += StopGame;
         scoreManager.onScoreChange += CheckPointsForEvents;
@@ -136,21 +165,85 @@ public class GameManager : MonoBehaviour
         StartCoroutine(EnemySpawner());
     }
 
+    private bool isBossAlive = false;
+    private bool isCardSelectionActive = false;
+    private float lastBossDeathTime = 0f;
+    private float bossSpawnCooldown = 3f; // Prevent boss spawns for 3 seconds after last boss death
+
     void SpawnBoss()
     {
-
+        if (isBossAlive) 
+        {
+            Debug.LogWarning("Attempted to spawn boss but one is already alive!");
+            return; // Prevent multiple bosses
+        }
+        
+        // Check cooldown to prevent immediate respawning
+        if (Time.time - lastBossDeathTime < bossSpawnCooldown)
+        {
+            Debug.LogWarning($"Boss spawn on cooldown. Time remaining: {bossSpawnCooldown - (Time.time - lastBossDeathTime):F1}s");
+            return;
+        }
+        
+        // Don't spawn boss during card selection
+        if (isCardSelectionActive)
+        {
+            Debug.LogWarning("Cannot spawn boss during card selection");
+            return;
+        }
+        
+        isBossAlive = true;
+        Debug.Log($"SpawnBoss called - bossEvent threshold: {bossEvent}");
+        
         if (!isEndlessMode)
         {
-            tempEnemy = Instantiate(enemyPrefabs[currentLimit]);
+            // Use pool manager if available, otherwise fallback to instantiate
+            if (PoolManager.Instance != null)
+            {
+                tempEnemy = PoolManager.Instance.GetEnemy(enemyPrefabs[currentLimit]).gameObject;
+            }
+            else
+            {
+                tempEnemy = Instantiate(enemyPrefabs[currentLimit]);
+                Debug.LogWarning("PoolManager not found, falling back to Instantiate for boss");
+            }
+            
             tempEnemy.transform.position = spawnPoints[UnityEngine.Random.Range(0, spawnPoints.Length)].position;
             if (!isEndlessMode)
                 tempEnemy.GetComponent<Enemy>().OnBossDeath += UpCurrentLimit;
+            // Also clear boss flag when boss dies
+            tempEnemy.GetComponent<Enemy>().OnBossDeath += BossDied;
+            tempEnemy.GetComponent<Enemy>().OnBossDeath += GiveBossReward;
             SetEnemy(true);
             BossSpawnPrep();
         }
         else
         {
             CreateEnemy(true);
+            // Subscribe to boss events for endless mode
+            tempEnemy.GetComponent<Enemy>().OnBossDeath += BossDied;
+            tempEnemy.GetComponent<Enemy>().OnBossDeath += GiveBossReward;
+        }
+    }
+
+    private void BossDied()
+    {
+        Debug.Log("BossDied() called - resetting isBossAlive flag");
+        isBossAlive = false;
+        lastBossDeathTime = Time.time;
+    }
+    
+    private void GiveBossReward()
+    {
+        Player player = Getplayer();
+        if (player != null)
+        {
+            // Award 1 perk point for killing a boss
+            player.AddPerkPoints(1);
+            Debug.Log("Boss defeated! Awarded 1 perk point!");
+            
+            // Optional: Show special notification for boss kill
+            uIManager.ShowBossKillNotification();
         }
     }
 
@@ -195,13 +288,18 @@ public class GameManager : MonoBehaviour
             // Ensure GameManager stays active so coroutines can run during card selection
             gameObject.SetActive(true);
             enabled = true;
+            isCardSelectionActive = true;
             
             Debug.Log("GameManager.CardSelection(): triggering card selection - showing player cards");
             // show player choices first, then enemy choices
             upgradeCardManager.ShowCards(true, () => {
                 Debug.Log("GameManager.CardSelection(): player made selection - showing enemy cards");
                 // after player selection, show enemy upgrade choices
-                upgradeCardManager.ShowCards(false, null);
+                upgradeCardManager.ShowCards(false, () => {
+                    // Card selection complete
+                    isCardSelectionActive = false;
+                    Debug.Log("GameManager.CardSelection(): card selection complete");
+                });
             });
         }
     }
@@ -237,6 +335,57 @@ public class GameManager : MonoBehaviour
                     multiplierPlayerHealth += value;
                 }else{
                     multiplierEnemyHealth += value;
+                }
+                break;
+            case UpgradeCardType.MaxAmmo:
+                if (player != null)
+                {
+                    // Upgrade all ammo-based weapons by the value (convert percentage to actual amount)
+                    float increment = Mathf.Max(1f, value * 5f); // Scale percentage to meaningful amount
+                    player.UpgradeAllWeaponsMaxAmmo(increment);
+                }
+                break;
+            case UpgradeCardType.MaxTime:
+                if (player != null)
+                {
+                    // Upgrade all time-based weapons by the value (convert percentage to seconds)
+                    float increment = Mathf.Max(0.5f, value * 2f); // Scale percentage to meaningful amount
+                    player.UpgradeAllWeaponsMaxTime(increment);
+                }
+                break;
+            case UpgradeCardType.LaserMaxTime:
+                if (player != null)
+                {
+                    float increment = Mathf.Max(0.5f, value * 1.5f);
+                    player.UpgradeSpecificWeaponMaxTime(PlayerWeaponType.Laser, increment);
+                }
+                break;
+            case UpgradeCardType.RocketMaxAmmo:
+                if (player != null)
+                {
+                    float increment = Mathf.Max(1f, value * 3f);
+                    player.UpgradeSpecificWeaponMaxAmmo(PlayerWeaponType.Rocket, increment);
+                }
+                break;
+            case UpgradeCardType.PlasmaMaxTime:
+                if (player != null)
+                {
+                    float increment = Mathf.Max(0.5f, value * 1.5f);
+                    player.UpgradeSpecificWeaponMaxTime(PlayerWeaponType.Plasma, increment);
+                }
+                break;
+            case UpgradeCardType.RailgunMaxAmmo:
+                if (player != null)
+                {
+                    float increment = Mathf.Max(1f, value * 3f);
+                    player.UpgradeSpecificWeaponMaxAmmo(PlayerWeaponType.Railgun, increment);
+                }
+                break;
+            case UpgradeCardType.ShieldDuration:
+                if (player != null)
+                {
+                    float increment = Mathf.Max(0.2f, value * 0.8f); // Scale to reasonable duration increase
+                    player.UpgradeShieldDuration(increment);
                 }
                 break;
             default:
@@ -292,52 +441,128 @@ public class GameManager : MonoBehaviour
 
     void CheckPointsForEvents(float score)
     {
+        // Don't trigger boss events during card selection or while boss is alive or on cooldown
+        if (isCardSelectionActive || isBossAlive || (Time.time - lastBossDeathTime < bossSpawnCooldown))
+        {
+            if (score >= bossEvent)
+            {
+                Debug.Log($"Boss event deferred - score {score} >= threshold {bossEvent} but conditions not met (cardSelection: {isCardSelectionActive}, bossAlive: {isBossAlive}, cooldown: {Time.time - lastBossDeathTime < bossSpawnCooldown})");
+            }
+            return;
+        }
+        
         if (score >= bossEvent){
+            Debug.Log($"Boss event triggered at score {score} (threshold: {bossEvent})");
             SpawnBoss();
             bossEvent = bossEvent*2;
         }else{
-            if (UnityEngine.Random.Range(0,100) > 90){
-                Debug.Log("Make Event");
+            // Use event system for random events
+            if (eventSystem != null && UnityEngine.Random.Range(0,100) > 95){
+                eventSystem.TriggerRandomEvent();
+                Debug.Log($"Random Event Triggered at score {score}!");
             }
         }
+    }
+    
+    public void UpgradeSpawnRateReduction(float percentage)
+    {
+        mulitplierSpawnRate *= (1f - percentage);
+        Debug.Log($"Spawn rate reduced by {percentage * 100}%. New multiplier: {mulitplierSpawnRate}");
+    }
+    
+    public EventSystem GetEventSystem()
+    {
+        return eventSystem;
+    }
+    
+    public PerkSystem GetPerkSystem()
+    {
+        return perkSystem;
     }
 
     public void StopGame()
     {
         isEnemySpawning = false;
+        isPlaying = false; // Stop game immediately to prevent further updates
         scoreManager.SetHighScore();
+        
+        // Immediately clean up enemies and pickups to prevent null reference issues
+        var allenemies = FindObjectsByType<Enemy>(FindObjectsSortMode.None);
+        var allpickups = FindObjectsByType<Pickup>(FindObjectsSortMode.None);
+        
+        foreach (Enemy enemy in allenemies)
+        {
+            if (enemy != null)
+            {
+                // Use pooling system if available
+                if (PoolManager.Instance != null)
+                {
+                    PoolManager.Instance.ReturnEnemy(enemy);
+                }
+                else
+                {
+                    Destroy(enemy.gameObject);
+                }
+            }
+        }
+        
+        foreach (Pickup pickup in allpickups)
+        {
+            if (pickup != null)
+            {
+                // Use pooling system if available
+                if (PoolManager.Instance != null)
+                {
+                    PoolManager.Instance.ReturnPickup(pickup);
+                }
+                else
+                {
+                    Destroy(pickup.gameObject);
+                }
+            }
+        }
+        
         StartCoroutine(GameStopper());
     }
 
     IEnumerator GameStopper()
     {
-        isEnemySpawning = false;
+        // Game is already stopped and enemies/pickups cleaned up in StopGame()
+        // Just need a small delay before invoking game over event
         yield return new WaitForSeconds(0.5f);
-        isPlaying = false;
-
-        var allenemies = FindObjectsByType<Enemy>(FindObjectsSortMode.None);
-        var allpickups = FindObjectsByType<Pickup>(FindObjectsSortMode.None);
-        foreach (Enemy enemy in allenemies)
-        {
-            if (enemy != null)
-                Destroy(enemy.gameObject);
-        }
-        foreach (Pickup pickup in allpickups)
-        {
-            if (pickup != null)
-                Destroy(pickup.gameObject);
-        }
         OnGameOver?.Invoke();
     }
 
     void CreateEnemy(bool isBoss = false)
     {
-        tempEnemy = Instantiate(enemyPrefabs[UnityEngine.Random.Range(0, currentLimit)]);
+        // Use pool manager if available, otherwise fallback to instantiate
+        if (PoolManager.Instance != null)
+        {
+            Enemy enemyComponent = PoolManager.Instance.GetEnemy(enemyPrefabs[UnityEngine.Random.Range(0, currentLimit)]);
+            if (enemyComponent != null)
+            {
+                tempEnemy = enemyComponent.gameObject;
+            }
+            else
+            {
+                tempEnemy = Instantiate(enemyPrefabs[UnityEngine.Random.Range(0, currentLimit)]);
+                Debug.LogWarning("Enemy pool returned null, falling back to Instantiate");
+            }
+        }
+        else
+        {
+            tempEnemy = Instantiate(enemyPrefabs[UnityEngine.Random.Range(0, currentLimit)]);
+            Debug.LogWarning("PoolManager not found, falling back to Instantiate for enemy");
+        }
+        
         tempEnemy.transform.position = spawnPoints[UnityEngine.Random.Range(0, spawnPoints.Length)].position;
         if (isBoss)
+        {
             BossSpawnPrep();
-        if (isBoss)
-            tempEnemy.GetComponent<Enemy>().OnBossDeath += UpCurrentLimit;
+            // Only subscribe to boss death events here for bosses created via CreateEnemy
+            // Don't duplicate the subscriptions that are already in SpawnBoss()
+            Debug.Log("Boss created via CreateEnemy - events already subscribed in SpawnBoss");
+        }
         SetEnemy(isBoss);
     }
 
@@ -370,12 +595,12 @@ public class GameManager : MonoBehaviour
         else if (tempEnemy.GetComponent<SpikeEnemy>() != null)
         {
             tempEnemy.GetComponent<SpikeEnemy>().weapon = spikeThrow;
-            tempEnemy.GetComponent<SpikeEnemy>().SetEnemy(20, 2f, isBoss);
+            tempEnemy.GetComponent<SpikeEnemy>().SetEnemy(10, 2f, isBoss);
         }
         else if (tempEnemy.GetComponent<LaserEnemy>() != null)
         {
             tempEnemy.GetComponent<LaserEnemy>().weapon = laserWeapon;
-            tempEnemy.GetComponent<LaserEnemy>().SetEnemy(3, 2f, isBoss);
+            tempEnemy.GetComponent<LaserEnemy>().SetEnemy(4, 1f, isBoss);
         }
         else if (tempEnemy.GetComponent<BlinderEnemy>() != null)
         {

@@ -31,7 +31,7 @@ public class MeleeEnemy : Enemy
     protected override void Update()
     {
         base.Update();
-        if (target == null){
+        if (target == null || target.gameObject == null){
             return;
         }
 
@@ -75,7 +75,10 @@ public class MeleeEnemy : Enemy
             timer += Time.deltaTime;
         }else{
             timer = 0f;
-            target.gameObject.GetComponent<IDamageable>().GetDamage(weapon.GetDamage());
+            if (target != null && target.gameObject != null)
+            {
+                target.gameObject.GetComponent<IDamageable>().GetDamage(weapon.GetDamage());
+            }
         }
     }
 

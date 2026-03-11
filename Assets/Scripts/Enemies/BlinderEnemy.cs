@@ -18,7 +18,7 @@ public class BlinderEnemy : Enemy
     protected override void Update()
     {
         base.Update();
-        if (target == null)
+        if (target == null || target.gameObject == null)
         {
             return;
         }

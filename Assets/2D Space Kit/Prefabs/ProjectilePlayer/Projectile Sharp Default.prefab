@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 9600000}
   - component: {fileID: 7398751296313676766}
   m_Layer: 0
-  m_Name: Projectile Sharp 1
+  m_Name: Projectile Sharp Default
   m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

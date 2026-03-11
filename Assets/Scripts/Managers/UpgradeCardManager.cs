@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -13,11 +14,15 @@ public class UpgradeCardManager : MonoBehaviour
     [SerializeField] private Sprite pointFront;
     [SerializeField] private Sprite spawnFront;
     [SerializeField] private Sprite healthFront;
+    [SerializeField] private Sprite weaponFront;
+    [SerializeField] private Sprite shieldFront;
     [SerializeField] private Sprite speedIcon;
     [SerializeField] private Sprite damageIcon;
     [SerializeField] private Sprite pointIcon;
     [SerializeField] private Sprite spawnIcon;
     [SerializeField] private Sprite healthIcon;
+    [SerializeField] private Sprite weaponIcon;
+    [SerializeField] private Sprite shieldIcon;
 
     [SerializeField] private GameObject Card1Back;
     [SerializeField] private GameObject Card2Back;
@@ -41,19 +46,13 @@ public class UpgradeCardManager : MonoBehaviour
     [SerializeField] private TMP_Text Card2Description;
     [SerializeField] private TMP_Text Card3Description;
 
-    [SerializeField] private float normalMinValue = 0.01f;
-    [SerializeField] private float normalMaxValue = 0.2f;
-    [SerializeField] private float legendaryMinValue = 0.25f;
-    [SerializeField] private float legendaryMaxValue = 0.75f;
 
-    private float previousTimeScale = 1f;
 
     private CardData card1Data, card2Data, card3Data;
     private bool currentIsPlayer;
     private Action onComplete;
     private float originalTimeScale = 1f; // Save the original timescale before any pause
     private int playerSelectionsRemaining = 0; // Track how many more selections the player needs to make
-    private bool card1Selected = false, card2Selected = false, card3Selected = false; // Track which cards are selected
 
     // Public API: show cards for player (isPlayer=true) or enemies (isPlayer=false).
     public void ShowCards(bool isPlayer, Action onComplete = null)
@@ -62,10 +61,7 @@ public class UpgradeCardManager : MonoBehaviour
         this.onComplete = onComplete;
         currentIsPlayer = isPlayer;
         
-        // Reset selected card flags when starting new phase
-        card1Selected = false;
-        card2Selected = false;
-        card3Selected = false;
+
         
         // Re-enable all cards in case some were hidden during player selection
         if (Card1Back != null) Card1Back.SetActive(true);
@@ -90,6 +86,16 @@ public class UpgradeCardManager : MonoBehaviour
             originalTimeScale = Time.timeScale;
             Debug.Log($"UpgradeCardManager.ShowCards(): Saved original timescale: {originalTimeScale}");
         }
+        else
+        {
+            // For enemy selection, ensure we restore to normal game speed (1f) when done
+            // Don't overwrite originalTimeScale, but make sure we have a valid restore value
+            if (originalTimeScale <= 0f)
+            {
+                originalTimeScale = 1f;
+                Debug.Log($"UpgradeCardManager.ShowCards(): Enemy phase - corrected originalTimeScale to {originalTimeScale}");
+            }
+        }
         
         Time.timeScale = 0f; // pause game
         CreateCards(isPlayer);
@@ -100,12 +106,10 @@ public class UpgradeCardManager : MonoBehaviour
     private void CreateCards(bool isPlayer)
     {
         card1Data = GenerateCard(isPlayer);
-        ApplyCardUI(card1Data, Card1Back, Card1FrontColor, Card1TypeIcon, Card1TypeIcon2, Card1TypeText, Card1PercentText, Card1Description, isPlayer);
-
         card2Data = GenerateCard(isPlayer);
-        ApplyCardUI(card2Data, Card2Back, Card2FrontColor, Card2TypeIcon, Card2TypeIcon2, Card2TypeText, Card2PercentText, Card2Description, isPlayer);
-
         card3Data = GenerateCard(isPlayer);
+        ApplyCardUI(card1Data, Card1Back, Card1FrontColor, Card1TypeIcon, Card1TypeIcon2, Card1TypeText, Card1PercentText, Card1Description, isPlayer);
+        ApplyCardUI(card2Data, Card2Back, Card2FrontColor, Card2TypeIcon, Card2TypeIcon2, Card2TypeText, Card2PercentText, Card2Description, isPlayer);
         ApplyCardUI(card3Data, Card3Back, Card3FrontColor, Card3TypeIcon, Card3TypeIcon2, Card3TypeText, Card3PercentText, Card3Description, isPlayer);
     }
 
@@ -116,9 +120,20 @@ public class UpgradeCardManager : MonoBehaviour
         
         if (isLegendary)
         {
-            // Legendary: always 2 buffs
-            cardData.upgrades.Add(GenerateUpgrade(true, 0.25f, 0.75f));
-            cardData.upgrades.Add(GenerateUpgradeDifferentType(cardData.upgrades[0].type, true, 0.25f, 0.75f));
+            if (isPlayer)
+            {
+                // Legendary player card: 2 strong buffs
+                cardData.upgrades.Add(GenerateUpgrade(true, 0.3f, 0.8f));
+                cardData.upgrades.Add(GenerateUpgradeDifferentType(cardData.upgrades[0].type, true, 0.3f, 0.8f));
+            }
+            else
+            {
+                // Legendary enemy card: one strong buff for enemy, one strong buff for player
+                // First upgrade: enemy buff
+                cardData.upgrades.Add(GenerateUpgrade(true, 0.4f, 0.95f));
+                // Second upgrade: player buff (different type)
+                cardData.upgrades.Add(GenerateUpgradeDifferentType(cardData.upgrades[0].type, true, 0.3f, 0.8f));
+            }
             cardData.isLegendary = true;
         }
         else
@@ -144,7 +159,7 @@ public class UpgradeCardManager : MonoBehaviour
 
     private CardUpgrade GenerateUpgrade(bool isBuff, float minValue, float maxValue)
     {
-        UpgradeCardType type = RandomType();
+        UpgradeCardType type = RandomType(currentIsPlayer);
         float baseValue = UnityEngine.Random.Range(minValue, maxValue);
         float value = isBuff ? baseValue : -baseValue;
         
@@ -156,7 +171,7 @@ public class UpgradeCardManager : MonoBehaviour
         UpgradeCardType type;
         do
         {
-            type = RandomType();
+            type = RandomType(currentIsPlayer);
         } while (type == excludeType);
         
         float baseValue = UnityEngine.Random.Range(minValue, maxValue);
@@ -165,10 +180,35 @@ public class UpgradeCardManager : MonoBehaviour
         return new CardUpgrade { type = type, value = value };
     }
 
-    private UpgradeCardType RandomType()
+    private UpgradeCardType RandomType(bool isPlayerCard = true)
     {
-        int count = Enum.GetValues(typeof(UpgradeCardType)).Length;
-        return (UpgradeCardType)UnityEngine.Random.Range(0, count);
+        // Get all upgrade types
+        var allTypes = (UpgradeCardType[])Enum.GetValues(typeof(UpgradeCardType));
+        
+        // Filter out weapon upgrades for enemy cards
+        if (!isPlayerCard)
+        {
+            var validTypes = new List<UpgradeCardType>();
+            foreach (var type in allTypes)
+            {
+                // Exclude weapon-specific upgrades and shield upgrades for enemy cards
+                if (type != UpgradeCardType.MaxAmmo && 
+                    type != UpgradeCardType.MaxTime &&
+                    type != UpgradeCardType.ShieldDuration &&
+                    !IsSpecificWeaponUpgrade(type))
+                {
+                    validTypes.Add(type);
+                }
+            }
+            
+            if (validTypes.Count > 0)
+            {
+                return validTypes[UnityEngine.Random.Range(0, validTypes.Count)];
+            }
+        }
+        
+        // For player cards or fallback, use all types
+        return allTypes[UnityEngine.Random.Range(0, allTypes.Length)];
     }
 
     private void ApplyCardUI(CardData cardData, GameObject backObj, Image frontColor, Image typeIcon, Image typeIcon2, TMP_Text typeText, TMP_Text percentText, TMP_Text description, bool isPlayer)
@@ -184,10 +224,10 @@ public class UpgradeCardManager : MonoBehaviour
 
         if (cardData.upgrades.Count == 1)
         {
-            // Single upgrade - original behavior
+            // Single upgrade - show current → new values
             CardUpgrade upgrade = cardData.upgrades[0];
             titleText = GetTypeString(upgrade.type);
-            descText = BuildDescription(upgrade.type, upgrade.value, isPlayer);
+            descText = BuildDescriptionWithValues(upgrade.type, upgrade.value, isPlayer);
             
             if (typeIcon != null) typeIcon.sprite = GetIconForType(upgrade.type);
             if (typeIcon2 != null) typeIcon2.sprite = GetIconForType(upgrade.type);
@@ -198,19 +238,38 @@ public class UpgradeCardManager : MonoBehaviour
                 percentText.SetText(sign + Mathf.Ceil(Mathf.Abs(upgrade.value) * 100).ToString() + "%");
             }
         }
-        else if (cardData.upgrades.Count == 2)
+        else if (cardData.upgrades.Count >= 2)
         {
-            // Multiple upgrades
+            // Multiple upgrades (2 or more)
             CardUpgrade upgrade1 = cardData.upgrades[0];
             CardUpgrade upgrade2 = cardData.upgrades[1];
             
-            // Title: type1 / type2
+            // Title: type1 / type2 (show first 2 types)
             titleText = GetTypeString(upgrade1.type) + " / " + GetTypeString(upgrade2.type);
             
-            // Description explains both upgrades
-            string desc1 = BuildDescriptionPart(upgrade1.type, upgrade1.value, isPlayer);
-            string desc2 = BuildDescriptionPart(upgrade2.type, upgrade2.value, isPlayer);
+            // For 3+ upgrades, add a note
+            if (cardData.upgrades.Count > 2)
+            {
+                titleText += " +";
+            }
+            
+            // Description explains all upgrades - use new format where possible
+            string desc1 = IsSpecificWeaponUpgrade(upgrade1.type) ? 
+                          GetShortDescriptionWithValues(upgrade1.type, upgrade1.value, isPlayer) :
+                          BuildDescriptionPart(upgrade1.type, upgrade1.value, isPlayer);
+            string desc2 = IsSpecificWeaponUpgrade(upgrade2.type) ? 
+                          GetShortDescriptionWithValues(upgrade2.type, upgrade2.value, isPlayer) :
+                          BuildDescriptionPart(upgrade2.type, upgrade2.value, isPlayer);
             descText = desc1 + " and " + desc2;
+            
+            // Add additional upgrades to description if they exist
+            for (int i = 2; i < cardData.upgrades.Count; i++)
+            {
+                string descExtra = IsSpecificWeaponUpgrade(cardData.upgrades[i].type) ?
+                                  GetShortDescriptionWithValues(cardData.upgrades[i].type, cardData.upgrades[i].value, isPlayer) :
+                                  BuildDescriptionPart(cardData.upgrades[i].type, cardData.upgrades[i].value, isPlayer);
+                descText += " and " + descExtra;
+            }
             
             // Icons - set both icons with the appropriate types
             if (typeIcon != null) typeIcon.sprite = GetIconForType(upgrade1.type);
@@ -245,6 +304,12 @@ public class UpgradeCardManager : MonoBehaviour
                 {
                     percentText.SetText(percent1 + " / " + percent2);
                 }
+                
+                // Add additional percentages if they exist
+                if (cardData.upgrades.Count > 2)
+                {
+                    percentText.SetText(percentText.text + " +");
+                }
             }
         }
 
@@ -268,6 +333,13 @@ public class UpgradeCardManager : MonoBehaviour
             UpgradeCardType.Point => "Points",
             UpgradeCardType.Spawn => "Spawn Rate",
             UpgradeCardType.Health => "Health",
+            UpgradeCardType.MaxAmmo => "Max Ammo",
+            UpgradeCardType.MaxTime => "Max Time",
+            UpgradeCardType.LaserMaxTime => "Laser Time",
+            UpgradeCardType.RocketMaxAmmo => "Rocket Ammo",
+            UpgradeCardType.PlasmaMaxTime => "Plasma Time",
+            UpgradeCardType.RailgunMaxAmmo => "Railgun Ammo",
+            UpgradeCardType.ShieldDuration => "Shield Duration",
             _ => "Unknown"
         };
     }
@@ -281,6 +353,13 @@ public class UpgradeCardManager : MonoBehaviour
             UpgradeCardType.Point => pointIcon,
             UpgradeCardType.Spawn => spawnIcon,
             UpgradeCardType.Health => healthIcon,
+            UpgradeCardType.MaxAmmo => weaponIcon,
+            UpgradeCardType.MaxTime => weaponIcon,
+            UpgradeCardType.LaserMaxTime => weaponIcon,
+            UpgradeCardType.RocketMaxAmmo => weaponIcon,
+            UpgradeCardType.PlasmaMaxTime => weaponIcon,
+            UpgradeCardType.RailgunMaxAmmo => weaponIcon,
+            UpgradeCardType.ShieldDuration => shieldIcon,
             _ => pointIcon
         };
     }
@@ -294,14 +373,124 @@ public class UpgradeCardManager : MonoBehaviour
             UpgradeCardType.Point => pointFront,
             UpgradeCardType.Spawn => spawnFront,
             UpgradeCardType.Health => healthFront,
+            UpgradeCardType.MaxAmmo => weaponFront,
+            UpgradeCardType.MaxTime => weaponFront,
+            UpgradeCardType.LaserMaxTime => weaponFront,
+            UpgradeCardType.RocketMaxAmmo => weaponFront,
+            UpgradeCardType.PlasmaMaxTime => weaponFront,
+            UpgradeCardType.RailgunMaxAmmo => weaponFront,
+            UpgradeCardType.ShieldDuration => shieldFront,
             _ => pointFront
         };
+    }
+
+    private string BuildDescriptionWithValues(UpgradeCardType type, float value, bool isPlayer)
+    {
+        // For enemy cards with weapon upgrades (shouldn't happen with filtering, but safety check)
+        if (!isPlayer && (IsSpecificWeaponUpgrade(type) || type == UpgradeCardType.MaxAmmo || type == UpgradeCardType.MaxTime || type == UpgradeCardType.ShieldDuration))
+            return BuildDescription(type, value, isPlayer);
+            
+        Player player = GameManager.GetInstance()?.Getplayer();
+        if (player == null)
+            return BuildDescription(type, value, isPlayer); // Fallback to original method
+
+        // For weapon-specific upgrades, show current → new format
+        if (IsSpecificWeaponUpgrade(type))
+        {
+            PlayerWeaponType weaponType = GetWeaponTypeFromUpgradeType(type);
+            bool isTimeUpgrade = IsTimeUpgrade(type);
+            
+            if (isTimeUpgrade)
+            {
+                float currentTime = player.GetWeaponMaxTime(weaponType);
+                float increment = Mathf.Max(0.5f, value * 1.5f);
+                float newTime = currentTime + increment;
+                return $"Max Time: {currentTime:F1}s → {newTime:F1}s";
+            }
+            else
+            {
+                float currentAmmo = player.GetWeaponMaxAmmo(weaponType);
+                float increment = Mathf.Max(1f, value * 3f);
+                float newAmmo = currentAmmo + increment;
+                return $"Max Ammo: {Mathf.CeilToInt(currentAmmo)} → {Mathf.CeilToInt(newAmmo)}";
+            }
+        }
+        
+        // For general upgrades (MaxAmmo/MaxTime), show generic description
+        if (type == UpgradeCardType.MaxAmmo)
+            return "Increase max ammo for all ammo-based weapons";
+        if (type == UpgradeCardType.MaxTime)
+            return "Increase max time for all time-based weapons";
+        
+        // For shield upgrades, show current → new format
+        if (type == UpgradeCardType.ShieldDuration)
+        {
+            float currentDuration = player.GetShieldDuration();
+            float increment = Mathf.Max(0.2f, value * 0.8f);
+            float newDuration = currentDuration + increment;
+            return $"Shield Duration: {currentDuration:F1}s → {newDuration:F1}s";
+        }
+            
+        // For other upgrades, use original description
+        return BuildDescription(type, value, isPlayer);
+    }
+
+    private PlayerWeaponType GetWeaponTypeFromUpgradeType(UpgradeCardType type)
+    {
+        return type switch
+        {
+            UpgradeCardType.LaserMaxTime => PlayerWeaponType.Laser,
+            UpgradeCardType.RocketMaxAmmo => PlayerWeaponType.Rocket,
+            UpgradeCardType.PlasmaMaxTime => PlayerWeaponType.Plasma,
+            UpgradeCardType.RailgunMaxAmmo => PlayerWeaponType.Railgun,
+            _ => PlayerWeaponType.Default
+        };
+    }
+    
+    private bool IsTimeUpgrade(UpgradeCardType type)
+    {
+        return type == UpgradeCardType.LaserMaxTime || type == UpgradeCardType.PlasmaMaxTime;
+    }
+    
+    private string GetShortDescriptionWithValues(UpgradeCardType type, float value, bool isPlayer)
+    {
+        // Safety check for enemy cards with weapon upgrades
+        if (!isPlayer && IsSpecificWeaponUpgrade(type))
+            return BuildDescriptionPart(type, value, isPlayer);
+            
+        Player player = GameManager.GetInstance()?.Getplayer();
+        if (player == null)
+            return BuildDescriptionPart(type, value, isPlayer); // Fallback
+        
+        PlayerWeaponType weaponType = GetWeaponTypeFromUpgradeType(type);
+        bool isTimeUpgrade = IsTimeUpgrade(type);
+        
+        if (isTimeUpgrade)
+        {
+            float currentTime = player.GetWeaponMaxTime(weaponType);
+            float increment = Mathf.Max(0.5f, value * 1.5f);
+            float newTime = currentTime + increment;
+            return $"{GetTypeString(type)}: {currentTime:F1}→{newTime:F1}s";
+        }
+        else
+        {
+            float currentAmmo = player.GetWeaponMaxAmmo(weaponType);
+            float increment = Mathf.Max(1f, value * 3f);
+            float newAmmo = currentAmmo + increment;
+            return $"{GetTypeString(type)}: {Mathf.CeilToInt(currentAmmo)}→{Mathf.CeilToInt(newAmmo)}";
+        }
     }
 
     private string BuildDescription(UpgradeCardType type, float value, bool isPlayer)
     {
         if (type == UpgradeCardType.Point || type == UpgradeCardType.Spawn)
             return "Change " + GetTypeString(type).ToLower() + " value by";
+
+        if (type == UpgradeCardType.MaxAmmo || type == UpgradeCardType.MaxTime)
+            return "Increase weapon " + GetTypeString(type).ToLower() + " by";
+
+        if (IsSpecificWeaponUpgrade(type))
+            return "Increase " + GetTypeString(type).ToLower() + " by";
 
         bool isDebuff = value < 0;
         string subject = "";
@@ -324,6 +513,14 @@ public class UpgradeCardManager : MonoBehaviour
             return "change points value";
         if (type == UpgradeCardType.Spawn)
             return "change spawn rate";
+        if (type == UpgradeCardType.MaxAmmo)
+            return "increase max ammo";
+        if (type == UpgradeCardType.MaxTime)
+            return "increase max time";
+        if (type == UpgradeCardType.ShieldDuration)
+            return "increase shield duration";
+        if (IsSpecificWeaponUpgrade(type))
+            return "increase " + GetTypeString(type).ToLower();
 
         bool isBuff = value > 0;
         string target = "";
@@ -349,6 +546,10 @@ public class UpgradeCardManager : MonoBehaviour
         if (type == UpgradeCardType.Spawn)
         {
             return isPlayer ? "-" : "+";
+        }
+        if (type == UpgradeCardType.MaxAmmo || type == UpgradeCardType.MaxTime || IsSpecificWeaponUpgrade(type))
+        {
+            return "+"; // Max values are always positive upgrades
         }
         
         return value >= 0 ? "+" : "-";
@@ -465,17 +666,14 @@ public class UpgradeCardManager : MonoBehaviour
         {
             case 1:
                 selectedCardData = card1Data;
-                card1Selected = true;
                 Debug.Log($"UpgradeCardManager.HandleSelection(): selected card1 with {selectedCardData.upgrades.Count} upgrade(s), isPlayer={currentIsPlayer}");
                 break;
             case 2:
                 selectedCardData = card2Data;
-                card2Selected = true;
                 Debug.Log($"UpgradeCardManager.HandleSelection(): selected card2 with {selectedCardData.upgrades.Count} upgrade(s), isPlayer={currentIsPlayer}");
                 break;
             case 3:
                 selectedCardData = card3Data;
-                card3Selected = true;
                 Debug.Log($"UpgradeCardManager.HandleSelection(): selected card3 with {selectedCardData.upgrades.Count} upgrade(s), isPlayer={currentIsPlayer}");
                 break;
         }
@@ -505,8 +703,16 @@ public class UpgradeCardManager : MonoBehaviour
             Action callback = onComplete;
             bool isFinalSelection = (callback == null);
             
-            Time.timeScale = originalTimeScale;
-            Debug.Log($"UpgradeCardManager.HandleSelection(): all selections complete. isFinalSelection={isFinalSelection}. Restored timescale to {originalTimeScale}. Calling callback...");
+            // Ensure we restore to a proper game speed
+            float restoreTimeScale = originalTimeScale;
+            if (isFinalSelection && restoreTimeScale <= 0f)
+            {
+                restoreTimeScale = 1f; // Force normal game speed if original was 0 or invalid
+                Debug.Log("UpgradeCardManager.HandleSelection(): Final selection - forcing timescale to 1f to ensure game resumes");
+            }
+            
+            Time.timeScale = restoreTimeScale;
+            Debug.Log($"UpgradeCardManager.HandleSelection(): all selections complete. isFinalSelection={isFinalSelection}. Restored timescale to {restoreTimeScale}. Calling callback...");
             
             yield return new WaitForSecondsRealtime(0.1f);
             
@@ -624,15 +830,30 @@ public class UpgradeCardManager : MonoBehaviour
                 GameManager.GetInstance().ApplyEnemyUpgrade(upgrade.type, upgrade.value);
         }
     }
+    
+    private bool IsSpecificWeaponUpgrade(UpgradeCardType type)
+    {
+        return type == UpgradeCardType.LaserMaxTime ||
+               type == UpgradeCardType.RocketMaxAmmo ||
+               type == UpgradeCardType.PlasmaMaxTime ||
+               type == UpgradeCardType.RailgunMaxAmmo;
+    }
 }
 
 public enum UpgradeCardType
 {
-    Speed,
-    Damage,
-    Point,
-    Spawn,
-    Health
+    Speed = 0,
+    Damage = 1,
+    Health = 2,
+    Point = 3,
+    Spawn = 4,
+    MaxAmmo = 5,
+    MaxTime = 6,
+    LaserMaxTime = 7,      // Laser uses time
+    RocketMaxAmmo = 8,     // Rocket uses ammo  
+    PlasmaMaxTime = 9,     // Plasma uses time
+    RailgunMaxAmmo = 10,   // Railgun uses ammo
+    ShieldDuration = 11    // Shield duration upgrade
 }
 [System.Serializable]
 public class CardUpgrade

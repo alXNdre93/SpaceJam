@@ -29,7 +29,7 @@ public class ExploderEnemy : Enemy
     protected override void Update()
     {
         base.Update();
-        if (target == null){
+        if (target == null || target.gameObject == null){
             return;
         }
 
@@ -71,11 +71,12 @@ public class ExploderEnemy : Enemy
                 timer = 0f;
                 speed = 0f;
                 Instantiate(hitEffect, transform.position, Quaternion.identity);
-                if (Vector2.Distance(transform.position, target.position) < explosionRange)
+                if (target != null && target.gameObject != null && Vector2.Distance(transform.position, target.position) < explosionRange)
                 {
                     target.gameObject.GetComponent<IDamageable>().GetDamage(weapon.GetDamage());
                 }
-                Destroy(gameObject);
+                // Use Die() method instead of Destroy to properly handle pooling
+                Die();
             }
             timer+=1;
             yield return new WaitForSeconds(1);

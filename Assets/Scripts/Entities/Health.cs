@@ -54,4 +54,16 @@ public class Health
     {
         return healthRegenRate;
     }
+
+    public void ResetToMax()
+    {
+        currentHealth = maxHealth;
+    }
+    
+    public void IncreaseMaxHealth(float amount)
+    {
+        maxHealth += amount;
+        // Optional: Also increase current health by the same amount
+        currentHealth = Mathf.Min(currentHealth + amount, maxHealth);
+    }
 }
